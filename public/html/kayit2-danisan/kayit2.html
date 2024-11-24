@@ -8,8 +8,10 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="http://cdn.arabul.us/bootstrap/css/bootstrap.min.css?123">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0-alpha1/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="kayit2.css">
 </head>
+
 
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light customizedNavbar">
@@ -45,22 +47,12 @@
                 <label for="age" class="form-label">Yaş</label>
                 <input type="number" class="form-control" id="age" placeholder="Yaşınızı giriniz" required>
             </div>
-            <!-- Ülke (Dropdown) -->
             <div class="mb-3">
+                <!-- Ülke Form Alanı -->
                 <label for="country" class="form-label">Ülke</label>
-                <select class="form-select" id="country" required>
-                    <option value="" selected disabled>Ülkenizi seçiniz</option>
-                    <option value="turkey">Türkiye</option>
-                    <option value="usa">Amerika Birleşik Devletleri</option>
-                    <option value="uk">Birleşik Krallık</option>
-                    <option value="germany">Almanya</option>
-                    <option value="france">Fransa</option>
-                    <option value="italy">İtalya</option>
-                    <option value="japan">Japonya</option>
-                    <option value="china">Çin</option>
-                    <option value="india">Hindistan</option>
-                    <option value="brazil">Brezilya</option>
-                </select>
+                <div class="form-select" id="countrySelect"  data-bs-toggle="modal" data-bs-target="#countryModal">
+                    Ülkenizi seçiniz
+                </div>
             </div>
             <!-- Telefon -->
             <div class="mb-3">
@@ -74,23 +66,113 @@
             </div>
             <!-- Cinsiyet -->
             <div class="mb-3">
+                <!-- Cinsiyet Form Alanı -->
                 <label for="gender" class="form-label">Cinsiyet</label>
-                <select class="form-select" id="country" required>
-                    <option value="" selected disabled>Cinsiyetinizi Seçiniz</option>
-                    <option value="kadin">Kadın</option>
-                    <option value="erkek">Erkek</option>
-                    <option value="diger">Belirtmek İstemiyorum</option>
-                </select>
+                <div class="form-select" id="genderSelect" data-bs-toggle="modal" data-bs-target="#genderModal">
+                    Cinsiyetinizi Seçiniz
+                </div>
             </div>
         </form>
+    </div>
     </div>
 
     <!-- Butonlar -->
     <div class="button-group">
-        <button type="button" class="btn btn-secondary">Geri</button>
-        <button type="submit" class="btn btn-primary">Devam Et</button>
+        <button type="button" class="modal-btn">Geri</button>
+        <button type="button" class="primary-button">Devam Et</button>
     </div>
+    <!-- Cinsiyet Seçimi Modal -->
+    <div class="modal fade" id="genderModal" tabindex="-1" aria-labelledby="genderModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="genderModalLabel">Cinsiyet Seçimi</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Kapat"></button>
+                </div>
+                <div class="modal-body">
+                    <ul class="list-group">
+                        <li class="list-group-item" data-bs-dismiss="modal" id="femaleOption">Kadın</li>
+                        <li class="list-group-item" data-bs-dismiss="modal" id="maleOption">Erkek</li>
+                        <li class="list-group-item" data-bs-dismiss="modal" id="otherOption">Belirtmek İstemiyorum</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="countryModal" tabindex="-1" aria-labelledby="countryModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="countryModalLabel">Ülke Seçimi</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Kapat"></button>
+                </div>
+                <div class="modal-body">
+                    <ul class="list-group">
+                        <li class="list-group-item" data-bs-dismiss="modal" id="turkeyOption">Türkiye</li>
+                        <li class="list-group-item" data-bs-dismiss="modal" id="usaOption">Amerika Birleşik Devletleri
+                        </li>
+                        <li class="list-group-item" data-bs-dismiss="modal" id="ukOption">Birleşik Krallık</li>
+                        <li class="list-group-item" data-bs-dismiss="modal" id="germanyOption">Almanya</li>
+                        <li class="list-group-item" data-bs-dismiss="modal" id="franceOption">Fransa</li>
+                        <li class="list-group-item" data-bs-dismiss="modal" id="italyOption">İtalya</li>
+                        <li class="list-group-item" data-bs-dismiss="modal" id="japanOption">Japonya</li>
+                        <li class="list-group-item" data-bs-dismiss="modal" id="chinaOption">Çin</li>
+                        <li class="list-group-item" data-bs-dismiss="modal" id="indiaOption">Hindistan</li>
+                        <li class="list-group-item" data-bs-dismiss="modal" id="brazilOption">Brezilya</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        // Modal seçimlerini işleme
+        document.getElementById("femaleOption").addEventListener("click", function () {
+            document.getElementById("genderSelect").innerText = "Kadın";
+        });
+        document.getElementById("maleOption").addEventListener("click", function () {
+            document.getElementById("genderSelect").innerText = "Erkek";
+        });
+        document.getElementById("otherOption").addEventListener("click", function () {
+            document.getElementById("genderSelect").innerText = "Belirtmek İstemiyorum";
+        });
+    </script>
+    <script>
+        // Modal seçimlerini işleme (Ülke için)
+        document.getElementById("turkeyOption").addEventListener("click", function () {
+            document.getElementById("countrySelect").innerText = "Türkiye";
+        });
+        document.getElementById("usaOption").addEventListener("click", function () {
+            document.getElementById("countrySelect").innerText = "Amerika Birleşik Devletleri";
+        });
+        document.getElementById("ukOption").addEventListener("click", function () {
+            document.getElementById("countrySelect").innerText = "Birleşik Krallık";
+        });
+        document.getElementById("germanyOption").addEventListener("click", function () {
+            document.getElementById("countrySelect").innerText = "Almanya";
+        });
+        document.getElementById("franceOption").addEventListener("click", function () {
+            document.getElementById("countrySelect").innerText = "Fransa";
+        });
+        document.getElementById("italyOption").addEventListener("click", function () {
+            document.getElementById("countrySelect").innerText = "İtalya";
+        });
+        document.getElementById("japanOption").addEventListener("click", function () {
+            document.getElementById("countrySelect").innerText = "Japonya";
+        });
+        document.getElementById("chinaOption").addEventListener("click", function () {
+            document.getElementById("countrySelect").innerText = "Çin";
+        });
+        document.getElementById("indiaOption").addEventListener("click", function () {
+            document.getElementById("countrySelect").innerText = "Hindistan";
+        });
+        document.getElementById("brazilOption").addEventListener("click", function () {
+            document.getElementById("countrySelect").innerText = "Brezilya";
+        });
+    </script>
 
+    <!-- Bootstrap JS ve Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0-alpha1/js/bootstrap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="//cdn.arabul.us/fontawesome/js/all.min.js"></script>
 </body>

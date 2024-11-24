@@ -16,18 +16,19 @@ body {
     }
 }
 .primary-button {
-    padding: 8px 50px;
+    margin-top: 20px;
+    padding: 8px 40px;
     border-radius: 8px;
-    display: flex;
+    display: block;
     justify-content: center;
     align-items: center;
     background: #00D6A3;
-    width: max-content;
     border: 2px solid #0dc99d !important;
     transition: 0.3s;
     font-weight: 600;
     color: #3a3636;
     font-size: 20px;
+    margin-bottom: 20px;
 }
 
 .btn-navbar {
@@ -57,6 +58,7 @@ body {
     font-weight: 600;
     color: #3a3636;
     font-size: 20px;
+    margin-bottom: 20px;
 }
 
 
@@ -108,10 +110,10 @@ body {
     position: fixed; /* Navbarı üstte sabitler */
     top: 0; /* Sayfanın en üst kısmına yerleştirir */
     left: 0;
-    width: 100%; /* Tüm genişliği kaplar */
-    z-index: 1000; /* Diğer içeriklerin önünde görünmesi için */
+    width: 100%; /* Tüm genişliği kaplar *//* Diğer içeriklerin önünde görünmesi için */
     padding: 20px 0; /* Yukarı ve aşağı boşluk */
     background: #fefeff;
+    z-index: 1000;
 }
 
 
@@ -129,8 +131,9 @@ body {
         box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Hafif gölge efekti */
         overflow-y: auto;   /* Yüksek içerik için kaydırma çubuğu */
         max-height: 90vh;    /* Container'ın yüksekliği ekranın %90'ı kadar */
-        margin-top: 20px;    /* Üst kısımdan boşluk bırakmak */
+        margin-top: 300px;    /* Üst kısımdan boşluk bırakmak */
         max-width: 600px;
+        padding: 20px;
 
 }
 .centered-container h2 {
@@ -144,9 +147,28 @@ body {
     justify-content: center;
     gap: 15px; /* Butonlar arasındaki boşluk */
     margin-top: 15px;
+
 }
 
+.modal-backdrop {
+    background-color: rgba(0, 0, 0, 0.5) !important;  /* Gri arka plan */
+    backdrop-filter: blur(8px);  /* Arka plan bulanıklaşacak */
+}
 
+.modal-content {
+    background-color: #ffffff;  /* Modal içeriği beyaz */
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);  /* Modal'ın gölgesi */
+}
+
+/* Modal içindeki liste öğeleri */
+.list-group-item {
+    cursor: pointer;
+}
+
+.list-group-item:hover {
+    background-color: #f1f1f1;
+}
 @media only screen and (max-width: 768px) {
     body {
         flex-direction: column; /* Mobil görünümde gerekirse elemanlar dikey hizalanır */
