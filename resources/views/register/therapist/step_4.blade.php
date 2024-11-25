@@ -9,83 +9,88 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="http://cdn.arabul.us/bootstrap/css/bootstrap.min.css?123">
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0-alpha1/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="kayit2-4.css">
+    <link rel="stylesheet" href="/assets/css/therapist/step_4.css">
 </head>
 <style>
     .container h3 {
-    font-size: 18px;
-    font-weight: bold;
-    border-bottom: 1px solid #ccc;
-    margin: 0;
-}
-.dosya-button{
-    margin-top: 20px;
-    padding: 5px 20px;
-    border-radius: 8px;
-    display: block;
-    justify-content: center;
-    align-items: center;
-    background: #00D6A3;
-    border: 2px solid #0dc99d !important;
-    transition: 0.3s;
-    font-weight: 600;
-    color: #3a3636;
-    font-size: 20px;
-    margin-bottom: 20px;
-    width: 150px;
-}
-.dosya-button:hover{
-    transform: translateY(-10px);
-    border: 2px solid #00D6A3 !important;
-    color: #3a3636;
-    background-color: white;
-}
-.cv-label{
-    font-size: 18px;
-    margin-top: 10px;
-}
-.kisisel-container {
-            margin-top: 20px;
-            /* Container ile arasında boşluk */
-            margin-bottom: 20px;
-            /* Butonlarla arasında boşluk */
-            text-align: center;
-            /* Ortada konumlandır */
-        }
+        font-size: 18px;
+        font-weight: bold;
+        border-bottom: 1px solid #ccc;
+        margin: 0;
+    }
 
-        /* Sorun 16 checkbox stilleri */
-        .kisisel-container input[type="checkbox"] {
-            appearance: none;
-            /* Varsayılan görünümü kaldırır */
-            width: 20px;
-            height: 20px;
-            border: 2px solid #00D6A3;
-            /* Başlangıçta sınır şeffaf olacak */
-            border-radius: 50%;
-            /* Çember şekli */
-            background-color: white;
-            /* Başlangıçta şeffaf arka plan */
-            cursor: pointer;
-            transition: all 0.3s ease;
-            margin-right: 10px;
-        }
+    .dosya-button {
+        margin-top: 20px;
+        padding: 5px 20px;
+        border-radius: 8px;
+        display: block;
+        justify-content: center;
+        align-items: center;
+        background: #00D6A3;
+        border: 2px solid #0dc99d !important;
+        transition: 0.3s;
+        font-weight: 600;
+        color: #3a3636;
+        font-size: 20px;
+        margin-bottom: 20px;
+        width: 150px;
+    }
 
-        /* Seçilen checkbox için kırmızı çember */
-        .kisisel-container input[type="checkbox"]:checked {
-            border: 2px solid black;
+    .dosya-button:hover {
+        transform: translateY(-10px);
+        border: 2px solid #00D6A3 !important;
+        color: #3a3636;
+        background-color: white;
+    }
 
-            /* Kırmızı sınır */
-            background-color: #00D6A3;
-            /* Kırmızı arka plan */
-        }
-        .kisisel-container label {
-            font-size: 18px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: flex-start;
-            /* Etiketleri sola hizalar */
-        }
+    .cv-label {
+        font-size: 18px;
+        margin-top: 10px;
+    }
+
+    .kisisel-container {
+        margin-top: 20px;
+        /* Container ile arasında boşluk */
+        margin-bottom: 20px;
+        /* Butonlarla arasında boşluk */
+        text-align: center;
+        /* Ortada konumlandır */
+    }
+
+    /* Sorun 16 checkbox stilleri */
+    .kisisel-container input[type="checkbox"] {
+        appearance: none;
+        /* Varsayılan görünümü kaldırır */
+        width: 20px;
+        height: 20px;
+        border: 2px solid #00D6A3;
+        /* Başlangıçta sınır şeffaf olacak */
+        border-radius: 50%;
+        /* Çember şekli */
+        background-color: white;
+        /* Başlangıçta şeffaf arka plan */
+        cursor: pointer;
+        transition: all 0.3s ease;
+        margin-right: 10px;
+    }
+
+    /* Seçilen checkbox için kırmızı çember */
+    .kisisel-container input[type="checkbox"]:checked {
+        border: 2px solid black;
+
+        /* Kırmızı sınır */
+        background-color: #00D6A3;
+        /* Kırmızı arka plan */
+    }
+
+    .kisisel-container label {
+        font-size: 18px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        /* Etiketleri sola hizalar */
+    }
 </style>
 
 <body>
@@ -107,14 +112,14 @@
         <h2 class="text-center mb-4">Başvuru Bilgileri</h2>
         <form>
             <div class="row mb-3">
-            
-                    <label for="ozel" class="form-label">Özel olarak ilgilendiğiniz alan</label>
-                    <div class="form-select" id="ozelSelect" data-bs-toggle="modal" data-bs-target="#ozelModal">
-                        Özel alanınızı seçin
+
+                <label for="ozel" class="form-label">Özel olarak ilgilendiğiniz alan</label>
+                <div class="form-select" id="ozelSelect" data-bs-toggle="modal" data-bs-target="#ozelModal">
+                    Özel alanınızı seçin
                 </div>
             </div>
             <div class="row mb-3">
-            
+
                 <label for="dil" class="form-label">Terapide Kullanabileceğiniz Diller</label>
                 <div class="form-select" id="dilSelect" data-bs-toggle="modal" data-bs-target="#dilModal">
                     Seçiniz
@@ -127,7 +132,7 @@
                     <span id="fileName" class="text-muted">Dosya seçilmedi</span>
                 </div>
             </div>
-        
+
     </div>
     <div class="kisisel-container">
         <label>
@@ -136,7 +141,7 @@
             Kişisel bilgilerimi paylaşmayı kabul ediyorum.
         </label>
     </div>
-        </form>
+    </form>
     </div>
     </div>
     <div class="modal fade" id="ozelModal" tabindex="-1" aria-labelledby="ozelModalLabel" aria-hidden="true">
@@ -148,15 +153,10 @@
                 </div>
                 <div class="modal-body">
                     <ul class="list-group">
-                        <li class="list-group-item" data-bs-dismiss="modal" id="Hastalık1">Hastalık1</li>
-                        <li class="list-group-item" data-bs-dismiss="modal" id="Hastalık2">Hastalık2</li>
-                        <li class="list-group-item" data-bs-dismiss="modal" id="Hastalık3">Hastalık3</li>
-                        <li class="list-group-item" data-bs-dismiss="modal" id="Hastalık4">Hastalık4</li>
-                        <li class="list-group-item" data-bs-dismiss="modal" id="Hastalık5">Hastalık5</li>
-                        <li class="list-group-item" data-bs-dismiss="modal" id="Hastalık6">Hastalık6</li>
-                        <li class="list-group-item" data-bs-dismiss="modal" id="Hastalık7">Hastalık7</li>
-                        <li class="list-group-item" data-bs-dismiss="modal" id="Hastalık8">Hastalık8</li>
-                        <li class="list-group-item" data-bs-dismiss="modal" id="Hastalık9">Hastalık9</li>
+                        @foreach($diseases as $disease)
+                        <li class="list-group-item" data-bs-dismiss="modal" id="disease_{{$disease->id}}"
+                            onclick="chooseOption('{{$disease->name_disease}}')">{{$disease->name_disease}}</li>
+                        @endforeach
                     </ul>
                 </div>
             </div>
@@ -187,6 +187,9 @@
     </div>
 
     <script>
+        let chooseOption = hastalik => {
+            document.getElementById("ozelSelect").innerText = hastalik;
+        }
         document.getElementById("Hastalık1").addEventListener("click", function () {
             document.getElementById("ozelSelect").innerText = "Hastalık1";
         });
@@ -215,24 +218,24 @@
             document.getElementById("ozelSelect").innerText = "Hastalık2";
         });
     </script>
-<script>
-    document.getElementById("turkce").addEventListener("click", function () {
-        document.getElementById("dilSelect").innerText = "Türkçe";
-    });
-    document.getElementById("ingilizce").addEventListener("click", function () {
-        document.getElementById("dilSelect").innerText = "İngilizce";
-    });
-    document.getElementById("ingilizce").addEventListener("click", function () {
-        document.getElementById("dilSelect").innerText = "İngilizce";
-    });
-    document.getElementById("ingilizce").addEventListener("click", function () {
-        document.getElementById("dilSelect").innerText = "İngilizce";
-    });
+    <script>
+        document.getElementById("turkce").addEventListener("click", function () {
+            document.getElementById("dilSelect").innerText = "Türkçe";
+        });
+        document.getElementById("ingilizce").addEventListener("click", function () {
+            document.getElementById("dilSelect").innerText = "İngilizce";
+        });
+        document.getElementById("ingilizce").addEventListener("click", function () {
+            document.getElementById("dilSelect").innerText = "İngilizce";
+        });
+        document.getElementById("ingilizce").addEventListener("click", function () {
+            document.getElementById("dilSelect").innerText = "İngilizce";
+        });
     </script>
     <script>
         const fileInput = document.getElementById('fileInput');
         const fileName = document.getElementById('fileName');
-    
+
         fileInput.addEventListener('change', function () {
             if (fileInput.files.length > 0) {
                 const selectedFile = fileInput.files[0];

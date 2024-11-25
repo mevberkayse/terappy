@@ -8,8 +8,8 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="http://cdn.arabul.us/bootstrap/css/bootstrap.min.css?123">
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0-alpha1/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="kayit4.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/css/client/step_4.css">
     <style>
         /* Checkboxları gizlemek ve sadece arka planını kırmızı yapmak */
         .checkbox-group {
@@ -70,7 +70,7 @@
         }
 
         .container h2 {
-            border-bottom: 1px solid #ccc;
+            
             /* Gri çizgi */
             padding-bottom: 10px;
             /* Çizgi ile başlık arasında boşluk */
@@ -140,83 +140,15 @@
 
     <!-- Ortalanan container -->
     <div class="container centered-container">
-        <h2 class="text-center mb-4">Yaşadığınız Sorunlardan En Az Üçünü Seçiniz</h2>
+        <h2 class="text-center mb-5 mt-2">Yaşadığınız Sorunlardan En Az Üçünü Seçiniz</h2>
         <div class="checkbox-group">
+            @foreach($symptoms as $symptom)
             <label>
                 <input type="checkbox" name="problem" value="problem1">
                 <span></span>
-                Yemek yeme düzenimde bozma gözlemliyorum
+                {{$symptom->name_symptom}}
             </label>
-            <label>
-                <input type="checkbox" name="problem" value="problem2">
-                <span></span>
-                Sorun 2
-            </label>
-            <label>
-                <input type="checkbox" name="problem" value="problem3">
-                <span></span>
-                Sorun 3
-            </label>
-            <label>
-                <input type="checkbox" name="problem" value="problem4">
-                <span></span>
-                Sorun 4
-            </label>
-            <label>
-                <input type="checkbox" name="problem" value="problem5">
-                <span></span>
-                Sorun 5
-            </label>
-            <label>
-                <input type="checkbox" name="problem" value="problem6">
-                <span></span>
-                Sorun 6
-            </label>
-            <label>
-                <input type="checkbox" name="problem" value="problem7">
-                <span></span>
-                Sorun 7
-            </label>
-            <label>
-                <input type="checkbox" name="problem" value="problem8">
-                <span></span>
-                Sorun 8
-            </label>
-            <label>
-                <input type="checkbox" name="problem" value="problem9">
-                <span></span>
-                Sorun 9
-            </label>
-            <label>
-                <input type="checkbox" name="problem" value="problem10">
-                <span></span>
-                Sorun 10
-            </label>
-            <label>
-                <input type="checkbox" name="problem" value="problem11">
-                <span></span>
-                Sorun 11
-            </label>
-            <label>
-                <input type="checkbox" name="problem" value="problem12">
-                <span></span>
-                Sorun 12
-            </label>
-            <label>
-                <input type="checkbox" name="problem" value="problem13">
-                <span></span>
-                Sorun 13
-            </label>
-            <label>
-                <input type="checkbox" name="problem" value="problem14">
-                <span></span>
-                Sorun 14
-            </label>
-            <label>
-                <input type="checkbox" name="problem" value="problem15">
-                <span></span>
-                Sorun 15
-            </label>
+            @endforeach
         </div>
     </div>
     <div class="problem16-container">
