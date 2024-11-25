@@ -19,10 +19,11 @@
 
         /* Radio butonlarının etrafındaki kutu */
         .radio-option input {
+            appearance: none;
             width: 20px;
             height: 20px;
             margin-right: 10px; /* Sağ boşluk */
-            border: 4px solid black; /* Siyah kenar */
+            border: 2px solid #00D6A3;
             border-radius: 50%; /* Daire şekli */
             background-color: white; /* Arka plan beyaz */
             cursor: pointer;
@@ -30,8 +31,11 @@
 
         /* Radio butonları seçildiğinde etrafında kırmızı çerçeve */
         .radio-option input:checked {
-            background-color: red; /* Seçilen radio butonunun içi kırmızı olacak */
-            border: 4px solid red; /* Çerçeve kırmızı olacak */
+            border: 2px solid white;
+
+            /* Kırmızı sınır */
+            background-color: #00D6A3;
+            /* Kırmızı arka plan */
         }
 
         /* Seçeneklerin yazılarının hizalanması */
