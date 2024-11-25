@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="http://cdn.arabul.us/bootstrap/css/bootstrap.min.css?123">
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0-alpha1/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="kayit2-1.css">
+    <link rel="stylesheet" href="/assets/css/client/step_2.css">
 </head>
 <style>
     body {
@@ -62,11 +62,11 @@
     </nav>
     <!-- Ortalanan container -->
     <div class="container centered-container">
-        <h2 class="text-center mb-4">İletişim Bilgileri</h2>
+        <h2 class="text-center mb-4">Danışan Kayıt Formu</h2>
         <form>
             <!-- İsim -->
-            <div class="row mb-3">
-                <div class="col-md-6">
+            <div class="row mb-3 mt-3">
+                <div class="col-md-6" >
                     <label for="firstName" class="form-label">İsim</label>
                     <input type="text" class="form-control" id="firstName" placeholder="İsminizi giriniz" required>
                 </div>
@@ -83,49 +83,34 @@
             <div class="mb-3">
                 <!-- Ülke Form Alanı -->
                 <label for="country" class="form-label">Ülke</label>
-                <div class="form-select" id="countrySelect" data-bs-toggle="modal" data-bs-target="#countryModal">
+                <div class="form-select" id="countrySelect"  data-bs-toggle="modal" data-bs-target="#countryModal">
                     Ülkenizi seçiniz
                 </div>
             </div>
-            <div class="row mb-3">
-                <div class="col-md-6">
-                    <!-- Telefon -->
-                    <label for="phone" class="form-label">Telefon Numarası</label>
-                    <input type="tel" class="form-control" id="phone" placeholder="Telefon numaranızı giriniz" required>
-                </div>
-                <!-- E-posta -->
-                <div class="col-md-6">
-                    <label for="email" class="form-label">E-posta</label>
-                    <input type="email" class="form-control" id="email" placeholder="E-posta adresinizi giriniz"
-                        required>
+            <!-- Telefon -->
+            <div class="mb-3">
+                <label for="phone" class="form-label">Telefon Numarası</label>
+                <input type="tel" class="form-control" id="phone" placeholder="Telefon numaranızı giriniz" required>
+            </div>
+            <!-- E-posta -->
+            <div class="mb-3">
+                <label for="email" class="form-label">E-posta</label>
+                <input type="email" class="form-control" id="email" placeholder="E-posta adresinizi giriniz" required>
+            </div>
+            <!-- Cinsiyet -->
+            <div class="mb-3">
+                <!-- Cinsiyet Form Alanı -->
+                <label for="gender" class="form-label">Cinsiyet</label>
+                <div class="form-select" id="genderSelect" data-bs-toggle="modal" data-bs-target="#genderModal">
+                    Cinsiyetinizi Seçiniz
                 </div>
             </div>
-                <!-- Cinsiyet -->
-                <div class="mb-3">
-                    <!-- Cinsiyet Form Alanı -->
-                    <label for="gender" class="form-label">Cinsiyet</label>
-                    <div class="form-select" id="genderSelect" data-bs-toggle="modal" data-bs-target="#genderModal">
-                        Cinsiyetinizi Seçiniz
-                </div>
-                <div class="row mb-3 mt-3">
-                    <div class="col-md-6">
-                    <!-- Sosyal Form Alanı -->
-                        <label for="social" class="form-label">Sosyal Medya</label>
-                        <div class="form-select" id="socialSelect" data-bs-toggle="modal" data-bs-target="#socialModal">
-                            Sosyal Medya 
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <label for="social" class="form-label">Hesap veya website adı</label>
-                        <input type="text" class="form-control" id="socail" placeholder="@Adres giriniz" required>
-                    </div>
-                </div>
         </form>
     </div>
     </div>
 
     <!-- Butonlar -->
-    <div class="button-group" style="z-index:1;">
+    <div class="button-group" style="z-index:1 ;">
         <button type="button" class="modal-btn">Geri</button>
         <button type="button" class="primary-button">Devam Et</button>
     </div>
@@ -142,23 +127,6 @@
                         <li class="list-group-item" data-bs-dismiss="modal" id="femaleOption">Kadın</li>
                         <li class="list-group-item" data-bs-dismiss="modal" id="maleOption">Erkek</li>
                         <li class="list-group-item" data-bs-dismiss="modal" id="otherOption">Belirtmek İstemiyorum</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="modal fade" id="socialModal" tabindex="-1" aria-labelledby="socialModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="socialModalLabel">Cinsiyet Seçimi</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Kapat"></button>
-                </div>
-                <div class="modal-body">
-                    <ul class="list-group">
-                        <li class="list-group-item" data-bs-dismiss="modal" id="instaOption">Instagram</li>
-                        <li class="list-group-item" data-bs-dismiss="modal" id="linkedInOption">LinkedIn</li>
-                        <li class="list-group-item" data-bs-dismiss="modal" id="websiteOption">Website</li>
                     </ul>
                 </div>
             </div>
@@ -199,18 +167,6 @@
         });
         document.getElementById("otherOption").addEventListener("click", function () {
             document.getElementById("genderSelect").innerText = "Belirtmek İstemiyorum";
-        });
-    </script>
-     <script>
-        // Modal seçimlerini işleme
-        document.getElementById("instaOption").addEventListener("click", function () {
-            document.getElementById("socialSelect").innerText = "Instagram";
-        });
-        document.getElementById("linkedInOption").addEventListener("click", function () {
-            document.getElementById("socialSelect").innerText = "LinkedIn";
-        });
-        document.getElementById("websiteOption").addEventListener("click", function () {
-            document.getElementById("socialSelect").innerText = "Website";
         });
     </script>
     <script>

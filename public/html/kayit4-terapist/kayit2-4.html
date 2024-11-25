@@ -87,8 +87,41 @@
             /* Etiketleri sola hizalar */
         }
 </style>
-
+<style>
+    body {
+        background-image: url('/assets/img/duvarkagidi8.jpg');
+        /* JPG dosyasını buraya ekleyin */
+        background-size: cover;
+        /* Arkaplanın tam olarak kapsamasını sağlar */
+        background-position: center;
+        /* Ortalar */
+        background-repeat: no-repeat;
+        
+    }
+    .blurred-background {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: url('/assets/img/duvarkagidi8.jpg');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        filter: blur(10px); /* Blur efekti */
+        z-index: 0; /* Arka planda kalması için */
+    }
+    .customizedNavbar{
+        background-color: transparent;
+    }
+    .centered-container{
+        z-index: 1;
+        background: rgba(255, 255, 255, 0.8); /* Yarı saydam bir arka plan */
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Hafif gölge */
+    }
+</style>
 <body>
+<div class="blurred-background"></div>
     <nav class="navbar navbar-expand-lg navbar-light bg-light customizedNavbar">
         <div class="container">
             <a class="navbar-brand" href="#">
@@ -166,7 +199,7 @@
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="dilModalLabel">Alan Seçimi</h5>
+                    <h5 class="modal-title" id="dilModalLabel">Dil Seçimi</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Kapat"></button>
                 </div>
                 <div class="modal-body">
@@ -181,7 +214,7 @@
         </div>
     </div>
     <!-- Butonlar -->
-    <div class="button-group">
+    <div class="button-group" style="z-index: 1;">
         <button type="button" class="modal-btn">Geri</button>
         <button type="button" class="primary-button">Kaydımı Tamamla </button>
     </div>

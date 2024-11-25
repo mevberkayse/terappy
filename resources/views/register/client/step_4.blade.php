@@ -8,8 +8,8 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="http://cdn.arabul.us/bootstrap/css/bootstrap.min.css?123">
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0-alpha1/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="kayit4.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/css/client/step_4.css">
     <style>
         /* Checkboxları gizlemek ve sadece arka planını kırmızı yapmak */
         .checkbox-group {
@@ -48,11 +48,11 @@
         .checkbox-group input[type="checkbox"]:checked {
             border: 2px solid white;
             background-color: #00D6A3;
-            
+
         }
 
         .checkbox-group label {
-            
+
 
             border-bottom: 1px solid #ccc;
 
@@ -70,7 +70,7 @@
         }
 
         .container h2 {
-            border-bottom: 1px solid #ccc;
+
             /* Gri çizgi */
             padding-bottom: 10px;
             /* Çizgi ile başlık arasında boşluk */
@@ -112,6 +112,7 @@
             background-color: #00D6A3;
             /* Kırmızı arka plan */
         }
+
         .problem16-container label {
             font-size: 18px;
             cursor: pointer;
@@ -122,42 +123,55 @@
         }
     </style>
     <style>
-    body {
-        background-image: url('/assets/img/duvarkagidi8.jpg');
-        /* JPG dosyasını buraya ekleyin */
-        background-size: cover;
-        /* Arkaplanın tam olarak kapsamasını sağlar */
-        background-position: center;
-        /* Ortalar */
-        background-repeat: no-repeat;
-        
-    }
-    .blurred-background {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-image: url('/assets/img/duvarkagidi8.jpg');
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-        filter: blur(10px); /* Blur efekti */
-        z-index: 0; /* Arka planda kalması için */
-    }
-    .customizedNavbar{
-        background-color: transparent;
-    }
-    .centered-container{
-        z-index: 1;
-        background: rgba(255, 255, 255, 0.8); /* Yarı saydam bir arka plan */
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Hafif gölge */
-    }
-</style>
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            min-height: 100%;
+            /* İçeriğin tamamını kapsar */
+           
+        }
+
+        body {
+            background-image: url('/assets/img/duvarkagidi8.jpg');
+            background-repeat: no-repeat;
+            /* Arkaplan sabit */
+        }
+
+        .blurred-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('/assets/img/duvarkagidi8.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            filter: blur(10px);
+            /* Blur efekti */
+            z-index: -1;
+            /* Arka planda kalması için */
+            pointer-events: none; 
+        }
+
+        .customizedNavbar {
+            background-color: transparent;
+        }
+
+        .centered-container {
+            z-index: 1;
+            background: rgba(255, 255, 255, 0.8);
+            /* Yarı saydam bir arka plan */
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            /* Hafif gölge */
+        }
+    </style>
 </head>
 
 <body>
-<div class="blurred-background"></div>
+    <div class="blurred-background"></div>
     <nav class="navbar navbar-expand-lg navbar-light bg-light customizedNavbar">
         <div class="container">
             <a class="navbar-brand" href="#">
@@ -174,83 +188,15 @@
 
     <!-- Ortalanan container -->
     <div class="container centered-container">
-        <h2 class="text-center mb-4">Yaşadığınız Sorunlardan En Az Üçünü Seçiniz</h2>
+        <h2 class="text-center mb-5 mt-2">Yaşadığınız Sorunlardan En Az Üçünü Seçiniz</h2>
         <div class="checkbox-group">
-            <label>
-                <input type="checkbox" name="problem" value="problem1">
-                <span></span>
-                Yemek yeme düzenimde bozma gözlemliyorum
-            </label>
-            <label>
-                <input type="checkbox" name="problem" value="problem2">
-                <span></span>
-                Sorun 2
-            </label>
-            <label>
-                <input type="checkbox" name="problem" value="problem3">
-                <span></span>
-                Sorun 3
-            </label>
-            <label>
-                <input type="checkbox" name="problem" value="problem4">
-                <span></span>
-                Sorun 4
-            </label>
-            <label>
-                <input type="checkbox" name="problem" value="problem5">
-                <span></span>
-                Sorun 5
-            </label>
-            <label>
-                <input type="checkbox" name="problem" value="problem6">
-                <span></span>
-                Sorun 6
-            </label>
-            <label>
-                <input type="checkbox" name="problem" value="problem7">
-                <span></span>
-                Sorun 7
-            </label>
-            <label>
-                <input type="checkbox" name="problem" value="problem8">
-                <span></span>
-                Sorun 8
-            </label>
-            <label>
-                <input type="checkbox" name="problem" value="problem9">
-                <span></span>
-                Sorun 9
-            </label>
-            <label>
-                <input type="checkbox" name="problem" value="problem10">
-                <span></span>
-                Sorun 10
-            </label>
-            <label>
-                <input type="checkbox" name="problem" value="problem11">
-                <span></span>
-                Sorun 11
-            </label>
-            <label>
-                <input type="checkbox" name="problem" value="problem12">
-                <span></span>
-                Sorun 12
-            </label>
-            <label>
-                <input type="checkbox" name="problem" value="problem13">
-                <span></span>
-                Sorun 13
-            </label>
-            <label>
-                <input type="checkbox" name="problem" value="problem14">
-                <span></span>
-                Sorun 14
-            </label>
-            <label>
-                <input type="checkbox" name="problem" value="problem15">
-                <span></span>
-                Sorun 15
-            </label>
+            @foreach($symptoms as $symptom)
+                <label>
+                    <input type="checkbox" name="problem" value="problem1">
+                    <span></span>
+                    {{$symptom->name_symptom}}
+                </label>
+            @endforeach
         </div>
     </div>
     <div class="problem16-container">
@@ -261,7 +207,7 @@
         </label>
     </div>
     <!-- Butonlar -->
-    <div class="button-group" style="z-index:1;">
+    <div class="button-group" style="z-index: 1;">
         <button type="button" class="modal-btn">Geri</button>
         <button type="button" class="primary-button">Devam Et</button>
     </div>

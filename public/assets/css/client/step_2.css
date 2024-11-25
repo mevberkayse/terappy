@@ -112,13 +112,9 @@ body {
     width: 100%; /* Tüm genişliği kaplar *//* Diğer içeriklerin önünde görünmesi için */
     padding: 20px 0; /* Yukarı ve aşağı boşluk */
     z-index: 1000;
-<<<<<<< Updated upstream:public/html/kayit2-danisan/kayit2.css
-=======
     background-color: transparent !important; /* Arka planı şeffaf yapar */
     box-shadow: none; /* Gölgeyi kaldırır */
     border-bottom: none; /* Alt çizgiyi kaldırır (varsa) */
-
->>>>>>> Stashed changes:public/assets/css/client/step_5.css
 }
 
 
@@ -128,7 +124,6 @@ body {
         display: flex;
         flex-direction: column; /* Elemanları dikey hizala */
         align-items: center; /* Yatayda ortala */
-        min-height: 100vh;
         border: 2px solid rgba(255, 255, 255, 0.8); /* Saydam border */
         border-radius: 15px;
         backdrop-filter: blur(10px); /* Blur efekti */
@@ -136,7 +131,8 @@ body {
         box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Hafif gölge efekti */
         overflow-y: auto;   /* Yüksek içerik için kaydırma çubuğu */
         max-height: 90vh;    /* Container'ın yüksekliği ekranın %90'ı kadar */
-        margin-top: 300px;    /* Üst kısımdan boşluk bırakmak */
+        min-height: 75vh;
+        margin-top: 100px;    /* Üst kısımdan boşluk bırakmak */
         max-width: 600px;
         padding: 20px;
 
