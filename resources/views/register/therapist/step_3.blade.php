@@ -10,15 +10,54 @@
     <link rel="stylesheet" href="http://cdn.arabul.us/bootstrap/css/bootstrap.min.css?123">
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0-alpha1/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="/assets/css/therapist/step_3.css">
-</head>
-<style>
-    .container h3 {
-    font-size: 18px;
-    font-weight: bold;
-    border-bottom: 1px solid #ccc;
-    margin: 0;
-}
-.kisisel-container {
+    <style>
+        body {
+            background-image: url('/assets/img/duvarkagidi8.jpg');
+            /* JPG dosyasını buraya ekleyin */
+            background-size: cover;
+            /* Arkaplanın tam olarak kapsamasını sağlar */
+            background-position: center;
+            /* Ortalar */
+            background-repeat: no-repeat;
+
+        }
+
+        .blurred-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('/assets/img/duvarkagidi8.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            filter: blur(10px);
+            /* Blur efekti */
+            z-index: 0;
+            /* Arka planda kalması için */
+        }
+
+        .customizedNavbar {
+            background-color: transparent;
+        }
+
+        .centered-container {
+            z-index: 1;
+            background: rgba(255, 255, 255, 0.8);
+            /* Yarı saydam bir arka plan */
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            /* Hafif gölge */
+        }
+
+        .container h3 {
+            font-size: 18px;
+            font-weight: bold;
+            border-bottom: 1px solid #ccc;
+            margin: 0;
+        }
+
+        .kisisel-container {
             margin-top: 20px;
             /* Container ile arasında boşluk */
             margin-bottom: 20px;
@@ -52,6 +91,7 @@
             background-color: #00D6A3;
             /* Kırmızı arka plan */
         }
+
         .kisisel-container label {
             font-size: 18px;
             cursor: pointer;
@@ -60,9 +100,16 @@
             justify-content: flex-start;
             /* Etiketleri sola hizalar */
         }
-</style>
+
+        .button-group {
+            z-index: 1;
+        }
+    </style>
+</head>
 
 <body>
+    <div class="blurred-background"></div>
+
     <nav class="navbar navbar-expand-lg navbar-light bg-light customizedNavbar">
         <div class="container">
             <a class="navbar-brand" href="#">
@@ -85,7 +132,8 @@
             <div class="row mb-3">
                 <div class="col-md-6">
                     <label for="lisans" class="form-label">Lisansınız</label>
-                    <input type="text" class="form-control" id="lisans" placeholder="Lisans bölümünüzü giriniz" required>
+                    <input type="text" class="form-control" id="lisans" placeholder="Lisans bölümünüzü giriniz"
+                        required>
                 </div>
                 <div class="col-md-6">
                     <label for="okul" class="form-label">Mezun olduğunuz okul</label>
@@ -103,7 +151,7 @@
                     <input type="text" class="form-control" id="okul" placeholder="Bitiş" required>
                 </div>
             </div>
-          
+
         </form>
         <form>
             <!-- İsim -->
@@ -118,7 +166,8 @@
             <div class="row mb-3">
                 <div class="col-md-6">
                     <label for="lisans-yuksek" class="form-label">Yüksek Lisansınız</label>
-                    <input type="text" class="form-control" id="lisans-yuksek" placeholder="Y. lisans alanınızı giriniz" required>
+                    <input type="text" class="form-control" id="lisans-yuksek" placeholder="Y. lisans alanınızı giriniz"
+                        required>
                 </div>
                 <div class="col-md-6">
                     <label for="okul-yuksek" class="form-label">Mezun olduğunuz okul</label>
@@ -136,7 +185,7 @@
                     <input type="text" class="form-control" id="bitis-yuksek" placeholder="Bitiş" required>
                 </div>
             </div>
-          
+
         </form>
     </div>
     </div>
@@ -153,13 +202,13 @@
         const okulInput = document.getElementById("okul-yuksek");
         const baslangicyInput = document.getElementById("baslangic-yuksek");
         const bitisyInput = document.getElementById("bitis-yuksek");
-    
+
         checkbox.addEventListener("change", function () {
             const isChecked = checkbox.checked;
             lisansInput.disabled = !isChecked;
             okulInput.disabled = !isChecked;
-            baslangicyInput.disabled=!isChecked;
-            bitisyInput.disabled=!isChecked;
+            baslangicyInput.disabled = !isChecked;
+            bitisyInput.disabled = !isChecked;
         });
     </script>
 
