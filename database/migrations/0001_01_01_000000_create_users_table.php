@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('password');
             $table->rememberToken();
             $table->string('phone_number');
-            $table->timestamp('birthdate');
+            $table->string('birthdate');
             $table->string('description');
             $table->string('choosing_therapist');
             $table->string('gender_of_therapist');
