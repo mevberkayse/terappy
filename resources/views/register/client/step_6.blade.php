@@ -39,6 +39,12 @@
 
         .customizedNavbar {
             background-color: transparent;
+            background-color: transparent !important;
+            /* Arka planı şeffaf yapar */
+            box-shadow: none;
+            /* Gölgeyi kaldırır */
+            border-bottom: none;
+            /* Alt çizgiyi kaldırır (varsa) */
         }
 
         .centered-container {
@@ -48,8 +54,7 @@
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
             /* Hafif gölge */
         }
-    </style>
-    <style>
+
         /* Checkboxları gizlemek ve sadece arka planını kırmızı yapmak */
         .radio-group {
             display: flex;

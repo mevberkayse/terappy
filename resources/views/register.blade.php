@@ -8,9 +8,48 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="http://cdn.arabul.us/bootstrap/css/bootstrap.min.css?123">
     <link rel="stylesheet" href="/assets/css/register.css">
+    <style>
+        body {
+            background-image: url('/assets/img/duvarkagidi8.jpg');
+            /* JPG dosyasını buraya ekleyin */
+            background-size: cover;
+            /* Arkaplanın tam olarak kapsamasını sağlar */
+            background-position: center;
+            /* Ortalar */
+            background-repeat: no-repeat;
+
+        }
+        .blurred-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('/assets/img/duvarkagidi8.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            filter: blur(10px); /* Blur efekti */
+            z-index: 0; /* Arka planda kalması için */
+        }
+        .customizedNavbar{
+            background-color: transparent !important; /* Arka planı şeffaf yapar */
+    box-shadow: none; /* Gölgeyi kaldırır */
+    border-bottom: none; /* Alt çizgiyi kaldırır (varsa) */
+        }
+        .centered-container{
+            z-index: 1;
+            background: rgba(255, 255, 255, 0.8); /* Yarı saydam bir arka plan */
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Hafif gölge */
+        }
+        .button-group, .modal-btn{
+        z-index:1;
+    }
+    </style>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light customizedNavbar">
+<div class="blurred-background"></div>
+    <nav class="navbar navbar-expand-lg navbar-light customizedNavbar">
         <div class="container">
             <a class="navbar-brand" href="#">
                 <img style="height:35px"

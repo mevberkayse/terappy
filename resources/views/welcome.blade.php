@@ -152,6 +152,9 @@
             overflow: hidden;
         }
 
+        .img {
+            width: 450px;
+        }
 
         .customizedNavbar {
             padding: 20px !important;
@@ -379,60 +382,84 @@
             cursor: pointer;
 
         }
+
         .modal-header {
-    display: flex;
-    flex-direction: column;
-    align-items: center; /* Yatayda ortala */
-    padding: 20px; /* Her yerden padding */
-    position: relative;
-}
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            /* Yatayda ortala */
+            padding: 20px;
+            /* Her yerden padding */
+            position: relative;
+            border-bottom: none;
+        }
 
-.btn-circle {
-    background-color:#00D6A3 ; /* Yeşil arka plan */
-    color: white; /* Beyaz yazı */
-    width: 100px; /* Çap genişliği */
-    height: 100px; /* Çap yüksekliği */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%; /* Yuvarlak görünüm */
-    font-size: 16px; /* Yazı boyutu */
-    font-weight: bold; /* Kalın yazı */
-    margin: 0 auto; /* Yatay ortalama */
-    cursor: pointer; /* Tıklanabilir göstergesi */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Hafif gölge */
-    border: none; /* Çerçeve yok */
-    padding: 10px; /* Yuvarlak içinde padding */
-}
+        .btn-circle {
+            background-color: #00D6A3;
+            /* Yeşil arka plan */
+            color: white;
+            /* Beyaz yazı */
+            width: 100px;
+            /* Çap genişliği */
+            height: 100px;
+            /* Çap yüksekliği */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            /* Yuvarlak görünüm */
+            font-size: 16px;
+            /* Yazı boyutu */
+            font-weight: bold;
+            /* Kalın yazı */
+            margin: 0 auto;
+            /* Yatay ortalama */
+            cursor: pointer;
+            /* Tıklanabilir göstergesi */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            /* Hafif gölge */
+            border: none;
+            /* Çerçeve yok */
+            padding: 10px;
+            /* Yuvarlak içinde padding */
+        }
 
-.btn-circle:hover {
-    background-color: #218838; /* Hover durumda daha koyu yeşil */
-}
+        .btn-circle:hover {
+            background-color: #218838;
+            /* Hover durumda daha koyu yeşil */
+        }
 
-.modal-header .btn-close {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-}
-.form-label{
-    font-size: 18px !important;
+        .modal-header .btn-close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+        }
+
+        .form-label {
+            font-size: 18px !important;
             font-weight: 600;
             color: #1A1A1A;
-}
+        }
 
-.form-control{
-    font-size: 18px !important;
-}
-.form-check {
-    margin-top: 1.5rem; /* Üstten 2rem boşluk ekle */
-    display: flex; /* Checkbox ve etiketi yatayda hizalamak için flexbox kullan */
-    align-items: center; /* Yatayda hizalama */
-    justify-content: center; /* Ortalamak için */
-}
+        .form-control {
+            font-size: 18px !important;
+        }
 
-.form-check-label {
-    margin-left: 8px; /* Checkbox ile etiket arasına mesafe ekle */
-}
+        .form-check {
+            margin-top: 1.5rem;
+            /* Üstten 2rem boşluk ekle */
+            display: flex;
+            /* Checkbox ve etiketi yatayda hizalamak için flexbox kullan */
+            align-items: center;
+            /* Yatayda hizalama */
+            justify-content: center;
+            /* Ortalamak için */
+        }
+
+        .form-check-label {
+            margin-left: 8px;
+            /* Checkbox ile etiket arasına mesafe ekle */
+        }
 
 
         @media only screen and (max-width: 768px) {
@@ -518,10 +545,11 @@
 
                                     <!-- Şifre -->
                                     <div class="mb-3">
-                                        <label for="password" class="form-label" >Şifre</label>
+                                        <label for="password" class="form-label">Şifre</label>
                                         <input type="password" class="form-control" id="password"
                                             placeholder="Şifrenizi girin">
-                                        <a href="#" class="d-block mt-3 text-decoration-none nav-link text-center">Şifremi
+                                        <a href="#"
+                                            class="d-block mt-3 text-decoration-none nav-link text-center">Şifremi
                                             Unuttum</a>
                                     </div>
                                     <!-- Beni Hatırla -->
@@ -550,7 +578,7 @@
         <div id="section1" class="row h-100 d-flex justify-items-center align-items-center active-section">
             <!-- İlk Container -->
             <div class="col-lg-6 col-md-12 mb-3 justify-content-start d-flex" style="position:relative;top: -50px;">
-                <img src="http://127.0.0.1:5500/image/terapy.png" alt="">
+                <img src="assets/img/terapy.png" alt="">
             </div>
             <!-- İkinci Container -->
             <div class="col-lg-6 col-md-12 mb-3 customizedBoxes">
@@ -566,7 +594,7 @@
             style="display: none;">
             <!-- İlk Container -->
             <div class="col-lg-6 col-md-12 mb-3 justify-content-start d-flex" style="position:relative;top: -50px;">
-                <img src="http://127.0.0.1:5500/image/question.png" alt="">
+                <img src="assets/img/question.png" alt="">
             </div>
             <!-- İkinci Container -->
             <div class="col-lg-6 col-md-12 mb-3 customizedBoxes">
@@ -596,7 +624,7 @@
             <!-- İlk Container -->
             <div class="col-lg-6 col-md-12 mb-3 justify-content-start d-flex" style="position:relative;top: -50px;">
                 <img class="stdimg" style="width: 70%;margin-left: -100px;"
-                    src="http://127.0.0.1:5500/image/6iehmdreeaqj81nf84iarv85db.png" alt="">
+                    src="assets/img/6iehmdreeaqj81nf84iarv85db.png" alt="">
             </div>
             <!-- İkinci Container -->
             <div class="col-lg-6 col-md-12 mb-3 customizedBoxes">

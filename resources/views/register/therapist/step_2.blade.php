@@ -19,8 +19,9 @@
             background-position: center;
             /* Ortalar */
             background-repeat: no-repeat;
-    
+
         }
+
         .blurred-background {
             position: fixed;
             top: 0;
@@ -31,25 +32,39 @@
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
-            filter: blur(10px); /* Blur efekti */
-            z-index: 0; /* Arka planda kalması için */
+            filter: blur(10px);
+            /* Blur efekti */
+            z-index: 0;
+            /* Arka planda kalması için */
         }
-        .customizedNavbar{
-            background-color: transparent;
+
+        .customizedNavbar {
+            background-color: transparent !important;
+            /* Arka planı şeffaf yapar */
+            box-shadow: none;
+            /* Gölgeyi kaldırır */
+            border-bottom: none;
+            /* Alt çizgiyi kaldırır (varsa) */
         }
-        .centered-container{
+
+        .centered-container {
             z-index: 1;
-            background: rgba(255, 255, 255, 0.8); /* Yarı saydam bir arka plan */
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Hafif gölge */
+            background: rgba(255, 255, 255, 0.8);
+            /* Yarı saydam bir arka plan */
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            /* Hafif gölge */
+            margin-top: 100px;
         }
-        .button-group{
-        z-index:2;
-    }
+
+        .button-group {
+            z-index: 2;
+        }
     </style>
 </head>
 
 
-<body><div class="blurred-background"></div>
+<body>
+    <div class="blurred-background"></div>
 
     <nav class="navbar navbar-expand-lg navbar-light bg-light customizedNavbar">
         <div class="container">
@@ -104,19 +119,19 @@
                         required>
                 </div>
             </div>
-                <!-- Cinsiyet -->
-                <div class="mb-3">
-                    <!-- Cinsiyet Form Alanı -->
-                    <label for="gender" class="form-label">Cinsiyet</label>
-                    <div class="form-select" id="genderSelect" data-bs-toggle="modal" data-bs-target="#genderModal">
-                        Cinsiyetinizi Seçiniz
+            <!-- Cinsiyet -->
+            <div class="mb-3">
+                <!-- Cinsiyet Form Alanı -->
+                <label for="gender" class="form-label">Cinsiyet</label>
+                <div class="form-select" id="genderSelect" data-bs-toggle="modal" data-bs-target="#genderModal">
+                    Cinsiyetinizi Seçiniz
                 </div>
                 <div class="row mb-3 mt-3">
                     <div class="col-md-6">
-                    <!-- Sosyal Form Alanı -->
+                        <!-- Sosyal Form Alanı -->
                         <label for="social" class="form-label">Sosyal Medya</label>
                         <div class="form-select" id="socialSelect" data-bs-toggle="modal" data-bs-target="#socialModal">
-                            Sosyal Medya 
+                            Sosyal Medya
                         </div>
                     </div>
                     <div class="col-md-6">
@@ -205,7 +220,7 @@
             document.getElementById("genderSelect").innerText = "Belirtmek İstemiyorum";
         });
     </script>
-     <script>
+    <script>
         // Modal seçimlerini işleme
         document.getElementById("instaOption").addEventListener("click", function () {
             document.getElementById("socialSelect").innerText = "Instagram";

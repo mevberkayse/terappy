@@ -36,6 +36,9 @@
         }
         .customizedNavbar{
             background-color: transparent;
+            background-color: transparent !important; /* Arka planı şeffaf yapar */
+    box-shadow: none; /* Gölgeyi kaldırır */
+    border-bottom: none; /* Alt çizgiyi kaldırır (varsa) */
         }
         .centered-container{
             z-index: 1;

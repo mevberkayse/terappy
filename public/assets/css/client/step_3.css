@@ -114,7 +114,7 @@ body {
     width: 100%; /* Tüm genişliği kaplar */
     z-index: 1000; /* Diğer içeriklerin önünde görünmesi için */
     padding: 20px 0; /* Yukarı ve aşağı boşluk */
-    background: #fefeff;
+    background: transparent;
 }
 .button-group {
     display: flex;
