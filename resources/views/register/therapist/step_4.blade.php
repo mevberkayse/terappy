@@ -19,8 +19,9 @@
             background-position: center;
             /* Ortalar */
             background-repeat: no-repeat;
-    
+
         }
+
         .blurred-background {
             position: fixed;
             top: 0;
@@ -31,19 +32,28 @@
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
-            filter: blur(10px); /* Blur efekti */
-            z-index: 0; /* Arka planda kalması için */
+            filter: blur(10px);
+            /* Blur efekti */
+            z-index: 0;
+            /* Arka planda kalması için */
         }
-        .customizedNavbar{
+
+        .customizedNavbar {
             background-color: transparent;
-            background-color: transparent !important; /* Arka planı şeffaf yapar */
-    box-shadow: none; /* Gölgeyi kaldırır */
-    border-bottom: none; /* Alt çizgiyi kaldırır (varsa) */
+            background-color: transparent !important;
+            /* Arka planı şeffaf yapar */
+            box-shadow: none;
+            /* Gölgeyi kaldırır */
+            border-bottom: none;
+            /* Alt çizgiyi kaldırır (varsa) */
         }
-        .centered-container{
+
+        .centered-container {
             z-index: 1;
-            background: rgba(255, 255, 255, 0.8); /* Yarı saydam bir arka plan */
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Hafif gölge */
+            background: rgba(255, 255, 255, 0.8);
+            /* Yarı saydam bir arka plan */
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            /* Hafif gölge */
         }
     </style>
 </head>
@@ -128,12 +138,13 @@
         /* Etiketleri sola hizalar */
     }
 
-    .button-group{
-        z-index:1;
+    .button-group {
+        z-index: 1;
     }
 </style>
 
-<body><div class="blurred-background"></div>
+<body>
+    <div class="blurred-background"></div>
 
     <div class="blurred-background"></div>
 
@@ -163,10 +174,21 @@
             </div>
             <div class="row mb-3">
 
+                <label for="cesit" class="form-label">Çalışma alanınız</label>
+                <div class="form-select" id="cesitSelect" data-bs-toggle="modal" data-bs-target="#cesitModal">
+                    İlgilenmek istediğiniz çalışma alanını seçiniz.
+                </div>
+            </div>
+            <div class="row mb-3">
+
                 <label for="dil" class="form-label">Terapide Kullanabileceğiniz Diller</label>
                 <div class="form-select" id="dilSelect" data-bs-toggle="modal" data-bs-target="#dilModal">
                     Seçiniz
                 </div>
+            </div>
+            <div class="row mb-3">
+                <label for="deneyim" class="form-label">Kaç yıllık deneyiminiz var?</label>
+                <input type="number" class="form-control" id="deneyim" placeholder="Deneyim Yılı" required>
             </div>
             <div class="row mb-3">
                 <div class="col cv-label">Özgeçmiş / Cv
@@ -197,9 +219,26 @@
                 <div class="modal-body">
                     <ul class="list-group">
                         @foreach($diseases as $disease)
-                        <li class="list-group-item" data-bs-dismiss="modal" id="disease_{{$disease->id}}"
-                            onclick="chooseOption('{{$disease->name_disease}}')">{{$disease->name_disease}}</li>
+                            <li class="list-group-item" data-bs-dismiss="modal" id="disease_{{$disease->id}}"
+                                onclick="chooseOption('{{$disease->name_disease}}')">{{$disease->name_disease}}</li>
                         @endforeach
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="cesitModal" tabindex="-1" aria-labelledby="cesitModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="cesitModalLabel">Çalışma Alanı Seçimi</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Kapat"></button>
+                </div>
+                <div class="modal-body">
+                    <ul class="list-group">
+                        <li class="list-group-item" data-bs-dismiss="modal" id="bireysel">Bireysel Terapi</li>
+                        <li class="list-group-item" data-bs-dismiss="modal" id="cocuk">Çocuk Terapisi</li>
+                        <li class="list-group-item" data-bs-dismiss="modal" id="aile">Aile Terapisi</li>
                     </ul>
                 </div>
             </div>
@@ -209,7 +248,7 @@
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="dilModalLabel">Alan Seçimi</h5>
+                    <h5 class="modal-title" id="dilModalLabel">Dil Seçimi</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Kapat"></button>
                 </div>
                 <div class="modal-body">
@@ -226,7 +265,7 @@
     <!-- Butonlar -->
     <div class="button-group">
         <button type="button" class="modal-btn">Geri</button>
-        <button type="button" class="primary-button">Kaydımı Tamamla </button>
+        <button type="button" class="primary-button">Devam Et </button>
     </div>
 
     <script>
@@ -274,6 +313,18 @@
         document.getElementById("ingilizce").addEventListener("click", function () {
             document.getElementById("dilSelect").innerText = "İngilizce";
         });
+    </script>
+     <script>
+        document.getElementById("bireysel").addEventListener("click", function () {
+            document.getElementById("cesitSelect").innerText = "Bireysel Terapi";
+        });
+        document.getElementById("cocuk").addEventListener("click", function () {
+            document.getElementById("cesitSelect").innerText = "Çocuk Terapisi";
+        });
+        document.getElementById("aile").addEventListener("click", function () {
+            document.getElementById("cesitSelect").innerText = "Aile Terapisi";
+        });
+    
     </script>
     <script>
         const fileInput = document.getElementById('fileInput');

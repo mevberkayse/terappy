@@ -94,6 +94,16 @@
                     <input type="text" class="form-control" id="lastName" placeholder="Soy isminizi giriniz" required>
                 </div>
             </div>
+            <div class="row mb-3 mt-3">
+                <div class="col-md-6" >
+                    <label for="password" class="form-label">Şifre</label>
+                    <input type="text" class="form-control" id="password" placeholder="******" required minlength="6">
+                </div>
+                <div class="col-md-6">
+                    <label for="password_r" class="form-label">Tekrar Şifre</label>
+                    <input type="text" class="form-control" id="password_r" placeholder="******" required minlength="6">
+                </div>
+            </div>
             <!-- Yaş -->
             <div class="mb-3">
                 <label for="age" class="form-label">Yaş</label>

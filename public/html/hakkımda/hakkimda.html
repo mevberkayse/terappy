@@ -9,10 +9,10 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="http://cdn.arabul.us/bootstrap/css/bootstrap.min.css?123">
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0-alpha1/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="/assets/css/therapist/step_3.css">
+    <link rel="stylesheet" href="hakkimda.css">
     <style>
         body {
-            background-image: url('/assets/img/duvarkagidi8.jpg');
+            background-image: url('/public/assets/img/duvarkagidi8.jpg');
             /* JPG dosyasını buraya ekleyin */
             background-size: cover;
             /* Arkaplanın tam olarak kapsamasını sağlar */
@@ -28,7 +28,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-image: url('/assets/img/duvarkagidi8.jpg');
+            background-image: url('/public/assets/img/duvarkagidi8.jpg');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
@@ -126,95 +126,18 @@
             </button>
         </div>
     </nav>
-    <!-- Ortalanan container -->
     <div class="container centered-container">
-        <h2 class="text-center mb-4">Eğitim Bilgileri</h2>
-        <form>
-            <!-- İsim -->
-            <h3 class="mb-4 mt-3">Lisans Bilginiz</h3>
-            <div class="row mb-3">
-                <div class="col-md-6">
-                    <label for="lisans" class="form-label">Lisansınız</label>
-                    <input type="text" class="form-control" id="lisans" placeholder="Lisans bölümünüzü giriniz"
-                        required>
-                </div>
-                <div class="col-md-6">
-                    <label for="okul" class="form-label">Mezun olduğunuz okul</label>
-                    <input type="text" class="form-control" id="okul" placeholder="Okulunuzu giriniz" required>
-                </div>
-            </div>
-
-            <div class="row mb-3">
-                <div class="col-md-6">
-                    <label for="baslangic" class="form-label">Başlangıç Tarihi</label>
-                    <input type="number" class="form-control" id="baslangic" placeholder="Başlangıç" required>
-                </div>
-                <div class="col-md-6">
-                    <label for="bitis" class="form-label">Bitiş Tarihi</label>
-                    <input type="text" class="form-control" id="okul" placeholder="Bitiş" required>
-                </div>
-            </div>
-
-        </form>
-        <form>
-            <!-- İsim -->
-            <div class="kisisel-container">
-                <label>
-                    <input type="checkbox" name="kisisel" id="yuksekLisansCheckbox" value="kisisel">
-                    <span></span>
-                    Yüksek lisans mezunuyum.
-                </label>
-            </div>
-            <h3 class="mb-4 mt-3">Yüksek Lisans Bilginiz</h3>
-            <div class="row mb-3">
-                <div class="col-md-6">
-                    <label for="lisans-yuksek" class="form-label">Yüksek Lisansınız</label>
-                    <input type="text" class="form-control" id="lisans-yuksek" placeholder="Y. lisans alanınızı giriniz"
-                        required>
-                </div>
-                <div class="col-md-6">
-                    <label for="okul-yuksek" class="form-label">Mezun olduğunuz okul</label>
-                    <input type="text" class="form-control" id="okul-yuksek" placeholder="Okulunuzu giriniz" required>
-                </div>
-            </div>
-            <!-- İsim -->
-            <div class="row mb-3">
-                <div class="col-md-6">
-                    <label for="baslangic" class="form-label">Başlangıç Tarihi</label>
-                    <input type="number" class="form-control" id="baslangic-yuksek" placeholder="Başlangıç" required>
-                </div>
-                <div class="col-md-6">
-                    <label for="bitis" class="form-label">Bitiş Tarihi</label>
-                    <input type="text" class="form-control" id="bitis-yuksek" placeholder="Bitiş" required>
-                </div>
-            </div>
-
-        </form>
+        <h2 class="text-center mb-4">Hakkımda</h2>
+        <h3 class="mt-2 mb-4" style="font-weight: 500; border-bottom: none;">Kullanıcılarımız için kendinizden kısaca bahseder misiniz?</h3>
+        <div class="mb-4">
+            <textarea id="about" name="about" class="form-control" rows="15" placeholder="Buraya kendinizi tanıtan bir metin yazabilirsiniz." style="width: 400px;"></textarea>
+        </div>
     </div>
-    </div>
-
-    <!-- Butonlar -->
-    <div class="button-group">
+    
+    <div class="button-group text-center mt-4">
         <button type="button" class="modal-btn">Geri</button>
         <button type="button" class="primary-button">Devam Et</button>
     </div>
-
-    <script>
-        const checkbox = document.getElementById("yuksekLisansCheckbox");
-        const lisansInput = document.getElementById("lisans-yuksek");
-        const okulInput = document.getElementById("okul-yuksek");
-        const baslangicyInput = document.getElementById("baslangic-yuksek");
-        const bitisyInput = document.getElementById("bitis-yuksek");
-
-        checkbox.addEventListener("change", function () {
-            const isChecked = checkbox.checked;
-            lisansInput.disabled = !isChecked;
-            okulInput.disabled = !isChecked;
-            baslangicyInput.disabled = !isChecked;
-            bitisyInput.disabled = !isChecked;
-        });
-    </script>
-
     <!-- Bootstrap JS ve Popper -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0-alpha1/js/bootstrap.min.js"></script>
