@@ -18,12 +18,6 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
-            $table->string('phone_number');
-            $table->string('birthdate');
-            $table->string('description');
-            $table->string('choosing_therapist');
-            $table->string('gender_of_therapist');
-            $table->string('before_thearapy_sitution');
             $table->timestamps();
         });
 
