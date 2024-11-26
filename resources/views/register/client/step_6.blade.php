@@ -151,11 +151,11 @@
         <h2>Daha önce terapi aldınız mı</h2>
         <div class="radio-group">
             <label class="radio-option">
-                <input type="radio" name="gender" value="woman">
+                <input type="radio" name="previous_therapy" value="no">
                 Hayır
             </label>
             <label class="radio-option">
-                <input type="radio" name="gender" value="man">
+                <input type="radio" name="previous_therapy" value="yes">
                 Evet
             </label>
         </div>
@@ -167,6 +167,27 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="//cdn.arabul.us/jquery/jquery-3.7.1.min.js"></script>
+    <script>
+        $(document).ready(() => {
+            $('.primary-button').click(() => {
+                let previous_therapy = $('input[name="previous_therapy"]:checked').val();
+
+                $.ajax({
+                    url: '/api/kayit/danisan/5',
+                    method: 'POST',
+                    data: {
+                        previous_therapy: previous_therapy,
+                        _token: '{{ csrf_token() }}'
+                    },
+                    success: (response) => {
+                        alert('ok');
+                    }
+                });
+            });
+        });
+    </script>
+
 
 </body>
 

@@ -55,7 +55,7 @@
             background-position: center;
             /* Ortalar */
             background-repeat: no-repeat;
-    
+
         }
         .blurred-background {
             position: fixed;
@@ -119,10 +119,41 @@
 
     <div class="button-group">
         <button type="button" class="modal-btn">Geri</button>
-        <button type="button" class="primary-button">Devam Et</button>
+        <button type="button" class="primary-button" id="next_step">Devam Et</button>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="//cdn.arabul.us/jquery/jquery-3.7.1.min.js"></script>
+
+    <script>
+        $(document).ready(() => {
+            $('#next_step').click(() => {
+                let gender = $('input[name="gender"]:checked').val();
+
+                $.ajax({
+                    url: '/api/kayit/danisan/2',
+                    method: 'POST',
+                    data: {
+                        gender: gender,
+                        _token: '{{ csrf_token() }}'
+                    },
+                    success: (response) => {
+                        if(response.status) {
+                            window.location.href = response.link
+                        } else {
+                            alert('Bir hata oluştu')
+                            console.log(response);
+                        }
+                     }
+                     ,
+                    error: (error) => {
+                        console.log(error);
+                    }
+
+                })
+            });
+        })
+    </script>
 
 </body>
 

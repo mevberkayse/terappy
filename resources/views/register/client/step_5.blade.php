@@ -19,7 +19,7 @@
             background-position: center;
             /* Ortalar */
             background-repeat: no-repeat;
-    
+
         }
         .blurred-background {
             position: fixed;
@@ -102,7 +102,7 @@
         }
 
         .container h2 {
-            
+
             /* Gri çizgi */
             padding-bottom: 10px;
             /* Çizgi ile başlık arasında boşluk */
@@ -180,7 +180,7 @@
         <div class="checkbox-group">
             @foreach($features as $feature)
             <label>
-                <input type="checkbox" name="problem" value="problem1">
+                <input type="checkbox" name="feature" value="{{$feature->id}}">
                 <span></span>
                 {{$feature->feature}}
             </label>
@@ -189,7 +189,7 @@
     </div>
     <div class="problem16-container">
         <label>
-            <input type="checkbox" name="problem" value="problem16">
+            <input type="checkbox" id="belirtme" name="feature" value="-1">
             <span></span>
             Özel bir tercihim yok.
         </label>
@@ -197,13 +197,50 @@
     <!-- Butonlar -->
     <div class="button-group">
         <button type="button" class="modal-btn">Geri</button>
-        <button type="button" class="primary-button">Devam Et</button>
+        <button type="button" class="primary-button" id="next_step">Devam Et</button>
     </div>
     <!-- Bootstrap JS ve Popper -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0-alpha1/js/bootstrap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="//cdn.arabul.us/fontawesome/js/all.min.js"></script>
+    <script src="//cdn.arabul.us/jquery/jquery-3.7.1.min.js"></script>
+
+    <script>
+        $(document).ready(() => {
+              // when #belirtme is checked, uncheck all other checkboxes
+              $('#belirtme').change(() => {
+                if ($('#belirtme').is(':checked')) {
+                    $('input[name="feature"]').not('#belirtme').prop('checked', false);
+                }
+            });
+
+            // when any other checkbox is checked, uncheck #belirtme
+            $('input[name="feature"]').not('#belirtme').change(() => {
+                if ($('input[name="feature"]').not('#belirtme').is(':checked')) {
+                    $('#belirtme').prop('checked', false);
+                }
+            });
+            $('#next_step').click(() => {
+                let features = [];
+                $('input[name="feature"]:checked').each((index, element) => {
+                    features.push($(element).val());
+                });
+
+                $.ajax({
+                    url: '/api/kayit/danisan/4',
+                    method: 'POST',
+                    data: {
+                        features: features,
+                        _token: '{{ csrf_token() }}'
+                    },
+                    success: (response) => {
+                        window.location.href = response.link
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 
 </html>

@@ -19,7 +19,7 @@
             background-position: center;
             /* Ortalar */
             background-repeat: no-repeat;
-    
+
         }
         .blurred-background {
             position: fixed;
@@ -81,11 +81,11 @@
         .checkbox-group input[type="checkbox"]:checked {
             border: 2px solid white;
             background-color: #00D6A3;
-            
+
         }
 
         .checkbox-group label {
-            
+
 
             border-bottom: 1px solid #ccc;
 
@@ -103,7 +103,7 @@
         }
 
         .container h2 {
-            
+
             /* Gri çizgi */
             padding-bottom: 10px;
             /* Çizgi ile başlık arasında boşluk */
@@ -180,30 +180,69 @@
         <div class="checkbox-group">
             @foreach($symptoms as $symptom)
             <label>
-                <input type="checkbox" name="problem" value="problem1">
+                <input type="checkbox" name="problem" value="problem1" data-id="{{$symptom->id}}">
                 <span></span>
                 {{$symptom->name_symptom}}
             </label>
             @endforeach
         </div>
     </div>
-    <div class="problem16-container">
+    <div class="problem16-container" style="z-index: 1; color:white">
         <label>
-            <input type="checkbox" name="problem" value="problem16">
+            <input type="checkbox" name="problem" id="belirtme" value="-1">
             <span></span>
-            Sorun 16 - Belirtmek istemiyorum
+            Belirtmek istemiyorum
         </label>
     </div>
     <!-- Butonlar -->
     <div class="button-group">
         <button type="button" class="modal-btn">Geri</button>
-        <button type="button" class="primary-button">Devam Et</button>
+        <button type="button" class="primary-button" id="next_step">Devam Et</button>
     </div>
     <!-- Bootstrap JS ve Popper -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0-alpha1/js/bootstrap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="//cdn.arabul.us/fontawesome/js/all.min.js"></script>
+    <script src="//cdn.arabul.us/jquery/jquery-3.7.1.min.js"></script>
+
+    <script>
+        $(document).ready(() => {
+
+            // when #belirtme is checked, uncheck all other checkboxes
+            $('#belirtme').change(() => {
+                if ($('#belirtme').is(':checked')) {
+                    $('input[name="problem"]').not('#belirtme').prop('checked', false);
+                }
+            });
+
+            // when any other checkbox is checked, uncheck #belirtme
+            $('input[name="problem"]').not('#belirtme').change(() => {
+                if ($('input[name="problem"]').not('#belirtme').is(':checked')) {
+                    $('#belirtme').prop('checked', false);
+                }
+            });
+
+            $('#next_step').click(() => {
+                let problems = [];
+                $('input[name="problem"]:checked').each((index, element) => {
+                    problems.push($(element).data('id'));
+                });
+
+                $.ajax({
+                    url: '/api/kayit/danisan/3',
+                    method: 'POST',
+                    data: {
+                        problems: problems,
+                        _token: '{{ csrf_token() }}'
+                    },
+                    success: (response) => {
+                        window.location.href = '/kayit/danisan/4';
+                    }
+                });
+            });
+        })
+    </script>
 </body>
 
 </html>
