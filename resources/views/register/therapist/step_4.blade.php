@@ -297,6 +297,43 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0-alpha1/js/bootstrap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="//cdn.arabul.us/fontawesome/js/all.min.js"></script>
+    
+    <script>
+       $(document).ready(() => {
+            $('.primary-button').click(() => {
+                let ozelSelect = $('#ozelSelect').val();
+                let dilSelect = $('#dilSelecet').val();
+                let fileInput = $('#fileInput').val();
+
+                $.ajax({
+                    url: '/api/kayit/danisan/5',
+                    method: 'POST',
+                    data: {
+                        ozelSelect:ozelSelect,
+                        dilSelect:dilSelect,
+                        fileInput:fileInput,
+                        _token: '{{ csrf_token() }}'
+                    },
+                    success:(res)=>{
+                    if(res.status) {
+                      window.location.href = res.link;
+                    }
+                },
+                error:(err)=>{
+                    alert('Bir hata oluştu');
+                    console.log(err);
+                }
+                });
+            });
+        });
+    </script>
+
+
+
+
+
+
+    </script>
 </body>
 
 </html>

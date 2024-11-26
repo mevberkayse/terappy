@@ -71,8 +71,6 @@ class RegisterClientController extends Controller
             ]);
         }
 
-
-
         // save into session, register_client_step_1
         $request->session()->put('register_client_step_1', [
             'firstName' => $firstName,

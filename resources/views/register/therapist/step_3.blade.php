@@ -4,12 +4,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Document</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="http://cdn.arabul.us/bootstrap/css/bootstrap.min.css?123">
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0-alpha1/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="/assets/css/therapist/step_3.css">
+
+
     <style>
         body {
             background-image: url('/assets/img/duvarkagidi8.jpg');
@@ -150,7 +153,7 @@
                 </div>
                 <div class="col-md-6">
                     <label for="bitis" class="form-label">Bitiş Tarihi</label>
-                    <input type="text" class="form-control" id="okul" placeholder="Bitiş" required>
+                    <input type="text" class="form-control" id="bitis" placeholder="Bitiş" required>
                 </div>
             </div>
 
@@ -168,23 +171,23 @@
             <div class="row mb-3">
                 <div class="col-md-6">
                     <label for="lisans-yuksek" class="form-label">Yüksek Lisansınız</label>
-                    <input type="text" class="form-control" id="lisans-yuksek" placeholder="Y. lisans alanınızı giriniz"
+                    <input type="text" class="form-control" id="lisans2" placeholder="Y. lisans alanınızı giriniz"
                         required>
                 </div>
                 <div class="col-md-6">
                     <label for="okul-yuksek" class="form-label">Mezun olduğunuz okul</label>
-                    <input type="text" class="form-control" id="okul-yuksek" placeholder="Okulunuzu giriniz" required>
+                    <input type="text" class="form-control" id="okul2" placeholder="Okulunuzu giriniz" required>
                 </div>
             </div>
             <!-- İsim -->
             <div class="row mb-3">
                 <div class="col-md-6">
                     <label for="baslangic" class="form-label">Başlangıç Tarihi</label>
-                    <input type="number" class="form-control" id="baslangic-yuksek" placeholder="Başlangıç" required>
+                    <input type="number" class="form-control" id="baslangic2" placeholder="Başlangıç" required>
                 </div>
                 <div class="col-md-6">
                     <label for="bitis" class="form-label">Bitiş Tarihi</label>
-                    <input type="text" class="form-control" id="bitis-yuksek" placeholder="Bitiş" required>
+                    <input type="text" class="form-control" id="bitis2" placeholder="Bitiş" required>
                 </div>
             </div>
 
@@ -195,15 +198,15 @@
     <!-- Butonlar -->
     <div class="button-group">
         <button type="button" class="modal-btn">Geri</button>
-        <button type="button" class="primary-button">Devam Et</button>
+        <button type="button" class="primary-button" id="next_step">Devam Et</button>
     </div>
 
     <script>
         const checkbox = document.getElementById("yuksekLisansCheckbox");
-        const lisansInput = document.getElementById("lisans-yuksek");
-        const okulInput = document.getElementById("okul-yuksek");
-        const baslangicyInput = document.getElementById("baslangic-yuksek");
-        const bitisyInput = document.getElementById("bitis-yuksek");
+        const lisansInput = document.getElementById("lisans2");
+        const okulInput = document.getElementById("okul2");
+        const baslangicyInput = document.getElementById("baslangic2");
+        const bitisyInput = document.getElementById("bitis2");
 
         checkbox.addEventListener("change", function () {
             const isChecked = checkbox.checked;
@@ -219,6 +222,51 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0-alpha1/js/bootstrap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="//cdn.arabul.us/fontawesome/js/all.min.js"></script>
+    <script src="//cdn.arabul.us/jquery/jquery-3.7.1.min.js"></script>
+
+ 
+    <script> 
+    $(document).ready(() => {
+    $('#next_step').click(() => {
+        let token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+        let checkbox = $('#yuksekLisansCheckbox')[0];
+        let lisans = $('#lisans').val();
+        let okul = $('#okul').val();
+        let baslangic = $('#baslangic').val();
+        let bitis = $('#bitis').val();
+        let lisans2 = checkbox.checked ? $('#lisans2').val() : null;
+        let okul2 = checkbox.checked ? $('#okul2').val() : null;
+        let baslangic2 = checkbox.checked ? $('#baslangic2').val() : null;
+        let bitis2 = checkbox.checked ? $('#bitis2').val() : null;
+
+        $.ajax({
+            url: '/api/kayit/terapist/2',
+            method: 'POST',
+            data: {
+                lisans: lisans,
+                okul: okul,
+                baslangic: baslangic,
+                bitis: bitis,
+                lisans2: lisans2,
+                okul2: okul2,
+                baslangic2: baslangic2,
+                bitis2: bitis2,
+                yuksekLisansCheckbox: checkbox.checked ? 1 : 0,
+                _token: token
+            },
+            success: (res) => {
+                if (res.status) {
+                   window.location.href = res.link;
+                }
+            },
+            error: (err) => {
+                alert('Bir hata oluştu');
+                console.log(err);
+            }
+        });
+    });
+});
+</script>
 </body>
 
 </html>

@@ -99,6 +99,16 @@
                 <label for="age" class="form-label">Yaş</label>
                 <input type="number" class="form-control" id="age" placeholder="Yaşınızı giriniz" required>
             </div>
+            <div class="row mb-3 mt-3">
+                <div class="col-md-6" >
+                    <label for="password" class="form-label">Şifre</label>
+                    <input type="text" class="form-control" id="password" placeholder="******" required minlength="6">
+                </div>
+                <div class="col-md-6">
+                    <label for="password_r" class="form-label">Tekrar Şifre</label>
+                    <input type="text" class="form-control" id="password_r" placeholder="******" required minlength="6">
+                </div>
+            </div>
             <div class="mb-3">
                 <!-- Ülke Form Alanı -->
                 <label for="country" class="form-label">Ülke</label>
@@ -146,7 +156,7 @@
     <!-- Butonlar -->
     <div class="button-group">
         <button type="button" class="modal-btn">Geri</button>
-        <button type="button" class="primary-button">Devam Et</button>
+        <button type="button" class="primary-button" id="next_step">Devam Et</button>
     </div>
     <!-- Cinsiyet Seçimi Modal -->
     <div class="modal fade" id="genderModal" tabindex="-1" aria-labelledby="genderModalLabel" aria-hidden="true">
@@ -271,6 +281,52 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0-alpha1/js/bootstrap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="//cdn.arabul.us/fontawesome/js/all.min.js"></script>
-</body>
+    <script src="//cdn.arabul.us/jquery/jquery-3.7.1.min.js"></script>
+    <script>
+    $(document).ready(() => {
+          $('#next_step').click(() => {
+            let firstName = $("#firstName").val();
+            let lastName = $('#lastName').val();
+            let age = $('#age').val();
+            let country = $('#countrySelect').text();
+            let phone = $('#phone').val();
+            let email = $('#email').val();
+            let gender = $('#genderSelect').text();
+            let password = $('#password').val();
+            let password_r = $('#password_r').val();
+            let social= $('#socialSelect').text();
+            let socail = $('#socail').val();
 
+
+            $.ajax({
+                url:'/api/kayit/terapist/1',
+                method:'POST',
+                data:{
+                    firstName:firstName,
+                    lastName:lastName,
+                    age:age,
+                    country:country,
+                    phone:phone,
+                    email:email,
+                    gender: gender,
+                    password:password,
+                    password_r:password_r,
+                    social:social,
+                    socail:socail,
+                    _token:'{{csrf_token()}}'
+                },
+                success:(res)=>{
+                    if(res.status) {
+                      window.location.href = res.link;
+                    }
+                },
+                error:(err)=>{
+                    alert('Bir hata oluştu');
+                    console.log(err);
+                }
+            })
+          });
+        });
+    </script>
+    </body>
 </html>
