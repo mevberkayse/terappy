@@ -272,33 +272,6 @@
         let chooseOption = hastalik => {
             document.getElementById("ozelSelect").innerText = hastalik;
         }
-        document.getElementById("Hastalık1").addEventListener("click", function () {
-            document.getElementById("ozelSelect").innerText = "Hastalık1";
-        });
-        document.getElementById("Hastalık2").addEventListener("click", function () {
-            document.getElementById("ozelSelect").innerText = "Hastalık2";
-        });
-        document.getElementById("Hastalık2").addEventListener("click", function () {
-            document.getElementById("ozelSelect").innerText = "Hastalık2";
-        });
-        document.getElementById("Hastalık2").addEventListener("click", function () {
-            document.getElementById("ozelSelect").innerText = "Hastalık2";
-        });
-        document.getElementById("Hastalık2").addEventListener("click", function () {
-            document.getElementById("ozelSelect").innerText = "Hastalık2";
-        });
-        document.getElementById("Hastalık2").addEventListener("click", function () {
-            document.getElementById("ozelSelect").innerText = "Hastalık2";
-        });
-        document.getElementById("Hastalık2").addEventListener("click", function () {
-            document.getElementById("ozelSelect").innerText = "Hastalık2";
-        });
-        document.getElementById("Hastalık2").addEventListener("click", function () {
-            document.getElementById("ozelSelect").innerText = "Hastalık2";
-        });
-        document.getElementById("Hastalık2").addEventListener("click", function () {
-            document.getElementById("ozelSelect").innerText = "Hastalık2";
-        });
     </script>
     <script>
         document.getElementById("turkce").addEventListener("click", function () {
@@ -324,7 +297,7 @@
         document.getElementById("aile").addEventListener("click", function () {
             document.getElementById("cesitSelect").innerText = "Aile Terapisi";
         });
-    
+
     </script>
     <script>
         const fileInput = document.getElementById('fileInput');
@@ -348,6 +321,46 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0-alpha1/js/bootstrap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="//cdn.arabul.us/fontawesome/js/all.min.js"></script>
+    <script src="//cdn.arabul.us/jquery/jquery-3.7.1.min.js"></script>
+
+
+
+    <script>
+        $(document).ready(() => {
+             $('.primary-button').click(() => {
+                 let ozelSelect = $('#ozelSelect').text();
+                 let dilSelect = $('#dilSelect').text();
+                 let fileInput = $('#fileInput').val();
+
+                 $.ajax({
+                     url: '/api/kayit/terapist/3',
+                     method: 'POST',
+                     data: {
+                         ozelSelect:ozelSelect,
+                         dilSelect:dilSelect,
+                         fileInput:fileInput,
+                         _token: '{{ csrf_token() }}'
+                     },
+                     success:(res)=>{
+                     if(res.status) {
+                       //window.location.href = res.link;
+                     }
+                 },
+                 error:(err)=>{
+                     alert('Bir hata oluştu');
+                     console.log(err);
+                 }
+                 });
+             });
+         });
+     </script>
+
+
+
+
+
+
+     </script>
 </body>
 
 </html>

@@ -39,9 +39,12 @@
         }
 
         .customizedNavbar {
-            background-color: transparent !important; /* Arka planı şeffaf yapar */
-    box-shadow: none; /* Gölgeyi kaldırır */
-    border-bottom: none; /* Alt çizgiyi kaldırır (varsa) */
+            background-color: transparent !important;
+            /* Arka planı şeffaf yapar */
+            box-shadow: none;
+            /* Gölgeyi kaldırır */
+            border-bottom: none;
+            /* Alt çizgiyi kaldırır (varsa) */
         }
 
         .centered-container {
@@ -151,7 +154,7 @@
                 </div>
                 <div class="col-md-6">
                     <label for="bitis" class="form-label">Bitiş Tarihi</label>
-                    <input type="text" class="form-control" id="okul" placeholder="Bitiş" required>
+                    <input type="text" class="form-control" id="bitis" placeholder="Bitiş" required>
                 </div>
             </div>
 
@@ -169,23 +172,23 @@
             <div class="row mb-3">
                 <div class="col-md-6">
                     <label for="lisans-yuksek" class="form-label">Yüksek Lisansınız</label>
-                    <input type="text" class="form-control" id="lisans-yuksek" placeholder="Y. lisans alanınızı giriniz"
+                    <input type="text" class="form-control" id="lisans2" placeholder="Y. lisans alanınızı giriniz"
                         required>
                 </div>
                 <div class="col-md-6">
                     <label for="okul-yuksek" class="form-label">Mezun olduğunuz okul</label>
-                    <input type="text" class="form-control" id="okul-yuksek" placeholder="Okulunuzu giriniz" required>
+                    <input type="text" class="form-control" id="okul2" placeholder="Okulunuzu giriniz" required>
                 </div>
             </div>
             <!-- İsim -->
             <div class="row mb-3">
                 <div class="col-md-6">
                     <label for="baslangic" class="form-label">Başlangıç Tarihi</label>
-                    <input type="number" class="form-control" id="baslangic-yuksek" placeholder="Başlangıç" required>
+                    <input type="number" class="form-control" id="baslangic2" placeholder="Başlangıç" required>
                 </div>
                 <div class="col-md-6">
                     <label for="bitis" class="form-label">Bitiş Tarihi</label>
-                    <input type="text" class="form-control" id="bitis-yuksek" placeholder="Bitiş" required>
+                    <input type="text" class="form-control" id="bitis2" placeholder="Bitiş" required>
                 </div>
             </div>
 
@@ -196,7 +199,7 @@
     <!-- Butonlar -->
     <div class="button-group">
         <button type="button" class="modal-btn">Geri</button>
-        <button type="button" class="primary-button">Devam Et</button>
+        <button type="button" class="primary-button" id="next_step">Devam Et</button>
     </div>
 
     <script>
@@ -212,6 +215,52 @@
             okulInput.disabled = !isChecked;
             baslangicyInput.disabled = !isChecked;
             bitisyInput.disabled = !isChecked;
+        });
+    </script>
+
+    <script src="//cdn.arabul.us/jquery/jquery-3.7.1.min.js"></script>
+
+
+    <script>
+        $(document).ready(() => {
+            $('#next_step').click(() => {
+                let token = "{{ csrf_token() }}";
+                let checkbox = $('#yuksekLisansCheckbox')[0];
+                let lisans = $('#lisans').val();
+                let okul = $('#okul').val();
+                let baslangic = $('#baslangic').val();
+                let bitis = $('#bitis').val();
+                let lisans2 = checkbox.checked ? $('#lisans2').val() : null;
+                let okul2 = checkbox.checked ? $('#okul2').val() : null;
+                let baslangic2 = checkbox.checked ? $('#baslangic2').val() : null;
+                let bitis2 = checkbox.checked ? $('#bitis2').val() : null;
+
+                $.ajax({
+                    url: '/api/kayit/terapist/2',
+                    method: 'POST',
+                    data: {
+                        lisans: lisans,
+                        okul: okul,
+                        baslangic: baslangic,
+                        bitis: bitis,
+                        lisans2: lisans2,
+                        okul2: okul2,
+                        baslangic2: baslangic2,
+                        bitis2: bitis2,
+                        yuksekLisansCheckbox: checkbox.checked ? 1 : 0,
+                        _token: token
+                    },
+                    success: (res) => {
+                        if (res.status) {
+                            //window.location.href = res.link;
+                        }
+                    },
+                    error: (err) => {
+                        alert('Bir hata oluştu');
+                        console.log(err);
+                    }
+                });
+            });
         });
     </script>
 

@@ -143,7 +143,8 @@ class RegisterTherapistController extends Controller
         if ($ozelSelect == null || $dilSelect == null || $fileInput == null) {
             return response()->json([
                 'status' => 'error',
-                'message' => 'All fields are required'
+                'message' => 'All fields are required',
+                'data' => $request->input()
             ]);
         }
 

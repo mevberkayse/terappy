@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\API\RegisterClientController as APIRegisterClientController;
+use App\Http\Controllers\API\RegisterTherapistController as APIRegisterTherapistController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RegisterClientController;
 use App\Http\Controllers\RegisterController;
@@ -47,9 +48,9 @@ Route::prefix('api')->group(function() {
     });
 
     Route::prefix('/kayit/terapist')->group(function(){
-        Route::post('/1', [APIRegisterClientController::class, 'step_1']);
-        Route::post('/2', [APIRegisterClientController::class, 'step_2']);
-        Route::post('/3', [APIRegisterClientController::class, 'step_3']);
+        Route::post('/1', [APIRegisterTherapistController::class, 'step_1']);
+        Route::post('/2', [APIRegisterTherapistController::class, 'step_2']);
+        Route::post('/3', [APIRegisterTherapistController::class, 'step_3']);
     });
 });
 require __DIR__.'/auth.php';
