@@ -6,6 +6,8 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RegisterClientController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\RegisterTherapistController;
+use App\Models\Therapist;
+use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -36,6 +38,34 @@ Route::prefix('/kayit/terapist')->group(function(){
     Route::get('/1', [RegisterTherapistController::class, 'step_1'])->name('register.therapist.step_1');
     Route::get('/2', [RegisterTherapistController::class, 'step_2'])->name('register.therapist.step_2');
     Route::get('/3', [RegisterTherapistController::class, 'step_3'])->name('register.therapist.step_3');
+});
+
+Route::get('/test', function() {
+    // calculate a percentage of match based on $client->problems and $therapist->branch, $client->therapist_features and $therapist->features
+    $client = User::find(1);
+    $therapist = Therapist::find(3);
+
+    $clientProblems = explode(',', $client->problems);
+    $therapistBranch = explode(',', $therapist->branch);
+    $clientFeatures = explode(',', $client->therapist_features);
+    $therapistFeatures = explode(',', $therapist->features);
+
+    $match = 0;
+    foreach($clientProblems as $problem) {
+        if(in_array($problem, $therapistBranch)) {
+            $match += 1;
+        }
+    }
+
+    foreach($clientFeatures as $feature) {
+        if(in_array($feature, $therapistFeatures)) {
+            $match += 1;
+        }
+    }
+
+    $match = ceil(($match / (count($clientProblems) + count($clientFeatures))) * 100);
+
+    return response()->json(['match' => $match]);
 });
 
 Route::prefix('api')->group(function() {
