@@ -13,4 +13,8 @@ class IndexController extends Controller
     {
         return view('how-it-works');
     }
+
+    public function help() {
+        return view('help');
+    }
 }

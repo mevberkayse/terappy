@@ -66,4 +66,10 @@ class ProfileController extends Controller
         ]);
 
     }
+
+    public function settings(Request $request) {
+        return view('settings', [
+            'user' => $request->user()
+        ]);
+    }
 }
