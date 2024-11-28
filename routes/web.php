@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\API\RegisterClientController as APIRegisterClientController;
 use App\Http\Controllers\API\RegisterTherapistController as APIRegisterTherapistController;
+use App\Http\Controllers\IndexController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RegisterClientController;
 use App\Http\Controllers\RegisterController;
@@ -25,6 +26,8 @@ Route::middleware('auth')->group(function () {
 });
 
 
+Route::get('/terapist/profil/{id}', [ProfileController::class, 'showTherapist'])->name('therapist.profile.show');
+Route::get('/nasil-calisir', [IndexController::class, 'howItWorks']);
 Route::get('/kayit', [RegisterController::class, 'show']);
 Route::prefix('/kayit/danisan')->group(function(){
     Route::get('/1', [RegisterClientController::class, 'step_1'])->name('register.client.step_1');
@@ -38,34 +41,9 @@ Route::prefix('/kayit/terapist')->group(function(){
     Route::get('/1', [RegisterTherapistController::class, 'step_1'])->name('register.therapist.step_1');
     Route::get('/2', [RegisterTherapistController::class, 'step_2'])->name('register.therapist.step_2');
     Route::get('/3', [RegisterTherapistController::class, 'step_3'])->name('register.therapist.step_3');
-});
-
-Route::get('/test', function() {
-    // calculate a percentage of match based on $client->problems and $therapist->branch, $client->therapist_features and $therapist->features
-    $client = User::find(1);
-    $therapist = Therapist::find(3);
-
-    $clientProblems = explode(',', $client->problems);
-    $therapistBranch = explode(',', $therapist->branch);
-    $clientFeatures = explode(',', $client->therapist_features);
-    $therapistFeatures = explode(',', $therapist->features);
-
-    $match = 0;
-    foreach($clientProblems as $problem) {
-        if(in_array($problem, $therapistBranch)) {
-            $match += 1;
-        }
-    }
-
-    foreach($clientFeatures as $feature) {
-        if(in_array($feature, $therapistFeatures)) {
-            $match += 1;
-        }
-    }
-
-    $match = ceil(($match / (count($clientProblems) + count($clientFeatures))) * 100);
-
-    return response()->json(['match' => $match]);
+    Route::get('/4', [RegisterTherapistController::class, 'step_4'])->name('register.therapist.step_4');
+    Route::get('/5', [RegisterTherapistController::class, 'step_5'])->name('register.therapist.step_5');
+    Route::get('/6', [RegisterTherapistController::class, 'step_6'])->name('register.therapist.step_6');
 });
 
 Route::prefix('api')->group(function() {

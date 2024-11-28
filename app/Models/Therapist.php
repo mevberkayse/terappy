@@ -13,4 +13,15 @@ class Therapist extends Model
         $features = TherapistFeature::where('therapist_id', $this->id)->get();
         return implode(',', $features->pluck('feature')->toArray());
     }
+
+    public function diseases() {
+        $d = explode(',', $this->branch);
+
+        $diseases = Disease::whereIn('id', $d)->get();
+        return $diseases;
+    }
+
+    public function seminars() {
+        return $this->hasMany(TherapistSeminar::class, 'therapist_id', 'id');
+    }
 }

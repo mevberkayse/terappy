@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
+use App\Models\Therapist;
 
 class ProfileController extends Controller
 {
@@ -56,5 +57,13 @@ class ProfileController extends Controller
         $request->session()->regenerateToken();
 
         return Redirect::to('/');
+    }
+
+    public function showTherapist(Request $request) {
+        $therapist = Therapist::find($request->id);
+        return view('therapist-profile', [
+            'therapist' => $therapist
+        ]);
+
     }
 }
