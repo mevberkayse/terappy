@@ -23,8 +23,8 @@ return new class extends Migration
             $table->string('social_media');
             $table->string('education');
             $table->string('school');
-            $table->dateTime('start_edu_time');
-            $table->dateTime("graduation_time");
+            $table->integer('start_edu_time');
+            $table->integer("graduation_time");
             $table->string('branch');    
             $table->string('language');
             $table->string('CV');

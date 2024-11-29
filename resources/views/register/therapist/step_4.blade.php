@@ -326,38 +326,39 @@
 
 
     <script>
-        $(document).ready(() => {
-             $('.primary-button').click(() => {
-                 let ozelSelect = $('#ozelSelect').text();
-                 let dilSelect = $('#dilSelect').text();
-                 let fileInput = $('#fileInput').val();
 
-                 $.ajax({
-                     url: '/api/kayit/terapist/3',
-                     method: 'POST',
-                     data: {
-                         ozelSelect:ozelSelect,
-                         dilSelect:dilSelect,
-                         fileInput:fileInput,
-                         _token: '{{ csrf_token() }}'
-                     },
-                     success:(res)=>{
-                     if(res.status) {
-                       //window.location.href = res.link;
-                     }
-                 },
-                 error:(err)=>{
-                     alert('Bir hata oluştu');
-                     console.log(err);
-                 }
-                 });
-             });
-         });
-     </script>
+        $('.primary-button').click(() => {
+    let ozelSelect = $('#ozelSelect').text();
+    let dilSelect = $('#dilSelect').text();
+    let fileInput = document.getElementById('fileInput').files[0];
+    let cesitSelect = $('#cesitSelect').text();
+    let deneyim = $('#deneyim').val();
 
+    let formData = new FormData();
+    formData.append('ozelSelect', ozelSelect);
+    formData.append('dilSelect', dilSelect);
+    formData.append('fileInput', fileInput);
+    formData.append('cesitSelect', cesitSelect);
+    formData.append('deneyim', deneyim);
+    formData.append('_token', '{{ csrf_token() }}');
 
-
-
+    $.ajax({
+        url: '/api/kayit/terapist/3',
+        method: 'POST',
+        data: formData,
+        contentType: false,
+        processData: false,
+        success: (res) => {
+            if (res.status) {
+                window.location.href = res.link;
+            }
+        },
+        error: (err) => {
+            alert('Bir hata oluştu');
+            console.log(err);
+        }
+    });
+});
 
 
      </script>

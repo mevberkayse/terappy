@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="http://cdn.arabul.us/bootstrap/css/bootstrap.min.css?123">
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0-alpha1/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="/assets/css/therapist/step_7.css">
     <style>
         body {
@@ -185,10 +186,27 @@
 
     <!-- Butonlar -->
     <div class="button-group">
-        <button type="button" class="modal-btn">Geri</button>
+        <button type="button" class="modal-btn" id="backButton">Geri</button>
         <button type="button" class="primary-button">Kaydımı Tamamla </button>
     </div>
-
+    <!-- Success Modal -->
+<div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header bg-success text-white">
+                <h5 class="modal-title" id="successModalLabel">Başarılı!</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body text-center">
+                <i class="bi bi-check-circle-fill text-success" style="font-size: 50px;"></i>
+                <p class="mt-3" style="font-size: 18px; font-weight: 500;">Başvurunuz başarıyla alınmıştır!</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Tamam</button>
+            </div>
+        </div>
+    </div>
+</div>
     <script>
         // JavaScript ile dosya yükleme ve önizleme
         document.getElementById('fileInput').addEventListener('change', function (event) {
@@ -217,6 +235,65 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0-alpha1/js/bootstrap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="//cdn.arabul.us/fontawesome/js/all.min.js"></script>
+    <script src="//cdn.arabul.us/jquery/jquery-3.7.1.min.js"></script>
+
+    
+<script> 
+   $(document).ready(() => {
+    $('#submitButton').on('click', function () {
+        const selectedFile = document.getElementById('fileInput').files[0];
+        if (!selectedFile) {
+            alert('Lütfen bir dosya seçin.');
+            return;
+        }
+
+        const formData = new FormData();
+        formData.append('profile_photo', selectedFile);
+
+        $.ajax({
+            url: '/api/kayit/terapist/6',
+            method: 'POST',
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: (response) => {
+                if (response.status) {
+                    $('#successModal').modal('show');
+                    setTimeout(() => {
+                        window.location.href = res.link;
+                    }, 3000);
+                } else {
+                    $('#errorMessage').text(response.message || 'Bir hata oluştu.').show();
+                }
+            },
+            error: (err) => {
+                $('#errorMessage').text('Bir hata oluştu. Lütfen tekrar deneyin.').show();
+                console.error(err);
+            }
+        });
+    });
+});
+
+</script>
+<script> 
+document.getElementById('backButton').addEventListener('click', function () {
+    $.ajax({
+        url: '/api/kayit/terapist/6', // Sunucudan bir sonraki step'i belirleyecek bir API endpoint
+        method: 'GET',
+        success: function (response) {
+            if (response.nextStep) {
+                window.location.href = `/api/kayit/terapist/5${response.nextStep}`;
+            } else {
+                alert('Bir sonraki step bulunamadı.');
+            }
+        },
+        error: function (err) {
+            console.error(err);
+            alert('Bir hata oluştu.');
+        }
+    });
+});
+</script>
 </body>
 
 </html>

@@ -63,6 +63,9 @@ Route::prefix('api')->group(function() {
         Route::post('/1', [APIRegisterTherapistController::class, 'step_1']);
         Route::post('/2', [APIRegisterTherapistController::class, 'step_2']);
         Route::post('/3', [APIRegisterTherapistController::class, 'step_3']);
+        Route::post('/4', [APIRegisterTherapistController::class,'step_4']);
+        Route::post('/5', [APIRegisterTherapistController::class,'step_5']);
+        Route::post('/6', [APIRegisterTherapistController::class,'step_6']);
     });
 });
 require __DIR__.'/auth.php';
