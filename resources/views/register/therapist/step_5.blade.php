@@ -143,6 +143,33 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0-alpha1/js/bootstrap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="//cdn.arabul.us/fontawesome/js/all.min.js"></script>
+    <script src="//cdn.arabul.us/jquery/jquery-3.7.1.min.js"></script>
+
+    <script>
+        $(document).ready(() => {
+             $('.primary-button').click(() => {
+                 let about = $('#about').val();
+
+                 $.ajax({
+                     url: '/api/kayit/terapist/4',
+                     method: 'POST',
+                     data: {
+                       about:about,
+                         _token: '{{ csrf_token() }}'
+                     },
+                     success:(res)=>{
+                     if(res.status) {
+                       window.location.href = res.link;
+                     }
+                 },
+                 error:(err)=>{
+                     alert('Bir hata oluştu');
+                     console.log(err);
+                 }
+                 });
+             });
+         });
+     </script>
 </body>
 
 </html>

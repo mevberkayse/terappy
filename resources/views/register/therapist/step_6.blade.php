@@ -183,6 +183,49 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0-alpha1/js/bootstrap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="//cdn.arabul.us/fontawesome/js/all.min.js"></script>
+    <script src="//cdn.arabul.us/jquery/jquery-3.7.1.min.js"></script>
+    <script>
+    $(document).ready(() => {
+        $('.primary-button').click(() => {
+            // Formdaki seminer bilgilerini topla
+            let seminars = {
+                seminar1: $('#seminar1').val(),
+                seminar2: $('#seminar2').val(),
+                seminar3: $('#seminar3').val(),
+                seminar4: $('#seminar4').val(),
+                seminar5: $('#seminar5').val(),
+                seminar6: $('#seminar6').val(),
+                seminar7: $('#seminar7').val(),
+                seminar8: $('#seminar8').val(),
+                seminar9: $('#seminar9').val(),
+                seminar10: $('#seminar10').val(),
+            };
+
+            // AJAX isteği gönder
+            $.ajax({
+                url: '/api/kayit/terapist/5',
+                method: 'POST',
+                data: {
+                    ...seminars,
+                    _token: '{{ csrf_token() }}'
+                },
+                success: (res) => {
+                    if (res.status) {
+                        // Başarılı ise yönlendir
+                        window.location.href = res.link;
+                    } else {
+                        alert(res.message);
+                    }
+                },
+                error: (err) => {
+                    alert('Bir hata oluştu.');
+                    console.log(err);
+                }
+            });
+        });
+    });
+</script>
+
 </body>
 
 </html>

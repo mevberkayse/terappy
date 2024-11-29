@@ -317,9 +317,8 @@
                     },
                     success: (res) => {
                         if (res.status) {
-                            //window.location.href = res.link;
-                        }
-                    },
+                            window.location.href = res.link;
+                        }                    },
                     error: (err) => {
                         alert('Bir hata oluştu');
                         console.log(err);
