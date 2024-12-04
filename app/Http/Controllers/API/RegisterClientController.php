@@ -208,6 +208,9 @@ class RegisterClientController extends Controller
             $model->save();
         }
 
+        // log the user in
+        auth()->login($client);
+
 
         return response()->json([
             'status' => true,

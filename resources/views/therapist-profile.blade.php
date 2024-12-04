@@ -592,7 +592,7 @@
                 <div class="hakkında border p-3">
                     <h4 ><i class="fa-solid fa-book me-3"></i> Hakkında</h4>
 
-                  <p>Psikolog hakkında bilgiler ve deneyimler burada yer alacak. Rastgele bir metin veya tanıtım yazısı yazılabilir.</p>
+                  <p>{{$therapist->about}}</p>
                 </div>
               </div>
             </div>

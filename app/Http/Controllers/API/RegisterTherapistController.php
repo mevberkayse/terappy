@@ -37,7 +37,7 @@ class RegisterTherapistController extends Controller
         }
 
         // check if the email is already registered
-        $user = User::where('email', $email)->first();
+        $user = Therapist::where('email', $email)->first();
         if ($user) {
             return response()->json([
                 'status' => 'error',
@@ -66,7 +66,7 @@ class RegisterTherapistController extends Controller
         }
 
         // check if the phone is registered
-        $user = User::where('phone_number', $phone)->first();
+        $user = Therapist::where('phone_number', $phone)->first();
         if ($user) {
             return response()->json([
                 'status' => 'error',
@@ -145,7 +145,7 @@ class RegisterTherapistController extends Controller
         $fileInput = $request->file('fileInput');
         $deneyim = $request->input('deneyim');
         $cesitSelect = $request->input('cesitSelect');
-    
+
         if (!$ozelSelect || !$dilSelect || !$fileInput || !$deneyim || !$cesitSelect) {
             return response()->json([
                 'status' => 'error',
@@ -154,11 +154,16 @@ class RegisterTherapistController extends Controller
             ]);
         }
         $filePath = null;
-        if ($fileInput) {
-            $fileName = time() . '_' . $fileInput->getClientOriginalName();
-            $filePath = $fileInput->storeAs('uploads', $fileName, 'public');
+        if ($request->hasFile('fileInput')) {
+            $name = $request->session()->get('register_therapist_step_1')['firstName'] . '_' . $request->session()->get('register_therapist_step_1')['lastName'];
+            $fileInput = $request->file('fileInput');
+            debugbar()->info($name);
+            debugbar()->info($fileInput);
+            $fileInput->move(base_path('\public/uploads'), $name . '.' . $fileInput->getClientOriginalExtension());
+
+            $filePath = '/uploads/' . $name . '.' . $fileInput->getClientOriginalExtension();
         }
-    
+
         $request->session()->put('register_therapist_step_3', [
             'ozelSelect' => $ozelSelect,
             'dilSelect' => $dilSelect,
@@ -166,14 +171,15 @@ class RegisterTherapistController extends Controller
             'deneyim' => $deneyim,
             'cesitSelect' => $cesitSelect
         ]);
-    
+
         return response()->json([
             'status' => true,
             'link' => route('register.therapist.step_4')
         ]);
     }
-    
-    public function step_4(Request $request){
+
+    public function step_4(Request $request)
+    {
         $about = $request->input('about');
 
         // Boş alan kontrolü
@@ -194,15 +200,22 @@ class RegisterTherapistController extends Controller
             'status' => true,
             'link' => route('register.therapist.step_5'), // Bir sonraki adımın rotası
         ]);
-        
-
     }
 
-    public function step_5(Request $request){
+    public function step_5(Request $request)
+    {
 
         $seminars = $request->only([
-            'seminar1', 'seminar2', 'seminar3', 'seminar4', 'seminar5',
-            'seminar6', 'seminar7', 'seminar8', 'seminar9', 'seminar10'
+            'seminar1',
+            'seminar2',
+            'seminar3',
+            'seminar4',
+            'seminar5',
+            'seminar6',
+            'seminar7',
+            'seminar8',
+            'seminar9',
+            'seminar10'
         ]);
 
         // En az bir seminer girilmiş mi kontrol et
@@ -225,73 +238,76 @@ class RegisterTherapistController extends Controller
             'status' => true,
             'link' => route('register.therapist.step_6'), // Bir sonraki adımın rotası
         ]);
-
-}
-public function step_6(Request $request)
-{
-    // Fotoğraf yükleme işlemi
-    $photoPath = null;
-
-    if ($request->hasFile('profile_photo')) {
-        $file = $request->file('profile_photo');
-        $fileName = time() . '_' . $file->getClientOriginalName();  // Dosya adı
-        $photoPath = $file->storeAs('profile_photos', $fileName, 'public');  // 'public' diskine kaydet
     }
+    public function step_6(Request $request)
+    {
+        // Fotoğraf yükleme işlemi
+        $photoPath = null;
 
-    $request->session()->put('register_therapist_step_6', [
-        'photoPath' => $photoPath
-    ]);
+        if ($request->hasFile('profile_photo')) {
+            $file = $request->file('profile_photo');
+            $fileName = time() . '_' . $file->getClientOriginalName();  // Dosya adı
+            $file->move(base_path('\public/profile_pictures/') . $fileName . $file->getClientOriginalExtension());  // 'public' diskine kaydet
+        }
 
-    try {
-        // Adım verilerini al
-        $step1Data = $request->session()->get('register_therapist_step_1');
-        $step2Data = $request->session()->get('register_therapist_step_2');
-        $step3Data = $request->session()->get('register_therapist_step_3');
-        $step4Data = $request->session()->get('register_therapist_step_4');
-        $step5Data = $request->session()->get('register_therapist_step_5');
-        $step6Data = $request->session()->get('register_therapist_step_6');
-
-        // Veritabanına Kaydetme
-        $therapist = new User();
-        $therapist->name = $step1Data['firstName'] . ' ' . $step1Data['lastName'];
-        $therapist->email = $step1Data['email'];
-        $therapist->password = $step1Data['password'];
-        $therapist->social_media = bcrypt($step1Data['social']);
-        $therapist->phone_number = $step1Data['phone'];
-        $therapist->gender = $step1Data['gender'];
-        $therapist->okul2 = $step2Data['okul2'] ?? null;
-        $therapist->education = $step2Data['lisans'];
-        $therapist->school = $step2Data['okul'];
-        $therapist->start_edu_time = $step2Data['baslangic'];
-        $therapist->graduation_time = $step2Data['bitis'];
-        $therapist->branch = $step3Data['ozelSelect'];
-        $therapist->language = $step3Data['dilSelect'];
-        $therapist->CV = $step3Data['fileInput'];
-        $therapist->about = $step4Data['about'];
-        $therapist->profile_picture = $step6Data['photoPath'];
-        $therapist->save();
-
-        // Seminerleri Kaydet
-        $therapist_seminars = new TherapistSeminar();
-        $therapist_seminars->user_id = $therapist->id; // İlişkilendirme yapılmalı.
-        $therapist_seminars->seminars = $step5Data['seminars'];
-        $therapist_seminars->save();
-
-        // Oturum verilerini temizle
-        $request->session()->flush();
-
-        return response()->json([
-            'status' => true,
-            'message' => 'Kayıt işlemi başarıyla tamamlandı!'
+        $request->session()->put('register_therapist_step_6', [
+            'photoPath' => $photoPath
         ]);
-        
-    } catch (\Exception $e) {
-        return response()->json([
-            'status' => false,
-            'message' => 'Bir hata oluştu: ' . $e->getMessage()
-        ], 500);
+
+        try {
+            // Adım verilerini al
+            $step1Data = $request->session()->get('register_therapist_step_1');
+            $step2Data = $request->session()->get('register_therapist_step_2');
+            $step3Data = $request->session()->get('register_therapist_step_3');
+            $step4Data = $request->session()->get('register_therapist_step_4');
+            $step5Data = $request->session()->get('register_therapist_step_5');
+            $step6Data = $request->session()->get('register_therapist_step_6');
+
+            // Veritabanına Kaydetme
+            $therapist = new Therapist();
+            $therapist->name = $step1Data['firstName'] . ' ' . $step1Data['lastName'];
+            $therapist->email = $step1Data['email'];
+            $therapist->password = bcrypt($step1Data['password']);
+            $therapist->social_media = $step1Data['social'];
+            $therapist->age = $step1Data['age'];
+            $therapist->phone_number = $step1Data['phone'];
+            $therapist->gender = $step1Data['gender'];
+            $therapist->okul2 = $step2Data['okul2'] ?? null;
+            $therapist->education = $step2Data['lisans'];
+            $therapist->school = $step2Data['okul'];
+            $therapist->start_edu_time = $step2Data['baslangic'];
+            $therapist->graduation_time = $step2Data['bitis'];
+            $therapist->branch = $step3Data['ozelSelect'];
+            $therapist->language = $step3Data['dilSelect'];
+            $therapist->CV = $step3Data['fileInput'];
+            $therapist->about = $step4Data['about'];
+            $therapist->profile_picture = $step6Data['photoPath'];
+            $therapist->save();
+
+
+            foreach($step5Data['seminars'] as $key => $value) {
+                $therapist_seminars = new TherapistSeminar();
+                $therapist_seminars->therapist_id = $therapist->id; // İlişkilendirme yapılmalı.
+                $therapist_seminars-> seminar_name = $value;
+                $therapist_seminars->save();
+            }
+            // Oturum verilerini temizle
+            $request->session()->flush();
+
+            // put therapist id into session
+            $request->session()->put('user_id', $therapist->id);
+            $request->session()->put('role', 'therapist');
+            
+
+            return response()->json([
+                'status' => true,
+                'message' => 'Kayıt işlemi başarıyla tamamlandı!'
+            ]);
+        } catch (\Exception $e) {
+            return response()->json([
+                'status' => false,
+                'message' => 'Bir hata oluştu: ' . $e->getMessage()
+            ], 500);
+        }
     }
-}
-
-
 }
