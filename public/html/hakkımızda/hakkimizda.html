@@ -8,7 +8,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="http://cdn.arabul.us/bootstrap/css/bootstrap.min.css?123">
-    <link rel="stylesheet" href="nasil.css">
+    <link rel="stylesheet" href="hakkimizda.css">
 </head>
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
@@ -154,34 +154,6 @@
 
     }
 
-    body {
-        background-image: url('/public/assets/img/vecteezy_green-abstract-background-with-wavy-lines_.jpg');
-        /* JPG dosyasını buraya ekleyin */
-        background-size: cover;
-        /* Arkaplanın tam olarak kapsamasını sağlar */
-        background-position: center;
-        /* Ortalar */
-        background-repeat: no-repeat;
-
-    }
-
-    .blurred-background {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-image: url('/public/assets/img/vecteezy_green-abstract-background-with-wavy-lines_.jpg');
-
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-        filter: blur(10px);
-        /* Blur efekti */
-        z-index: 0;
-        /* Arka planda kalması için */
-    }
-
     .customizedNavbar {
         background-color: transparent !important;
         /* Arka planı şeffaf yapar */
@@ -281,22 +253,6 @@
         color: #3a3636;
         font-size: 20px;
         margin-left: 10px;
-    }
-
-    .modal-btn {
-        padding: 12px 25px;
-        /* Butonun içindeki metin için boşluk */
-        font-size: 20px;
-        border-radius: 8px;
-        display: block;
-        justify-content: center;
-        align-items: center;
-        background: white;
-        width: max-content;
-        border: 2px solid #00D6A3 !important;
-        transition: 0.3s;
-        font-weight: 600;
-        color: #3a3636;
     }
 
     .modal-btn:hover {
@@ -492,79 +448,6 @@
         /* Checkbox ile etiket arasına mesafe ekle */
     }
 
-
-    @media only screen and (max-width: 768px) {
-        .leftSide {
-            display: none !important;
-        }
-
-        .mobileClass {
-            margin-top: 100px !important;
-        }
-
-        body {
-            overflow: auto !important;
-        }
-
-        .arrowBoxRight {
-            background: #00d6a467;
-        }
-
-        .stdimg {
-            width: 100% !important;
-            margin: auto;
-            margin-left: 0px !important;
-        }
-    }
-
-    .card-body {
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-start;
-        /* İçeriği başa hizala */
-        height: 100%;
-    }
-
-    .card-body img {
-        margin-top: 5px;
-        width: 200px;
-        /* Sabit genişlik */
-        height: 200px;
-        /* Sabit yükseklik */
-        object-fit: cover;
-        /* Görselleri orantılı şekilde kırp */
-        margin-bottom: 20px;
-        /* Görsellerin altına boşluk */
-    }
-
-    .card-body p {
-        margin-top: 10px;
-        /* Üstten boşluğu sıfırlıyoruz */
-        margin-bottom: 20px;
-        /* Alt boşluğu eşit yapıyoruz */
-        text-align: center;
-        align-self: flex-start;
-        /* Metni kartın üst kısmına hizalar */
-    }
-
-    .container {
-        position: relative;
-    }
-    .card {
-    background: rgba(255, 255, 255, 0.7); /* Beyaz arka plan, %10 şeffaf */
-    border-radius: 10px;                  /* Köşe yuvarlama */
-    padding: 20px;                        /* İç boşluk */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Hafif gölge */
-}
-    .eslesme-yazi,
-    .alt-yazi {
-        position: relative;
-        z-index: 10;
-        /* Yazıların arka planın üstünde görünmesini sağlar */
-        color: black;
-        /* Yazı rengi beyaz */
-    }
-
     .modal-btn {
         padding: 8px 40px;
         border-radius: 8px;
@@ -596,20 +479,55 @@
         color: #3a3636;
         font-size: 20px;
     }
+
+    @media only screen and (max-width: 768px) {
+        .leftSide {
+            display: none !important;
+        }
+
+        .mobileClass {
+            margin-top: 100px !important;
+        }
+
+        body {
+            overflow: auto !important;
+        }
+
+        .arrowBoxRight {
+            background: #00d6a467;
+        }
+
+        .stdimg {
+            width: 100% !important;
+            margin: auto;
+            margin-left: 0px !important;
+        }
+    }
+
+
+    .eslesme-yazi,
+    .alt-yazi {
+        position: relative;
+        z-index: 10;
+        /* Yazıların arka planın üstünde görünmesini sağlar */
+        color: black;
+        /* Yazı rengi beyaz */
+    }
+
     .button-group {
         display: flex;
         /* Flexbox düzeni */
         justify-content: center;
-        /* Yatayda ortalama */
         align-items: center;
-        /* Dikeyde ortalama */
+
         margin-top: 50px;
-        /* Kartlarla arasına boşluk ekler */
+
         position: relative;
-        /* Pozisyonlama için */
+
         width: 100%;
-        /* Genişlik tüm sayfaya yayılır */
+
     }
+
     .radio-group input[type="radio"] {
         appearance: none;
         /* Varsayılan görünümü kaldırır */
@@ -639,6 +557,42 @@
         font-weight: 600;
         vertical-align: middle;
         cursor: pointer;
+    }
+    .hakkimizda-img {
+    display: block;
+    margin: 20px auto; /* Ortalamak için */
+    width: 70rem; /* İsteğe bağlı: Görsel genişliği */
+    height: 30rem;
+    border-radius: 15px; /* Köşeleri yuvarlama */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Hafif gölge ekleme */
+}
+.terappy-baslik {
+    margin-top: 20px; /* Görselin altından mesafe */
+    margin-left:280px; /* Görselin genişliğiyle aynı hizada başlatmak */
+    width: 70rem; /* Görsel genişliği ile aynı olmalı */
+    text-align: left; /* Sol hizalama */
+    font-weight: bold;
+}
+.hakkimizda-btn{
+    margin: 50px auto; 
+    padding: 8px 50px;
+        border-radius: 8px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: #00D6A3;
+        width: max-content;
+        border: 2px solid #0dc99d !important;
+        transition: 0.3s;
+        font-weight: 600;
+        color: #3a3636;
+        font-size: 20px;
+}
+.hakkimizda-btn:hover {
+        transform: translateY(-10px);
+        border: 2px solid #00D6A3 !important;
+        color: #3a3636;
+        background-color: white;
     }
 </style>
 
@@ -729,7 +683,7 @@
                             </div>
                             <div class="modal-footer">
                                 <!-- Giriş Yap Butonu -->
-                                <button type="button" class="primary-button w-100">Giriş Yap</button>
+                                <button type="button" class="primary-button w-100 ">Giriş Yap</button>
                                 <!-- Kayıt Ol Butonu -->
                                 <button type="button" class=" modal-btn w-100 mt-3">Hesabınız yoksa lütfen kayıt
                                     olun</button>
@@ -741,48 +695,43 @@
             </div>
         </div>
     </nav>
-    <h2 class="eslesme-yazi" style="margin-top: 50px; text-align: center; ">Nasıl Çalışır</h2>
-    <h2 class="alt-yazi" style="margin-top: 20px; text-align: center; font-size: 18px;">3 adımda en uygun psikologunuzla
-        tanışın.</h2>
-    <div class="container eslesme-container" style="margin-top: 70px;">
-        <div class="row">
-            <div class="col-md-4">
-                <div class="card text-center">
-                    <div class="card-body">
-                        <div class="img-container">
-                            <img src="/public/assets/img/kindpng_2738804.png" alt="Örnek Resim">
-                        </div>
-                        <p>1 - Kayıt ol kısmından profilinizi oluşturun.</p>
-                    </div>
-                </div>
-            </div>
+    <h2 class="eslesme-yazi" style="margin-top: 50px; text-align: center; ">Hakkımızda</h2>
+    <img src="/public/assets/img/everwell-online-therapy-ontario-counselling_001.png" alt="Hakkımızda Görseli" class="hakkimizda-img">
 
-            <div class="col-md-4">
-                <div class="card text-center">
-                    <div class="card-body">
-                        <div class="img-container">
-                            <img src="/public/assets/img/hero-sec-banner.png" alt="Örnek Resim">
-                        </div>
-                        <p>2 - Psikologlarımızı inceleyin ve size en uygun psikologlar için kaydınızı oluşturun.</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-4">
-                <div class="card text-center">
-                    <div class="card-body">
-                        <div class="img-container">
-                            <img src="/public/assets/img/pngtree-therapist-conduct-psychotherapy-counseling-png-image_11961647.png"
-                                alt="Örnek Resim">
-                        </div>
-                        <p>3 - Sizin için en uygun 3 psikologumuzu bulalım.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="button-group text-center mt-4">
-        <button type="button" class="modal-btn" style="margin-top: 20px;" >Terapiye Başlayın</button>
+    <h2 class="terappy-baslik text-center">TERAPPY: Gençlerin Tercih Ettiği Online Terapi Platformu</h2>
+    <p style="margin: 20px auto; width: 70rem; line-height: 1.6;">
+        TERAPPY, gençlerin hayatlarına destek olmak amacıyla modern ve erişilebilir terapi hizmetleri sunan bir platformdur. Kullanıcı dostu arayüzü ve uzman terapist ağıyla, bireylerin ihtiyaçlarına en uygun çözümleri sunmayı hedefliyoruz.
+    </p>
+    <p style=" margin: 20px auto; width: 70rem; line-height: 1.6;">
+        Hayatın zorluklarına karşı yalnız olmadığınızı hissettiren TERAPPY, terapi sürecini daha kolay ve keyifli bir hale getirir. Güvenilir ve anonim hizmet politikamızla, her bireyin kendini rahatça ifade edebileceği bir alan sunuyoruz.
+    </p>
+    </p>
+    <h3 class="terappy-baslik">TERAPPY: Gençlerin Tercih Ettiği Online Terapi Platformu</h3>
+    <p style="margin: 20px auto; width:70rem; line-height: 1.6;">
+        TERAPPY, gençlerin hayatlarına destek olmak amacıyla modern ve erişilebilir terapi hizmetleri sunan bir platformdur. Kullanıcı dostu arayüzü ve uzman terapist ağıyla, bireylerin ihtiyaçlarına en uygun çözümleri sunmayı hedefliyoruz.
+    </p>
+    <p style=" margin: 20px auto; width: 70rem; line-height: 1.6;">
+        Hayatın zorluklarına karşı yalnız olmadığınızı hissettiren TERAPPY, terapi sürecini daha kolay ve keyifli bir hale getirir. Güvenilir ve anonim hizmet politikamızla, her bireyin kendini rahatça ifade edebileceği bir alan sunuyoruz.
+    </p>
+    </p>
+    <h3 class="terappy-baslik">TERAPPY: Gençlerin Tercih Ettiği Online Terapi Platformu</h3>
+    <p style="margin: 20px auto; width: 70rem; line-height: 1.6;">
+        TERAPPY, gençlerin hayatlarına destek olmak amacıyla modern ve erişilebilir terapi hizmetleri sunan bir platformdur. Kullanıcı dostu arayüzü ve uzman terapist ağıyla, bireylerin ihtiyaçlarına en uygun çözümleri sunmayı hedefliyoruz.
+    </p>
+    <p style=" margin: 20px auto; width: 70rem; line-height: 1.6;">
+        Hayatın zorluklarına karşı yalnız olmadığınızı hissettiren TERAPPY, terapi sürecini daha kolay ve keyifli bir hale getirir. Güvenilir ve anonim hizmet politikamızla, her bireyin kendini rahatça ifade edebileceği bir alan sunuyoruz.
+    </p>
+    </p>
+    <h3 class="terappy-baslik">TERAPPY: Gençlerin Tercih Ettiği Online Terapi Platformu</h3>
+    <p style="margin: 20px auto; width: 70rem; line-height: 1.6;">
+        TERAPPY, gençlerin hayatlarına destek olmak amacıyla modern ve erişilebilir terapi hizmetleri sunan bir platformdur. Kullanıcı dostu arayüzü ve uzman terapist ağıyla, bireylerin ihtiyaçlarına en uygun çözümleri sunmayı hedefliyoruz.
+    </p>
+    <p style=" margin: 20px auto; width: 70rem; line-height: 1.6;">
+        Hayatın zorluklarına karşı yalnız olmadığınızı hissettiren TERAPPY, terapi sürecini daha kolay ve keyifli bir hale getirir. Güvenilir ve anonim hizmet politikamızla, her bireyin kendini rahatça ifade edebileceği bir alan sunuyoruz.
+    </p>
+    </p>
+    <div class="mt-3 align-items-center text-center justify-content-center">
+        <button class="hakkimizda-btn">Terapiye Başlayın</button>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="//cdn.arabul.us/fontawesome/js/all.min.js"></script>
