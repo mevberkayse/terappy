@@ -485,6 +485,37 @@
                 margin-left: 0px !important;
             }
         }
+        
+    .radio-group input[type="radio"] {
+        appearance: none;
+        /* Varsayılan görünümü kaldırır */
+        width: 15px;
+        height: 15px;
+        border: 2px solid #00D6A3;
+        /* Başlangıçta sınır şeffaf olacak */
+        border-radius: 50%;
+        /* Çember şekli */
+        background-color: white;
+        /* Başlangıçta şeffaf arka plan */
+        cursor: pointer;
+        transition: all 0.3s ease;
+        margin-right: 10px;
+        vertical-align: middle;
+    }
+
+
+    .radio-group input[type="radio"]:checked {
+        border: 2px solid white;
+
+        background-color: #00D6A3;
+
+    }
+
+    .radio-group label {
+        font-weight: 600;
+        vertical-align: middle;
+        cursor: pointer;
+    }
     </style>
 </head>
 
@@ -508,7 +539,7 @@
                         <a class="nav-link active" aria-current="page" href="#">Anasayfa</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Nasıl Çalışır</a>
+                        <a class="nav-link" href="/nasil.html">Nasıl Çalışır</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Hakkımızda</a>
@@ -537,13 +568,19 @@
                             <div class="modal-body">
                                 <form method="post" action="/login-custom" id="loginForm">
                                     <!-- Terapist mi Danışan mı Radio-->
-                                    <div class="mb-3">
-                                        <label for="role" class="form-label">Ben bir</label>
-                                        <input type="radio" id="role" name="role" value="therapist">
-                                        <label for="terapist">Terapist</label>
-                                        <input type="radio" id="role" name="role" value="client">
-                                        <label for="danisan">Danışan</label>
-
+                                    <div class="mb-3 text-center">
+                                        <label for="role" class="form-label d-block">Ben
+                                            bir</label><!--blok alta geççmesi için-->
+                                        <div class="radio-group d-flex justify-content-center">
+                                            <div class="text-center me-4">
+                                                <input type="radio" name="role" value="therapist">
+                                                <label for="terapist" style="font-weight: 600; ">Terapist</label>
+                                            </div>
+                                            <div class="text-center">
+                                                <input type="radio" name="role" value="client">
+                                                <label for="danisan" style="font-weight: 600;">Danışan</label>
+                                            </div>
+                                        </div>
                                     </div>
                                     <!-- E-posta -->
                                      <input type="hidden" name="_token" value="{{csrf_token()}}">
