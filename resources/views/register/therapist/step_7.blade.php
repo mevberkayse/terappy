@@ -187,7 +187,7 @@
     <!-- Butonlar -->
     <div class="button-group">
         <button type="button" class="modal-btn" id="backButton">Geri</button>
-        <button type="button" class="primary-button">Kaydımı Tamamla </button>
+        <button type="button" class="primary-button" id="submitButton">Kaydımı Tamamla </button>
     </div>
     <!-- Success Modal -->
 <div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel" aria-hidden="true">
@@ -237,8 +237,8 @@
     <script src="//cdn.arabul.us/fontawesome/js/all.min.js"></script>
     <script src="//cdn.arabul.us/jquery/jquery-3.7.1.min.js"></script>
 
-    
-<script> 
+
+<script>
    $(document).ready(() => {
     $('#submitButton').on('click', function () {
         const selectedFile = document.getElementById('fileInput').files[0];
@@ -249,6 +249,7 @@
 
         const formData = new FormData();
         formData.append('profile_photo', selectedFile);
+        formData.append('_token', '{{ csrf_token() }}');
 
         $.ajax({
             url: '/api/kayit/terapist/6',
@@ -275,7 +276,7 @@
 });
 
 </script>
-<script> 
+<script>
 document.getElementById('backButton').addEventListener('click', function () {
     $.ajax({
         url: '/api/kayit/terapist/6', // Sunucudan bir sonraki step'i belirleyecek bir API endpoint

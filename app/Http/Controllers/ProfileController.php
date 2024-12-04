@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
 use App\Models\Therapist;
+use App\Models\User;
 
 class ProfileController extends Controller
 {
@@ -59,17 +60,50 @@ class ProfileController extends Controller
         return Redirect::to('/');
     }
 
-    public function showTherapist(Request $request) {
+    public function showTherapist(Request $request)
+    {
         $therapist = Therapist::find($request->id);
         return view('therapist-profile', [
             'therapist' => $therapist
         ]);
-
     }
 
-    public function settings(Request $request) {
+    public function settings(Request $request)
+    {
         return view('settings', [
             'user' => $request->user()
         ]);
+    }
+
+    public function loginCustom(Request $request)
+    {
+
+        $email = $request->input('email');
+        $password = $request->input('password');
+        $role = $request->input('role');
+
+        if ($role == 'client') {
+           Auth::attempt(['email' => $email, 'password' => $password]);
+            if (Auth::check()) {
+                return redirect()->route('client.dashboard');
+            } else {
+                return redirect()->back()->with('error', 'Email or password is incorrect');
+            }
+
+        } elseif ($role == 'therapist') {
+            $therapist = Therapist::where('email', $email)->first();
+            if ($therapist) {
+                if (password_verify($password, $therapist->password)) {
+                    session(['role' => 'therapist', 'user_id' => $therapist->id]);
+                    return redirect()->route('therapist.dashboard');
+                } else {
+                    return redirect()->back()->with('error', 'Email or password is incorrect');
+                }
+            } else {
+                return redirect()->back()->with('error', 'Email is not registered');
+            }
+        } else {
+            return redirect()->back()->with('error', 'Role is invalid');
+        }
     }
 }

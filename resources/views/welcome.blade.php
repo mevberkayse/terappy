@@ -535,18 +535,28 @@
                                     aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
-                                <form>
+                                <form method="post" action="/login-custom" id="loginForm">
+                                    <!-- Terapist mi Danışan mı Radio-->
+                                    <div class="mb-3">
+                                        <label for="role" class="form-label">Ben bir</label>
+                                        <input type="radio" id="role" name="role" value="therapist">
+                                        <label for="terapist">Terapist</label>
+                                        <input type="radio" id="role" name="role" value="client">
+                                        <label for="danisan">Danışan</label>
+
+                                    </div>
                                     <!-- E-posta -->
+                                     <input type="hidden" name="_token" value="{{csrf_token()}}">
                                     <div class="mb-3">
                                         <label for="email" class="form-label">E-posta</label>
-                                        <input type="email" class="form-control" id="email"
+                                        <input type="email" class="form-control" id="email" name="email"
                                             placeholder="E-postanızı girin">
                                     </div>
 
                                     <!-- Şifre -->
                                     <div class="mb-3">
                                         <label for="password" class="form-label">Şifre</label>
-                                        <input type="password" class="form-control" id="password"
+                                        <input type="password" class="form-control" id="password" name="password"
                                             placeholder="Şifrenizi girin">
                                         <a href="#"
                                             class="d-block mt-3 text-decoration-none nav-link text-center">Şifremi
@@ -561,7 +571,7 @@
                             </div>
                             <div class="modal-footer">
                                 <!-- Giriş Yap Butonu -->
-                                <button type="button" class="primary-button w-100">Giriş Yap</button>
+                                <button type="button" class="primary-button w-100" onclick="document.getElementById('loginForm').submit()">Giriş Yap</button>
                                 <!-- Kayıt Ol Butonu -->
                                 <button type="button" class=" modal-btn w-100 mt-3">Hesabınız yoksa lütfen kayıt
                                     olun</button>
