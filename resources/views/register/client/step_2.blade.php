@@ -92,6 +92,11 @@
                     <input type="text" class="form-control" id="password_r" placeholder="******" required minlength="6">
                 </div>
             </div>
+            <div class="row mb-3">
+    <div class="col-12">
+        <button type="button" class="btn btn-secondary" id="toggle-password">Görüntüle</button>
+    </div>
+</div>
 
             <!-- Yaş -->
             <div class="mb-3">
@@ -271,6 +276,20 @@
           });
         });
     </script>
+
+<script>
+    $(document).ready(() => {
+        let isPasswordVisible = false;
+
+        // Şifre alanlarını göster/gizle
+        $('#toggle-password').click(() => {
+            isPasswordVisible = !isPasswordVisible;
+            const type = isPasswordVisible ? 'text' : 'password';
+            $('#password, #password_r').attr('type', type);
+            $('#toggle-password').text(isPasswordVisible ? 'Gizle' : 'Görüntüle');
+        });
+    });
+</script>
 </body>
 
 </html>
