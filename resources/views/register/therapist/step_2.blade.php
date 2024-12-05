@@ -103,6 +103,12 @@
                     <label for="password_r" class="form-label">Tekrar Şifre</label>
                     <input type="text" class="form-control" id="password_r" placeholder="******" required minlength="6">
                 </div>
+                <div class="row mb-3">
+    <div class="col-12">
+        <button type="button" class="btn btn-secondary" id="toggle-password">Görüntüle</button>
+    </div>
+</div>
+
             </div>
             <!-- Yaş -->
             <div class="mb-3">
@@ -327,6 +333,19 @@
             });
         });
     </script>
+<script>
+    $(document).ready(() => {
+        let isPasswordVisible = false; // Başlangıçta şifreler gizli
+
+        // "Görüntüle" butonuna tıklama olayını tanımlıyoruz
+        $('#toggle-password').click(() => {
+            isPasswordVisible = !isPasswordVisible; // Şifre görünürlüğünü değiştir
+            const type = isPasswordVisible ? 'text' : 'password'; // Eğer görünürse 'text', yoksa 'password'
+            $('#password, #password_r').attr('type', type); // Her iki input alanının tipini değiştir
+            $('#toggle-password').text(isPasswordVisible ? 'Gizle' : 'Görüntüle'); // Butonun yazısını değiştir
+        });
+    });
+</script>
 </body>
 
 </html>

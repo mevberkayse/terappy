@@ -485,37 +485,37 @@
                 margin-left: 0px !important;
             }
         }
-        
-    .radio-group input[type="radio"] {
-        appearance: none;
-        /* Varsayılan görünümü kaldırır */
-        width: 15px;
-        height: 15px;
-        border: 2px solid #00D6A3;
-        /* Başlangıçta sınır şeffaf olacak */
-        border-radius: 50%;
-        /* Çember şekli */
-        background-color: white;
-        /* Başlangıçta şeffaf arka plan */
-        cursor: pointer;
-        transition: all 0.3s ease;
-        margin-right: 10px;
-        vertical-align: middle;
-    }
+
+        .radio-group input[type="radio"] {
+            appearance: none;
+            /* Varsayılan görünümü kaldırır */
+            width: 15px;
+            height: 15px;
+            border: 2px solid #00D6A3;
+            /* Başlangıçta sınır şeffaf olacak */
+            border-radius: 50%;
+            /* Çember şekli */
+            background-color: white;
+            /* Başlangıçta şeffaf arka plan */
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-right: 10px;
+            vertical-align: middle;
+        }
 
 
-    .radio-group input[type="radio"]:checked {
-        border: 2px solid white;
+        .radio-group input[type="radio"]:checked {
+            border: 2px solid white;
 
-        background-color: #00D6A3;
+            background-color: #00D6A3;
 
-    }
+        }
 
-    .radio-group label {
-        font-weight: 600;
-        vertical-align: middle;
-        cursor: pointer;
-    }
+        .radio-group label {
+            font-weight: 600;
+            vertical-align: middle;
+            cursor: pointer;
+        }
     </style>
 </head>
 
@@ -536,10 +536,10 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto gap-5">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Anasayfa</a>
+                        <a class="nav-link active" aria-current="page" href="#" id="anasayfa">Anasayfa</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/nasil.html">Nasıl Çalışır</a>
+                        <a class="nav-link" href="#" id="howItWorks">Nasıl Çalışır</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Hakkımızda</a>
@@ -583,7 +583,7 @@
                                         </div>
                                     </div>
                                     <!-- E-posta -->
-                                     <input type="hidden" name="_token" value="{{csrf_token()}}">
+                                    <input type="hidden" name="_token" value="{{csrf_token()}}">
                                     <div class="mb-3">
                                         <label for="email" class="form-label">E-posta</label>
                                         <input type="email" class="form-control" id="email" name="email"
@@ -610,7 +610,7 @@
                                 <!-- Giriş Yap Butonu -->
                                 <button type="button" class="primary-button w-100" onclick="document.getElementById('loginForm').submit()">Giriş Yap</button>
                                 <!-- Kayıt Ol Butonu -->
-                                <button type="button" class=" modal-btn w-100 mt-3">Hesabınız yoksa lütfen kayıt
+                                <button type="button" class=" modal-btn w-100 mt-3" id="kayit">Hesabınız yoksa lütfen kayıt
                                     olun</button>
 
                             </div>
@@ -633,7 +633,7 @@
                 <p style="margin-bottom: -5px;">Burada sizleri buluşturuyoruz.</p>
                 <p> Size en uygun destek ve rehberliği sunuyoruz</p>
                 <div class="d-flex gap-2 align-items-center">
-                    <button class="primary-button">Terapiye Başlayın</button>
+                    <button class="primary-button" id = "basla" >Terapiye Başlayın</button>
                 </div>
             </div>
         </div>
@@ -751,13 +751,12 @@
 
         // Sayfa yüklendiğinde 1. bölümü göster
         showSection(1);
-
-
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="//cdn.arabul.us/fontawesome/js/all.min.js"></script>
+    <script src="//cdn.arabul.us/jquery/jquery-3.7.1.min.js"></script>
     <script>
-        document.addEventListener("DOMContentLoaded", function () {
+        document.addEventListener("DOMContentLoaded", function() {
             // Modal elementini seç
             const modalElement = document.getElementById("loginModal");
 
@@ -769,14 +768,14 @@
 
             // Butona tıklayınca modalı aç
             if (openModalBtn) {
-                openModalBtn.addEventListener("click", function () {
+                openModalBtn.addEventListener("click", function() {
                     bootstrapModal.show();
                 });
             }
         });
 
         // Bootstrap için gerekli olan scriptleri dinamik olarak ekleme (eğer eksikse)
-        (function () {
+        (function() {
             const popperScript = document.createElement('script');
             popperScript.src = 'https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js';
             popperScript.defer = true;
@@ -788,6 +787,59 @@
             document.body.appendChild(bootstrapScript);
         })();
     </script>
+    <script>
+        $(document).ready(() => {
+            $('#kayit').click(() => {
+                $.ajax({
+                    url: '/kayit', // Yönlendirmek istediğiniz rota
+                    method: 'GET', // Yöntem GET olmalı
+                    success: (res) => {
+                        // Yönlendirme
+                        window.location.href = '/kayit';
+                    },
+                    error: (err) => {
+                        alert('Bir hata oluştu.');
+                        console.error(err);
+                    }
+                });
+            });
+        });
+    </script>
+        <script>
+        $(document).ready(() => {
+            $('#basla').click(() => {
+                $.ajax({
+                    url: '/kayit', // Yönlendirmek istediğiniz rota
+                    method: 'GET', // Yöntem GET olmalı
+                    success: (res) => {
+                        // Yönlendirme
+                        window.location.href = '/kayit';
+                    },
+                    error: (err) => {
+                        alert('Bir hata oluştu.');
+                        console.error(err);
+                    }
+                });
+            });
+        });
+    </script>
+    <script>
+    $(document).ready(() => {
+        $('#howItWorks').click((e) => {
+            e.preventDefault(); // Varsayılan link işlevini engelle
+            window.location.href = '/nasil-calisir'; // Laravel yönlendirmesi
+        });
+    });
+</script>
+
+<script>
+    $(document).ready(() => {
+        $('#anasayfa').click((e) => {
+            e.preventDefault(); // Varsayılan link işlevini engelle
+            window.location.href = '/dashboard'; // Laravel yönlendirmesi
+        });
+    });
+</script>
 
 
 </body>
