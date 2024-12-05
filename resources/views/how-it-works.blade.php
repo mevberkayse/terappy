@@ -601,7 +601,7 @@
                         <a class="nav-link active" aria-current="page" href="#">Anasayfa</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Nasıl Çalışır</a>
+                        <a class="nav-link" href='#'>Nasıl Çalışır</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Hakkımızda</a>

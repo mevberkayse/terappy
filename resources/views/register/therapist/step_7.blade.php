@@ -187,7 +187,7 @@
     <!-- Butonlar -->
     <div class="button-group">
         <button type="button" class="modal-btn" id="backButton">Geri</button>
-        <button type="button" class="primary-button">Kaydımı Tamamla </button>
+        <button type="button" class="primary-button" id="submitButton">Kaydımı Tamamla </button>
     </div>
     <!-- Success Modal -->
 <div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel" aria-hidden="true">
@@ -249,6 +249,7 @@
 
         const formData = new FormData();
         formData.append('profile_photo', selectedFile);
+        formData.append('_token', "{{csrf_token()}}");
 
         $.ajax({
             url: '/api/kayit/terapist/6',
@@ -260,7 +261,7 @@
                 if (response.status) {
                     $('#successModal').modal('show');
                     setTimeout(() => {
-                        window.location.href = res.link;
+                       // window.location.href = res.link;
                     }, 3000);
                 } else {
                     $('#errorMessage').text(response.message || 'Bir hata oluştu.').show();

@@ -251,15 +251,17 @@ public function step_6(Request $request)
         $step5Data = $request->session()->get('register_therapist_step_5');
         $step6Data = $request->session()->get('register_therapist_step_6');
 
+        debugbar()->info($step1Data, $step2Data, $step3Data, $step4Data, $step5Data, $step6Data);
         // Veritabanına Kaydetme
-        $therapist = new User();
+        $therapist = new Therapist();
         $therapist->name = $step1Data['firstName'] . ' ' . $step1Data['lastName'];
         $therapist->email = $step1Data['email'];
         $therapist->password = $step1Data['password'];
-        $therapist->social_media = bcrypt($step1Data['social']);
+        $therapist->social_media =$step1Data['social'];
         $therapist->phone_number = $step1Data['phone'];
+        $therapist->age = $step1Data['age'];
         $therapist->gender = $step1Data['gender'];
-        $therapist->okul2 = $step2Data['okul2'] ?? null;
+        $therapist->yuksek_lisans = $step2Data['okul2'] ?? null;
         $therapist->education = $step2Data['lisans'];
         $therapist->school = $step2Data['okul'];
         $therapist->start_edu_time = $step2Data['baslangic'];
@@ -267,15 +269,16 @@ public function step_6(Request $request)
         $therapist->branch = $step3Data['ozelSelect'];
         $therapist->language = $step3Data['dilSelect'];
         $therapist->CV = $step3Data['fileInput'];
-        $therapist->about = $step4Data['about'];
+        $therapist->hakkimda = $step4Data['about'];
         $therapist->profile_picture = $step6Data['photoPath'];
         $therapist->save();
 
-        // Seminerleri Kaydet
-        $therapist_seminars = new TherapistSeminar();
-        $therapist_seminars->user_id = $therapist->id; // İlişkilendirme yapılmalı.
-        $therapist_seminars->seminars = $step5Data['seminars'];
-        $therapist_seminars->save();
+
+        foreach ($step5Data['seminars'] as $key => $seminar) {
+            $therapist_seminars = new TherapistSeminar();
+            $therapist_seminars->therapist_id = $therapist->id; // İlişkilendirme yapılmalı.
+            $therapist_seminars->seminar_name = $seminar;
+            $therapist_seminars->save();}
 
         // Oturum verilerini temizle
         $request->session()->flush();
