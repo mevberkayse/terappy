@@ -298,13 +298,13 @@
               <div class="p-3">
                 <h5 class="mb-4 mt-2 text-center">İsim-Soyisim</h5>
                 <div class="d-flex justify-content-center">
-                  <input type="text" class="form-control w-50 mb-3" placeholder="Eski İsim-Soyisim">
+                  <input type="text" class="form-control w-50 mb-3" id="current_name" placeholder="Eski İsim-Soyisim">
                 </div>
                 <div class="d-flex justify-content-center">
-                  <input type="text" class="form-control w-50 mb-3" placeholder="Yeni İsim-Soyisim">
+                  <input type="text" class="form-control w-50 mb-3" id= "new_name" placeholder="Yeni İsim-Soyisim">
                 </div>
                 <div class="d-flex justify-content-center">
-                  <button class="btn modal-pri-button w-50">Değiştir</button>
+                  <button class="btn modal-pri-button w-50"id="changeNameBtn">Değiştir</button>
                 </div>
               </div>
             </div>
@@ -313,13 +313,13 @@
               <div class="p-3">
                 <h5 class="mb-4 mt-2 text-center">E-posta Düzenle</h5>
                 <div class="d-flex justify-content-center">
-                  <input type="email" class="form-control w-50 mb-3" placeholder="Eski E-posta">
+                  <input type="email" class="form-control w-50 mb-3"id="current_email" placeholder="Eski E-posta">
                 </div>
                 <div class="d-flex justify-content-center">
-                  <input type="email" class="form-control w-50 mb-3" placeholder="Yeni E-posta">
+                  <input type="email" class="form-control w-50 mb-3"id="new_email" placeholder="Yeni E-posta">
                 </div>
                 <div class="d-flex justify-content-center">
-                  <button class="btn modal-pri-button w-50">Değiştir</button>
+                  <button class="btn modal-pri-button w-50"id="changeMail">Değiştir</button>
                 </div>
               </div>
             </div>
@@ -328,6 +328,8 @@
       </div>
     </div>
   </div>
+ 
+    <script src="//cdn.arabul.us/jquery/jquery-3.7.1.min.js"></script>
 
   <script>
     document.addEventListener("DOMContentLoaded", () => {
@@ -387,6 +389,106 @@
 
 
       </script>
+<script>
+stars.forEach((star, index) => {
+  star.addEventListener("click", () => {
+    selectedIndex = index;
+    highlightStars(selectedIndex);
+
+    // Puanlama verisini gönder
+    $.ajax({
+      url: '/therapist/rate', // İlgili endpoint
+      method: 'POST',
+      data: {
+        _token: '{{ csrf_token() }}', // CSRF token'ını buraya ekliyoruz
+        therapist_id: document.getElementById("therapist-id").value, // Terapist ID'sini input alanından al
+        rating: selectedIndex + 1, // Rating verisini al
+      },
+      success: function(data) {
+        alert(data.message); // Sunucudan dönen mesajı göster
+      },
+      error: function(xhr, status, error) {
+        console.error('Hata:', error);
+      }
+    });
+  });
+});
+
+</script>
+<script>
+     document.getElementById('changeNameBtn').addEventListener('click', function() {
+    // Yeni isim soyisim değerini al
+    const newName = document.getElementById('new_name').value;
+
+    if (!newName) {
+        alert("Lütfen geçerli bir isim girin!");
+        return;
+    }
+
+    // AJAX isteği gönder
+    $.ajax({
+        url: '/profile/update-name', // URL
+        method: 'POST', // İstek metodu
+        contentType: 'application/json', // Gönderilen verinin tipi
+        data: JSON.stringify({
+            name: newName,
+            _token: "{{ csrf_token() }}" // CSRF token'ı data içinde gönderiyoruz
+        }), 
+        success: function(response) {
+            if (response.success) {
+                // Başarı mesajını göster
+                $('#successMessage').text(response.message).fadeIn().delay(3000).fadeOut();
+                location.reload(); // Sayfayı yenileyerek değişikliği göster
+            } else {
+                // Hata mesajını göster
+                $('#errorMessage').text("Bir hata oluştu: " + response.message).fadeIn().delay(3000).fadeOut();
+            }
+        },
+        error: function(xhr, status, error) {
+            // AJAX hata mesajı
+            $('#errorMessage').text("Bir hata oluştu: " + error).fadeIn().delay(3000).fadeOut();
+        }
+    });
+});
+    
+    </script>
+<script>
+     document.getElementById('changeMail').addEventListener('click', function() {
+    // Yeni isim soyisim değerini al
+    const newEmail = document.getElementById('new_email').value;
+
+    if (!newEmail) {
+        alert("Lütfen geçerli bir isim girin!");
+        return;
+    }
+
+    // AJAX isteği gönder
+    $.ajax({
+        url: '/profile/update-email', // URL
+        method: 'POST', // İstek metodu
+        contentType: 'application/json', // Gönderilen verinin tipi
+        data: JSON.stringify({
+            email: newEmail,
+            _token: "{{ csrf_token() }}" // CSRF token'ı data içinde gönderiyoruz
+        }), 
+        success: function(response) {
+            if (response.success) {
+                // Başarı mesajını göster
+                $('#successMessage').text(response.message).fadeIn().delay(3000).fadeOut();
+                location.reload(); // Sayfayı yenileyerek değişikliği göster
+            } else {
+                // Hata mesajını göster
+                $('#errorMessage').text("Bir hata oluştu: " + response.message).fadeIn().delay(3000).fadeOut();
+            }
+        },
+        error: function(xhr, status, error) {
+            // AJAX hata mesajı
+            $('#errorMessage').text("Bir hata oluştu: " + error).fadeIn().delay(3000).fadeOut();
+        }
+    });
+});
+    
+    </script>
 </body>
 
 </html>

@@ -34,6 +34,9 @@ Route::get('/therapist-dashboard', [TherapistController::class, 'dashboard'])->m
 Route::get('/client-dashboard', [ClientController::class, 'dashboard'])->name('client.dashboard');
 Route::get('/user-profile', [ProfileController::class, 'userProfile'])->name('user.profile.show');
 Route::post('/login-custom', [ProfileController::class, 'loginCustom'])->name('login.custom');
+Route::post('/therapist/rate', [ProfileController::class, 'rateTherapist'])->middleware('auth');
+Route::post('/profile/update-name', [ProfileController::class, 'updateName'])->name('profile.update-name');
+Route::post('/profile/update-email', [ProfileController::class, 'updateEmail'])->name('profile.update.email');
 
 Route::get('/terapist/profil/{id}', [ProfileController::class, 'showTherapist'])->name('therapist.profile.show');
 Route::get('/nasil-calisir', [IndexController::class, 'howItWorks']);
