@@ -6,10 +6,13 @@ use App\Http\Requests\ProfileUpdateRequest;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
 use App\Models\Therapist;
+use App\Models\therapist_rating;
 use App\Models\User;
+
 
 class ProfileController extends Controller
 {
@@ -60,58 +63,103 @@ class ProfileController extends Controller
         return Redirect::to('/');
     }
 
-    public function showTherapist(Request $request)
+    public function showTherapist($id)
     {
-        $therapist = Therapist::find($request->id);
-        return view('therapist-profile', [
-            'therapist' => $therapist
-        ]);
+        $therapist = Therapist::findOrFail($id);
+        return view('profile.showTherapist', compact('therapist'));
     }
 
     public function settings(Request $request)
     {
-        return view('settings', [
-            'user' => $request->user()
+        return view('profile.settings', [
+            'user' => $request->user(),
         ]);
     }
 
     public function loginCustom(Request $request)
     {
-
-        $email = $request->input('email');
-        $password = $request->input('password');
-        $role = $request->input('role');
-
-        if ($role == 'client') {
-           Auth::attempt(['email' => $email, 'password' => $password]);
-            if (Auth::check()) {
-                return redirect()->route('client.dashboard');
-            } else {
-                return redirect()->back()->with('error', 'Email or password is incorrect');
-            }
-
-        } elseif ($role == 'therapist') {
-            $therapist = Therapist::where('email', $email)->first();
-            if ($therapist) {
-                if (password_verify($password, $therapist->password)) {
-                    session(['role' => 'therapist', 'user_id' => $therapist->id]);
-                    return redirect()->route('therapist.dashboard');
-                } else {
-                    return redirect()->back()->with('error', 'Email or password is incorrect');
-                }
-            } else {
-                return redirect()->back()->with('error', 'Email is not registered');
-            }
-        } else {
-            return redirect()->back()->with('error', 'Role is invalid');
-        }
+        // Login işlemleri burada yapılacak
     }
 
     public function userProfile(Request $request)
     {
         $user = Auth::user();
-        return view('user-profile', [
+        return view('profile.user-profile', [
             'user' => $user
         ]);
+    }
+
+    public function rateTherapist(Request $request)
+    {
+        $request->validate([
+            'therapist_id' => 'required|exists:therapists,id',
+            'rating' => 'required|integer|min:1|max:5',
+        ]);
+
+        $therapistRating = new therapist_rating();
+        $therapistRating->therapist_id = $request->therapist_id;
+        $therapistRating->user_id = Auth::user()->id; // Oturumdaki kullanıcıyı al
+        $therapistRating->rating = $request->rating;
+        $therapistRating->save();
+
+        return response()->json(['message' => 'Değerlendirmeniz Alındı!']);
+    }
+
+    public function updateName(Request $request)
+    {
+        $user = $request->user();
+
+        // İsim validasyonu
+        $request->validate([
+            'name' => 'required|string|max:255',
+        ]);
+
+        try {
+            // Yeni ismi kullanıcıya ata
+            $user->name = $request->input('name');
+            $user->save(); // Veritabanına kaydet
+
+            // Başarı durumu döndür
+            return response()->json([
+                'success' => true,
+                'message' => 'İsim başarıyla güncellendi',
+            ]);
+
+        } catch (\Exception $e) {
+            // Hata durumunda hata mesajı döndür
+            return response()->json([
+                'success' => false,
+                'message' => 'Bir hata oluştu: ' . $e->getMessage(),
+            ], 500);  // 500 sunucu hatası
+        }
+    }
+
+    public function updateEmail(Request $request)
+    {
+        $user = $request->user();
+
+        // Email validasyonu
+        $request->validate([
+            'email' => 'required|string|email|max:255',
+        ]);
+
+        try {
+            // Yeni emaili kullanıcıya ata
+            $user->email = $request->input('email');
+            $user->save(); // Veritabanına kaydet
+
+            // Başarı durumu döndür
+            return response()->json([
+                'success' => true,
+                'message' => 'Email başarıyla güncellendi',
+            ]);
+
+        } catch (\Exception $e) {
+            // Hata durumunda hata mesajı döndür
+            return response()->json([
+                'success' => false,
+                'message' => 'Bir hata oluştu: ' . $e->getMessage(),
+            ], 500);  // 500 sunucu hatası
+        }
     }
 }
