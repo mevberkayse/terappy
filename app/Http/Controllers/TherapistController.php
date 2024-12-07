@@ -25,4 +25,12 @@ class TherapistController extends Controller
         $matches = User_to_therapist_matching::where('therapist_id', $therapist->id)->get();
         return view('therapist.dashboard', ['matches' => $matches]);
     }
+
+    public function profile(Request $request) {
+        $therapist = Therapist::where('id', session('user_id'))->first();
+        if ($therapist == null) {
+            return redirect()->route('index');
+        }
+        return view('therapist.profile', ['therapist' => $therapist]);
+    }
 }

@@ -106,4 +106,12 @@ class ProfileController extends Controller
             return redirect()->back()->with('error', 'Role is invalid');
         }
     }
+
+    public function userProfile(Request $request)
+    {
+        $user = Auth::user();
+        return view('user-profile', [
+            'user' => $user
+        ]);
+    }
 }
