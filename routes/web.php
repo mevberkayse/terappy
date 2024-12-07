@@ -32,7 +32,7 @@ Route::middleware('auth')->group(function () {
 // for guard "therapist"
 Route::get('/therapist-dashboard', [TherapistController::class, 'dashboard'])->middleware('therapist')->name('therapist.dashboard');
 Route::get('/client-dashboard', [ClientController::class, 'dashboard'])->name('client.dashboard');
-
+Route::get('/user-profile', [ProfileController::class, 'userProfile'])->name('user.profile.show');
 Route::post('/login-custom', [ProfileController::class, 'loginCustom'])->name('login.custom');
 
 Route::get('/terapist/profil/{id}', [ProfileController::class, 'showTherapist'])->name('therapist.profile.show');
