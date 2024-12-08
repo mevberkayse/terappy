@@ -93,27 +93,28 @@
 
         <div class="row">
             @php $matches = session()->get('matches'); @endphp
-
+            @foreach($matches as $match)
             <div class="col-md-4">
                 <div class="card">
                     <div class="card-body">
                         <div class="profile">
-                            <img src="" alt="Psikolog Fotoğrafı"
+                            <img src="{{$match['therapist']->profile_picture}}" alt="Psikolog Fotoğrafı"
                                 class="profile-img">
                             <div class="profile-info">
-                                <h5 class="name"></h5>
-                                <p class="title">title</p>
-                                <p class="about"></p>
+                                <h5 class="name">{{$match['therapist']->name}}</h5>
+                                <p class="title">{{$match['therapist']->title}}</p>
+                                <p class="about">{{$match['therapist']->about}}</p>
                             </div>
                         </div>
                         <div class="button-group">
-                            <a href="/terapist/profil/" class="text-decoration-none btn primary-button">Profili Görüntüle</a>
-                            <button class="btn modal-btn" onclick="chooseTherapist()">Hemen Eşleş</button>
+                            <a href="/terapist/profil/{{$match['therapist']->id}}" target="_blank" class="text-decoration-none btn primary-button">Profili Görüntüle</a>
+                            <button class="btn modal-btn" onclick="chooseTherapist({{$match['therapist']->id}})">Hemen Eşleş</button>
                         </div>
                         <div class="match-percentage">0%</div>
                     </div>
                 </div>
             </div>
+            @endforeach
 
         </div>
     </div>
@@ -134,7 +135,7 @@
                     _token: '{{ csrf_token() }}'
                 },
                 success: (response) => {
-                    //window.location.href = '/danisan/anasayfa';
+                    window.location.href = '/user-profile';
                 }
             });
         }

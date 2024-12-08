@@ -13,13 +13,14 @@ class Therapist extends Model
     }
 
     public function diseases() {
-        $d = explode(',', $this->branch);
+        $d = explode(', ', $this->branch);
 
-        $diseases = Disease::whereIn('id', $d)->get();
+        $diseases = Disease::whereIn('name_disease', $d)->get();
         return $diseases;
     }
 
     public function seminars() {
         return $this->hasMany(TherapistSeminar::class, 'therapist_id', 'id');
     }
+
 }

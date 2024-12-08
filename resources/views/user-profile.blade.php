@@ -200,7 +200,7 @@
         <!-- 3 kolonluk alan -->
         <div class="col-3 p-4 mb-3">
           <h1 style="font-size:50px;">Terappy</h1>
-          <h1 class="mt-5 " id="kullanıcı-adi">Selam,<span >Mevsim</span></h1>
+          <h1 class="mt-5 " id="kullanıcı-adi">Selam, <span>{{$user->name}}</span></h1>
                   <div class="terapistiniz border rounded border-white p-3">
                       <i class="fa-solid fa-laptop-medical me-3"></i>
                       <a href="#" id="tab-1" onclick="openTab(1);" data-opener="1" class="mt-5 text-dark">Terapistiniz</a>
@@ -222,14 +222,15 @@
             <div class="card mt-3">
               <div class="card-body">
                 <div class="profile">
-                  <img src="/public/assets/img/Sample_User_Icon.png" alt="Psikolog Fotoğrafı" class="profile-img">
+                  <img src="{{$therapist->profile_picture}}" alt="Psikolog Fotoğrafı" class="profile-img">
                   <div class="profile-info">
-                    <h5 class="name">Dr. Elif Demir</h5>
-                    <p class="title">Çocuk Psikoloğu</p>
-                    <p class="about">Çocuk gelişimi üzerine uzmanlaşmış bir terapist. 10 yıldan fazla deneyim sahibi.</p>
+                    <h5 class="name">{{$therapist->name}}</h5>
+                    <p class="title">{{$therapist->title}}</p>
+                    <p class="about">{{$therapist->about}}.</p>
+                    @if($isMatched) Terapistinizle eşleştiniz! İletişime geçebilirsiniz. @else Terapistiniz henüz eşleşme isteğinizi kabul etmedi. @endif
                   </div>
                 </div>
-                <button class="modal-pri-button">Profili Görüntüle</button>
+                <a href="/terapist/profil/{{$therapist->id}}" target="_blank" class="modal-pri-button">Profili Görüntüle</a>
               </div>
             </div>
             <i class="fa-solid fa-circle-exclamation" style="color: white; font-size:20px "></i>

@@ -32,6 +32,8 @@ Route::middleware('auth')->group(function () {
 Route::get('/hakkimizda', [IndexController::class, 'about']);
 Route::get('/terapistler', [IndexController::class, 'therapists']);
 
+Route::post('/therapist/match', [TherapistController::class, 'match']);
+
 // for guard "therapist"
 Route::get('/therapist-dashboard', [TherapistController::class, 'dashboard'])->middleware('therapist')->name('therapist.dashboard');
 Route::get('/therapist-profile', [TherapistController::class, 'profile'])->middleware('therapist')->name('therapist.profile');

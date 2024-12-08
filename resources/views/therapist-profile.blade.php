@@ -536,7 +536,7 @@
                 <div class="çalışma-alanları border p-3">
                   <h4><i class="fa-solid fa-layer-group me-3"></i>Çalışma Alanları</h4>
                   <ul>
-                    @foreach($therapist->branches() as $disease)
+                    @foreach($therapist->diseases() as $disease)
                     <li>{{$disease->name_disease}}</li>
                     @endforeach
                   </ul>

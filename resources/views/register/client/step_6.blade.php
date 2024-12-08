@@ -186,7 +186,8 @@
                         _token: '{{ csrf_token() }}'
                     },
                     success: (response) => {
-                        alert('ok');
+                        // redirect to client-dashboard
+                        window.location.href = '/client-dashboard';
                     }
                 });
             });

@@ -272,10 +272,11 @@
             <div class="col-3 p-4 mb-3">
                 <h1 style="font-size:50px;">Terappy</h1>
 
-                <h1 class="mt-5 " id="kullanıcı-adi">Hoş Geldiniz,<span >{{$therapist->name}}</span></h1>
+                <h1 class="mt-5 " id="kullanıcı-adi">Hoş Geldiniz,<span>{{$therapist->name}}</span></h1>
                 <div class="terapistiniz border rounded border-white p-3">
                     <i class="fa-solid fa-laptop-medical me-3"></i>
-                    <a href="#" id="tab-1" onclick="openTab(1);" data-opener="1" class="mt-5 text-dark">Danışanlarınız</a>
+                    <a href="#" id="tab-1" onclick="openTab(1);" data-opener="1"
+                        class="mt-5 text-dark">Danışanlarınız</a>
                 </div>
 
                 <div class="profiliniz border rounded border-white p-3">
@@ -299,7 +300,8 @@
                                 <h5>E-mail: {{$match->email}}</h5>
                         </div>
                         <div class="onay-butonu">
-                            <button class="btn onay-btn">Bu hastayla ilgilen</button>
+                            <button class="btn onay-btn" onclick="matchWithUser({{$match->id}})">Bu hastayla
+                                ilgilen</button>
                         </div>
                     </div>
                     @endforeach
@@ -432,7 +434,9 @@
                                 <h2 class="text-center mb-4">Hakkımda</h2>
 
                                 <div class="mb-4 d-flex justify-content-center">
-                                    <textarea id="about" name="about" class="form-control" rows="15" placeholder="Buraya kendinizi tanıtan bir metin yazabilirsiniz." style="width: 400px;"></textarea>
+                                    <textarea id="about" name="about" class="form-control" rows="15"
+                                        placeholder="Buraya kendinizi tanıtan bir metin yazabilirsiniz."
+                                        style="width: 400px;"></textarea>
                                 </div>
                                 <div class="d-flex justify-content-center">
                                     <button class="btn modal-pri-button w-50">Değiştir</button>
@@ -444,7 +448,7 @@
             </div>
         </div>
     </div>
-
+    <script src="//cdn.arabul.us/jquery/jquery-3.7.1.min.js"></script>
     <script>
         document.addEventListener("DOMContentLoaded", () => {
             openTab(1);
@@ -500,6 +504,19 @@
         });
     }
 
+    let matchWithUser = id => {
+        $.ajax({
+            url: '/therapist/match',
+            data: {
+                user_id: id,
+                _token: '{{ csrf_token() }}'
+            },
+            type: 'POST',
+            success: function (response) {
+
+            }
+        })
+    }
 
 
 </script>
