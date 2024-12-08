@@ -12,7 +12,7 @@ use Illuminate\View\View;
 use App\Models\Therapist;
 use App\Models\therapist_rating;
 use App\Models\User;
-
+use App\Models\User_to_therapist_matching;
 
 class ProfileController extends Controller
 {
@@ -110,8 +110,19 @@ class ProfileController extends Controller
     public function userProfile(Request $request)
     {
         $user = Auth::user();
+        $matchedTherapist = User_to_therapist_matching::where('user_id', $user->id)->first();
+        $therapist = null;
+        $isMatched = false;
+        if ($matchedTherapist) {
+            $therapist = Therapist::where('id', $matchedTherapist->therapist_id)->first();
+            $isMatched = true;
+        } else {
+            $therapist = Therapist::where('id', $user->choosing_therapist)->first();
+        }
         return view('user-profile', [
-            'user' => $user
+            'user' => $user,
+            'therapist' => $therapist,
+            'isMatched' => $isMatched,
         ]);
     }
 

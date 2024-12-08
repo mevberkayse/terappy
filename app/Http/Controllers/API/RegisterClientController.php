@@ -200,13 +200,12 @@ class RegisterClientController extends Controller
         $matches = [];
         foreach ($therapists as $therapist) {
             $match = $this->calculateMatch($client, $therapist);
-            if ($match >= 50) {
                 $matches[] = [
                     'therapist' => $therapist,
                     'match' => $match
                 ];
+
             }
-        }
         session()->put('matches', $matches);
 
         // log the user in
