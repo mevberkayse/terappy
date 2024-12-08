@@ -4,15 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Document</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="http://cdn.arabul.us/bootstrap/css/bootstrap.min.css?123">
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0-alpha1/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="/assets/css/therapist/step_3.css">
-
-
     <style>
         body {
             background-image: url('/assets/img/duvarkagidi8.jpg');
@@ -42,9 +39,12 @@
         }
 
         .customizedNavbar {
-            background-color: transparent !important; /* Arka planı şeffaf yapar */
-    box-shadow: none; /* Gölgeyi kaldırır */
-    border-bottom: none; /* Alt çizgiyi kaldırır (varsa) */
+            background-color: transparent !important;
+            /* Arka planı şeffaf yapar */
+            box-shadow: none;
+            /* Gölgeyi kaldırır */
+            border-bottom: none;
+            /* Alt çizgiyi kaldırır (varsa) */
         }
 
         .centered-container {
@@ -53,6 +53,7 @@
             /* Yarı saydam bir arka plan */
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
             /* Hafif gölge */
+            margin-top: 100px;
         }
 
         .container h3 {
@@ -203,10 +204,10 @@
 
     <script>
         const checkbox = document.getElementById("yuksekLisansCheckbox");
-        const lisansInput = document.getElementById("lisans2");
-        const okulInput = document.getElementById("okul2");
-        const baslangicyInput = document.getElementById("baslangic2");
-        const bitisyInput = document.getElementById("bitis2");
+        const lisansInput = document.getElementById("lisans-yuksek");
+        const okulInput = document.getElementById("okul-yuksek");
+        const baslangicyInput = document.getElementById("baslangic-yuksek");
+        const bitisyInput = document.getElementById("bitis-yuksek");
 
         checkbox.addEventListener("change", function () {
             const isChecked = checkbox.checked;
@@ -217,56 +218,57 @@
         });
     </script>
 
+    <script src="//cdn.arabul.us/jquery/jquery-3.7.1.min.js"></script>
+
+
+    <script>
+        $(document).ready(() => {
+            $('#next_step').click(() => {
+                let token = "{{ csrf_token() }}";
+                let checkbox = $('#yuksekLisansCheckbox')[0];
+                let lisans = $('#lisans').val();
+                let okul = $('#okul').val();
+                let baslangic = $('#baslangic').val();
+                let bitis = $('#bitis').val();
+                let lisans2 = checkbox.checked ? $('#lisans2').val() : null;
+                let okul2 = checkbox.checked ? $('#okul2').val() : null;
+                let baslangic2 = checkbox.checked ? $('#baslangic2').val() : null;
+                let bitis2 = checkbox.checked ? $('#bitis2').val() : null;
+
+                $.ajax({
+                    url: '/api/kayit/terapist/2',
+                    method: 'POST',
+                    data: {
+                        lisans: lisans,
+                        okul: okul,
+                        baslangic: baslangic,
+                        bitis: bitis,
+                        lisans2: lisans2,
+                        okul2: okul2,
+                        baslangic2: baslangic2,
+                        bitis2: bitis2,
+                        yuksekLisansCheckbox: checkbox.checked ? 1 : 0,
+                        _token: token
+                    },
+                    success: (res) => {
+                        if (res.status) {
+                            window.location.href = res.link;
+                        }
+                    },
+                    error: (err) => {
+                        alert('Bir hata oluştu');
+                        console.log(err);
+                    }
+                });
+            });
+        });
+    </script>
+
     <!-- Bootstrap JS ve Popper -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0-alpha1/js/bootstrap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="//cdn.arabul.us/fontawesome/js/all.min.js"></script>
-    <script src="//cdn.arabul.us/jquery/jquery-3.7.1.min.js"></script>
-
- 
-    <script> 
-    $(document).ready(() => {
-    $('#next_step').click(() => {
-        let token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
-        let checkbox = $('#yuksekLisansCheckbox')[0];
-        let lisans = $('#lisans').val();
-        let okul = $('#okul').val();
-        let baslangic = $('#baslangic').val();
-        let bitis = $('#bitis').val();
-        let lisans2 = checkbox.checked ? $('#lisans2').val() : null;
-        let okul2 = checkbox.checked ? $('#okul2').val() : null;
-        let baslangic2 = checkbox.checked ? $('#baslangic2').val() : null;
-        let bitis2 = checkbox.checked ? $('#bitis2').val() : null;
-
-        $.ajax({
-            url: '/api/kayit/terapist/2',
-            method: 'POST',
-            data: {
-                lisans: lisans,
-                okul: okul,
-                baslangic: baslangic,
-                bitis: bitis,
-                lisans2: lisans2,
-                okul2: okul2,
-                baslangic2: baslangic2,
-                bitis2: bitis2,
-                yuksekLisansCheckbox: checkbox.checked ? 1 : 0,
-                _token: token
-            },
-            success: (res) => {
-                if (res.status) {
-                   window.location.href = res.link;
-                }
-            },
-            error: (err) => {
-                alert('Bir hata oluştu');
-                console.log(err);
-            }
-        });
-    });
-});
-</script>
 </body>
 
 </html>
