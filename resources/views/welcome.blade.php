@@ -659,24 +659,7 @@
     <script src="//cdn.arabul.us/fontawesome/js/all.min.js"></script>
     <script src="//cdn.arabul.us/jquery/jquery-3.7.1.min.js"></script>
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            // Modal elementini seç
-            const modalElement = document.getElementById("loginModal");
-
-            // Bootstrap modal nesnesini oluştur
-            const bootstrapModal = new bootstrap.Modal(modalElement);
-
-            // Modal açmak için kullanılan buton
-            const openModalBtn = document.querySelector(".btn-navbar"); // Kaydol/Giriş Yap butonu sınıfı
-
-            // Butona tıklayınca modalı aç
-            if (openModalBtn) {
-                openModalBtn.addEventListener("click", function() {
-                    bootstrapModal.show();
-                });
-            }
-        });
-
+       
         // Bootstrap için gerekli olan scriptleri dinamik olarak ekleme (eğer eksikse)
         (function() {
             const popperScript = document.createElement('script');

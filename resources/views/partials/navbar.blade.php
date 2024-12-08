@@ -23,8 +23,8 @@
                         href="/hakkimizda">Hakkımızda</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link @if(Request::url() == '/danismanlar') active @endif"
-                        href="/danismanlar">Danışmanlarımız</a>
+                    <a class="nav-link @if(Request::url() == '/terapistler') active @endif"
+                        href="/terapistler">Danışmanlarımız</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Testler</a>
@@ -33,7 +33,7 @@
                     <a class="nav-link" href="#">İletişim</a>
                 </li>
             </ul>
-            <button class="btn-navbar">Kaydol/Giriş Yap</button>
+            <button class="btn-navbar" data-bs-toggle="modal" data-bs-target="#loginModal">Kaydol/Giriş Yap</button>
             <!-- Modal -->
             <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered">
