@@ -295,12 +295,13 @@
                     @foreach($matches as $match)
                     <div class="card mt-3">
                         <div class="danisan-bilgisi">
-                            <h4>{{$match->name}}</h4>
-                            <h5>Yaşı: <span>{{$match->age}}</span></h4>
-                                <h5>E-mail: {{$match->email}}</h5>
+                            <h4>{{$match['client']->name}}</h4>
+                            <h5>Yaşı: <span>{{$match['client']->age}}</span></h5>
+                            <h5>E-mail: {{$match['client']->email}}</h5>
+                            @if($match['rate'] !== null)<h5>Sizin için değerlendirmesi: {{$match['rate']}}/5</h5>@endif
                         </div>
                         <div class="onay-butonu">
-                            <button class="btn onay-btn" onclick="matchWithUser({{$match->id}})">Bu hastayla
+                            <button class="btn onay-btn" onclick="matchWithUser({{$match['client']->id}})">Bu hastayla
                                 ilgilen</button>
                         </div>
                     </div>

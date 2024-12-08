@@ -330,13 +330,8 @@
         </div>
       </div>
     </div>
-  </div>
 
-  <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      openTab(1); 
-    });
-
+<script>
     function openTab(tabId) {
       const allContents = document.querySelectorAll(".content-section");
       allContents.forEach(content => content.classList.add("d-none"));
