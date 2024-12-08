@@ -31,6 +31,7 @@ Route::middleware('auth')->group(function () {
 
 // for guard "therapist"
 Route::get('/therapist-dashboard', [TherapistController::class, 'dashboard'])->middleware('therapist')->name('therapist.dashboard');
+Route::get('/therapist-profile', [TherapistController::class, 'profile'])->middleware('therapist')->name('therapist.profile');
 Route::get('/client-dashboard', [ClientController::class, 'dashboard'])->name('client.dashboard');
 Route::get('/user-profile', [ProfileController::class, 'userProfile'])->name('user.profile.show');
 Route::post('/login-custom', [ProfileController::class, 'loginCustom'])->name('login.custom');
@@ -75,5 +76,7 @@ Route::prefix('api')->group(function () {
         Route::post('/5', [APIRegisterTherapistController::class, 'step_5']);
         Route::post('/6', [APIRegisterTherapistController::class, 'step_6']);
     });
+
+    Route::post('/match/therapist', [APIRegisterClientController::class, 'matchTherapist']);
 });
 require __DIR__ . '/auth.php';

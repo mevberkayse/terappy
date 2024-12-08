@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\User_to_therapist_matching;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
 use App\Models\Therapist;
@@ -22,7 +22,7 @@ class TherapistController extends Controller
             return redirect()->route('index');
         }
         debugbar()->info('Therapist dashboard');
-        $matches = User_to_therapist_matching::where('therapist_id', $therapist->id)->get();
+        $matches = User::where('choosing_therapist', $therapist->id)->get();
         return view('therapist.dashboard', ['matches' => $matches]);
     }
 
@@ -31,6 +31,7 @@ class TherapistController extends Controller
         if ($therapist == null) {
             return redirect()->route('index');
         }
-        return view('therapist.profile', ['therapist' => $therapist]);
+        $matches = User::where('choosing_therapist', $therapist->id)->get();
+        return view('therapist.profile', ['therapist' => $therapist, 'matches' => $matches]);
     }
 }

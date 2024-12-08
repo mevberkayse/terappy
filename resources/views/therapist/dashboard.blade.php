@@ -101,12 +101,11 @@
                             <img src="https://cdn.arabul.us/images/default.png"
                                 alt="Danışan Fotoğrafı" class="profile-img">
                             <div class="profile-info">
-                                <h5 class="name">{{$match->user->name}} </h5>
+                                <h5 class="name">{{$match->name}} </h5>
                                 <p class="title">Olası Sorunlar:
                                     @php
-                                    $user = $match->user;
                                     // $user->problems explode with "," remove duplicate values
-                                    $problems = explode(',', $user->problems);
+                                    $problems = explode(',', $match->problems);
                                     $problems = \App\Models\Symptom_Matching::whereIn('symptom_id', $problems)->get();
                                     // remove duplicate values
                                     $problems = $problems->unique('disease_id');

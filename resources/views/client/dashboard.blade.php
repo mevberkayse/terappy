@@ -92,34 +92,53 @@
     <div class="container eslesme-container">
 
         <div class="row">
-            @foreach($matches as $match)
+            @php $matches = session()->get('matches'); @endphp
+
             <div class="col-md-4">
                 <div class="card">
                     <div class="card-body">
                         <div class="profile">
-                            <img src="{{$match->therapist->profile_picture}}" alt="Psikolog Fotoğrafı"
+                            <img src="" alt="Psikolog Fotoğrafı"
                                 class="profile-img">
                             <div class="profile-info">
-                                <h5 class="name">{{$match->therapist->name}} </h5>
+                                <h5 class="name"></h5>
                                 <p class="title">title</p>
-                                <p class="about">{{$match->therapist->about}}</p>
+                                <p class="about"></p>
                             </div>
                         </div>
                         <div class="button-group">
-                            <a href="/terapist/profil/{{$match->therapist->id}}" class="text-decoration-none btn primary-button">Profili Görüntüle</a>
-                            <button class="btn modal-btn">Hemen Eşleş</button>
+                            <a href="/terapist/profil/" class="text-decoration-none btn primary-button">Profili Görüntüle</a>
+                            <button class="btn modal-btn" onclick="chooseTherapist()">Hemen Eşleş</button>
                         </div>
-                        <div class="match-percentage">{{$match->percantage}}%</div>
+                        <div class="match-percentage">0%</div>
                     </div>
                 </div>
             </div>
-            @endforeach
 
         </div>
     </div>
     <button class="modal-btn">Geriye Dön</button>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="//cdn.arabul.us/fontawesome/js/all.min.js"></script>
+    <script src="//cdn.arabul.us/jquery/jquery-3.7.1.min.js"></script>
+    <script>
+        $(document).ready(() => {
+        });
+
+        function chooseTherapist(id) {
+            $.ajax({
+                url: '/api/match/therapist',
+                method: 'POST',
+                data: {
+                    therapist_id: id,
+                    _token: '{{ csrf_token() }}'
+                },
+                success: (response) => {
+                    //window.location.href = '/danisan/anasayfa';
+                }
+            });
+        }
+    </script>
 </body>
 
 </html>
