@@ -261,7 +261,7 @@
                 if (response.status) {
                     $('#successModal').modal('show');
                     setTimeout(() => {
-                        window.location.href = res.link;
+                        window.location.href = "/";
                     }, 3000);
                 } else {
                     $('#errorMessage').text(response.message || 'Bir hata oluştu.').show();
