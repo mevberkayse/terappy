@@ -78,34 +78,30 @@ class ProfileController extends Controller
 
     public function loginCustom(Request $request)
     {
-
         $email = $request->input('email');
         $password = $request->input('password');
         $role = $request->input('role');
-
+    
         if ($role == 'client') {
-            Auth::attempt(['email' => $email, 'password' => $password]);
-            if (Auth::check()) {
-                return redirect()->route('client.dashboard');
+            if (Auth::attempt(['email' => $email, 'password' => $password])) {
+                return response()->json(['success' => true]);
             } else {
-                return redirect()->back()->with('error', 'Email or password is incorrect');
+                return response()->json(['success' => false, 'message' => 'Email veya şifre hatalı']);
             }
         } elseif ($role == 'therapist') {
             $therapist = Therapist::where('email', $email)->first();
-            if ($therapist) {
-                if (password_verify($password, $therapist->password)) {
-                    session(['role' => 'therapist', 'user_id' => $therapist->id]);
-                    return redirect()->route('therapist.dashboard');
-                } else {
-                    return redirect()->back()->with('error', 'Email or password is incorrect');
-                }
+            if ($therapist && password_verify($password, $therapist->password)) {
+                session(['role' => 'therapist', 'user_id' => $therapist->id]);
+                return response()->json(['success' => true]);
             } else {
-                return redirect()->back()->with('error', 'Email is not registered');
+                return response()->json(['success' => false, 'message' => 'Email veya şifre hatalı']);
             }
         } else {
-            return redirect()->back()->with('error', 'Role is invalid');
+            return response()->json(['success' => false, 'message' => 'Geçersiz rol']);
         }
     }
+    
+    
 
     public function userProfile(Request $request)
     {
