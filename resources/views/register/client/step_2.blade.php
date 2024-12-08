@@ -85,11 +85,11 @@
             <div class="row mb-3 mt-3">
                 <div class="col-md-6" >
                     <label for="password" class="form-label">Şifre</label>
-                    <input type="text" class="form-control" id="password" placeholder="******" required minlength="6">
+                    <input type="password" class="form-control" id="password" placeholder="******" required minlength="6">
                 </div>
                 <div class="col-md-6">
                     <label for="password_r" class="form-label">Tekrar Şifre</label>
-                    <input type="text" class="form-control" id="password_r" placeholder="******" required minlength="6">
+                    <input type="password" class="form-control" id="password_r" placeholder="******" required minlength="6">
                 </div>
             </div>
             <div class="row mb-3">
@@ -265,7 +265,7 @@
                 },
                 success:(res)=>{
                     if(res.status) {
-                        //window.location.href = res.link;
+                        window.location.href = res.link;
                     }
                 },
                 error:(err)=>{
