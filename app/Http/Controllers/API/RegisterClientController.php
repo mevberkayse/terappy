@@ -200,13 +200,14 @@ class RegisterClientController extends Controller
         $matches = [];
         foreach ($therapists as $therapist) {
             $match = $this->calculateMatch($client, $therapist);
-
-            $model = new User_to_therapist_matching();
-            $model->user_id = $client->id;
-            $model->therapist_id = $therapist->id;
-            $model->percantage = $match;
-            $model->save();
+            if ($match >= 50) {
+                $matches[] = [
+                    'therapist' => $therapist,
+                    'match' => $match
+                ];
+            }
         }
+        session()->put('matches', $matches);
 
         // log the user in
         auth()->login($client);
@@ -254,5 +255,17 @@ class RegisterClientController extends Controller
         $match = ceil(($match / (count($clientProblems) + count($clientFeatures) + 2)) * 100);
 
         return $match;
+    }
+
+    public function matchTherapist(Request $request) {
+        $therapist_id  = $request->input('therapist_id');
+        $client = User::where('id', auth()->id())->first();
+
+        $client->choosing_therapist = $therapist_id;
+        $client->save();
+
+        return response()->json([
+            'message' => 'Therapist chosen successfully'
+        ]);
     }
 }

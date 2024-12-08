@@ -12,7 +12,7 @@ class ClientController extends Controller
     //
     public function dashboard(Request $request)
     {
-        $matches = User_to_therapist_matching::where('user_id', Auth::id())->get();
-        return view('client.dashboard', ['matches' => $matches]);
+
+        return view('client.dashboard');
     }
 }

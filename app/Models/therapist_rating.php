@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class therapist_rating extends Model
 {
     //
-    protected $table = 'therapist_rating_table';
+    protected $table = 'therapist_ratings';
 
     // Doldurulabilir alanlar
     protected $fillable = [

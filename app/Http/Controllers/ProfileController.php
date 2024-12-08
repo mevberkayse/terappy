@@ -66,7 +66,7 @@ class ProfileController extends Controller
     public function showTherapist($id)
     {
         $therapist = Therapist::findOrFail($id);
-        return view('profile.showTherapist', compact('therapist'));
+        return view('therapist-profile', compact('therapist'));
     }
 
     public function settings(Request $request)
@@ -78,13 +78,39 @@ class ProfileController extends Controller
 
     public function loginCustom(Request $request)
     {
-        // Login işlemleri burada yapılacak
+
+        $email = $request->input('email');
+        $password = $request->input('password');
+        $role = $request->input('role');
+
+        if ($role == 'client') {
+            Auth::attempt(['email' => $email, 'password' => $password]);
+            if (Auth::check()) {
+                return redirect()->route('client.dashboard');
+            } else {
+                return redirect()->back()->with('error', 'Email or password is incorrect');
+            }
+        } elseif ($role == 'therapist') {
+            $therapist = Therapist::where('email', $email)->first();
+            if ($therapist) {
+                if (password_verify($password, $therapist->password)) {
+                    session(['role' => 'therapist', 'user_id' => $therapist->id]);
+                    return redirect()->route('therapist.dashboard');
+                } else {
+                    return redirect()->back()->with('error', 'Email or password is incorrect');
+                }
+            } else {
+                return redirect()->back()->with('error', 'Email is not registered');
+            }
+        } else {
+            return redirect()->back()->with('error', 'Role is invalid');
+        }
     }
 
     public function userProfile(Request $request)
     {
         $user = Auth::user();
-        return view('profile.user-profile', [
+        return view('user-profile', [
             'user' => $user
         ]);
     }
@@ -124,7 +150,6 @@ class ProfileController extends Controller
                 'success' => true,
                 'message' => 'İsim başarıyla güncellendi',
             ]);
-
         } catch (\Exception $e) {
             // Hata durumunda hata mesajı döndür
             return response()->json([
@@ -153,7 +178,6 @@ class ProfileController extends Controller
                 'success' => true,
                 'message' => 'Email başarıyla güncellendi',
             ]);
-
         } catch (\Exception $e) {
             // Hata durumunda hata mesajı döndür
             return response()->json([
