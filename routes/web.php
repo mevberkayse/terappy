@@ -29,6 +29,9 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+Route::get('/hakkimizda', [IndexController::class, 'about']);
+Route::get('/terapistler', [IndexController::class, 'therapists']);
+
 // for guard "therapist"
 Route::get('/therapist-dashboard', [TherapistController::class, 'dashboard'])->middleware('therapist')->name('therapist.dashboard');
 Route::get('/therapist-profile', [TherapistController::class, 'profile'])->middleware('therapist')->name('therapist.profile');

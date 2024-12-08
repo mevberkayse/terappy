@@ -17,4 +17,13 @@ class IndexController extends Controller
     public function help() {
         return view('help');
     }
+
+    public function about() {
+        return view('about-us');
+    }
+
+    public function therapists() {
+        $therapists = \App\Models\Therapist::all();
+        return view('therapists', compact('therapists'));
+    }
 }

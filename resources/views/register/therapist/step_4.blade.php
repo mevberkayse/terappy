@@ -219,10 +219,12 @@
                 <div class="modal-body">
                     <ul class="list-group">
                         @foreach($diseases as $disease)
-                            <li class="list-group-item" data-bs-dismiss="modal" id="disease_{{$disease->id}}"
+                            <li class="list-group-item" id="disease_{{$disease->id}}" data-name="{{$disease->name_disease}}"
                                 onclick="chooseOption('{{$disease->name_disease}}')">{{$disease->name_disease}}</li>
                         @endforeach
                     </ul>
+                    <!-- save button  to right-->
+                     <button type="button" class="primary-button float-right" data-bs-dismiss="modal">Kaydet</button>
                 </div>
             </div>
         </div>
@@ -265,12 +267,16 @@
     <!-- Butonlar -->
     <div class="button-group">
         <button type="button" class="modal-btn">Geri</button>
-        <button type="button" class="primary-button">Devam Et </button>
+        <button type="button" class="primary-button" id="next_step">Devam Et </button>
     </div>
 
     <script>
+        let diseases = [];
         let chooseOption = hastalik => {
-            document.getElementById("ozelSelect").innerText = hastalik;
+            diseases.push(hastalik);
+            document.getElementById('ozelSelect').innerText = diseases.join(', ');
+            // add a tick to the selected option [data-name="hastalik"]
+            document.querySelector(`[data-name="${hastalik}"]`).innerHTML = `${hastalik} <i class="bi bi-check"></i>`;
         }
     </script>
     <script>
@@ -327,7 +333,7 @@
 
     <script>
 
-        $('.primary-button').click(() => {
+        $('#next_step').click(() => {
     let ozelSelect = $('#ozelSelect').text();
     let dilSelect = $('#dilSelect').text();
     let fileInput = document.getElementById('fileInput').files[0];
