@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="/assets/css/therapist/step_7.css">
     <style>
         body {
-            background-image: url('/public/assets/img/duvarkagidi8.jpg');
+            background-image: url('/assets/img/duvarkagidi8.jpg');
             /* JPG dosyasını buraya ekleyin */
             background-size: cover;
             /* Arkaplanın tam olarak kapsamasını sağlar */
@@ -29,7 +29,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-image: url('/public/assets/img/duvarkagidi8.jpg');
+            background-image: url('/assets/img/duvarkagidi8.jpg');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;

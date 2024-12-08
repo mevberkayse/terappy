@@ -27,9 +27,6 @@
                         href="/terapistler">Danışmanlarımız</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Testler</a>
-                </li>
-                <li class="nav-item">
                     <a class="nav-link" href="#">İletişim</a>
                 </li>
             </ul>
@@ -84,7 +81,7 @@
                         </div>
                         <div class="modal-footer">
                             <!-- Giriş Yap Butonu -->
-                            <button type="button" class="primary-button w-100"
+                            <button type="button" class="primary-button w-100" id="loginButton"
                                 onclick="document.getElementById('loginForm').submit()">Giriş Yap</button>
                             <!-- Kayıt Ol Butonu -->
                             <button type="button" class=" modal-btn w-100 mt-3" id="kayit">Hesabınız yoksa lütfen kayıt
@@ -96,4 +93,39 @@
             </div>
         </div>
     </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0-alpha1/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="//cdn.arabul.us/fontawesome/js/all.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#loginButton').click(function () {
+            let email = $('#email').val();
+            let password = $('#password').val();
+            let role = $('input[name="role"]:checked').val();
+            let _token = $('input[name="_token"]').val();
+            $.ajax({
+                url: '/login-custom',
+                method: 'POST',
+                data: {
+                    email: email,
+                    password: password,
+                    role: role,
+                    _token: _token
+                },
+                success: function (res) {
+                    if (res.status) {
+                        window.location.href = res.link;
+                    } else {
+                        alert(res.message);
+                    }
+                }
+            });
+        });
+        $('#kayit').click(function () {
+            window.location.href = '/register';
+        });
+        });
+</script>
 </nav>

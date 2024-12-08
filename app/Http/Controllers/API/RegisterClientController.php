@@ -7,6 +7,7 @@ use App\Models\Therapist;
 use App\Models\User;
 use App\Models\User_to_therapist_matching;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class RegisterClientController extends Controller
 {
@@ -208,8 +209,7 @@ class RegisterClientController extends Controller
             }
         session()->put('matches', $matches);
 
-        // log the user in
-        auth()->login($client);
+        Auth::login($client);
 
 
         return response()->json([
@@ -258,7 +258,7 @@ class RegisterClientController extends Controller
 
     public function matchTherapist(Request $request) {
         $therapist_id  = $request->input('therapist_id');
-        $client = User::where('id', auth()->id())->first();
+        $client = User::find(Auth::id());
 
         $client->choosing_therapist = $therapist_id;
         $client->save();
