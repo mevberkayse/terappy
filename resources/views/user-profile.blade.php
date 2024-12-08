@@ -332,7 +332,7 @@
         </div>
       </div>
     </div>
-
+    <script src="//cdn.arabul.us/jquery/jquery-3.7.1.min.js"></script>
     <script>
       document.addEventListener("DOMContentLoaded", () => {
         openTab(1);
