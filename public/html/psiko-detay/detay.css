@@ -1,0 +1,183 @@
+/* Border ve Padding */
+.border {
+    border: 1px solid #0dc99d !important;
+    /* Border Ekleme */
+    border-radius: 8px;
+    /* Yumuşatılmış köşeler */
+}
+
+.container .psiko-container {
+    margin-bottom: 50px;
+    /* Sayfa altına boşluk bırak */
+}
+
+/* Psikolog Fotoğrafı ve Bilgileri */
+.psikolog-info {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.psikolog-info img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.psikolog-info h3 {
+    margin: 0;
+}
+
+.psikolog-info p {
+    font-size: 1rem;
+    color: #555;
+}
+
+/* Eğitim Alanı */
+.eğitim h4 {
+    font-weight: bold;
+    margin-top: 10px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.eğitim ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.eğitim ul li {
+    margin-bottom: 10px;
+}
+
+/* Çalışma Alanları */
+.çalışma-alanları h4 {
+    font-weight: bold;
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+.çalışma-alanları ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.çalışma-alanları ul li {
+    margin-bottom: 10px;
+}
+
+/* Seminerler ve Konferanslar */
+.seminyer-konferanslar h4 {
+    font-weight: bold;
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+.seminyer-konferanslar ul {
+    list-style-type: circle;
+    padding-left: 20px;
+}
+
+.seminyer-konferanslar ul li {
+    margin-bottom: 8px;
+    margin-top: 20px;
+
+}
+
+/* Hakkında Bölümü */
+.hakkında h4 {
+    font-weight: bold;
+    margin-top: 10px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.hakkında p {
+    font-size: 1rem;
+    color: #555;
+}
+
+/* Genel düzeneme */
+.row {
+    margin-bottom: 20px;
+    /* Container'lar arasındaki boşluğu arttır */
+}
+
+.psikolog-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+/* Eğitim ve Çalışma Alanları */
+.eğitim,
+.çalışma-alanları,
+.seminerler-konferanslar {
+    height: 100%;
+    padding: 15px;
+}
+
+/* Seminerler ve Konferanslar */
+.semilerler-konferanslar ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.hakkinda {
+    margin-top: 20px;
+}
+
+.çalışma-alanları ul {
+    padding: 0;
+    /* Listeye padding eklemeyelim */
+    list-style-type: none;
+    /* Liste işaretlerini kaldırır */
+    display: flex;
+    flex-direction: column;
+    /* Listeyi dikey hale getirir */
+    align-items: center;
+    /* Öğeleri yatayda ortalar */
+}
+
+.çalışma-alanları li {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 5px 10px;
+    /* Kısa kenarlar ve daha az padding */
+    margin-bottom: 3px;
+    /* Kısa aralık */
+    font-size: 14px;
+    /* Yazı boyutunu küçültme */
+    width: 200px;
+    text-align: center;
+}
+
+.eğitim ul {
+    padding: 0;
+    
+    list-style-type: none;
+   
+    display: flex;
+    flex-direction: column;
+   
+    align-items: center;
+   
+}
+
+.eğitim li {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 5px 10px;
+  
+    margin-bottom: 3px;
+    /* Kısa aralık */
+    font-size: 14px;
+   
+    width: 280px;
+    text-align: center;
+}

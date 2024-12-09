@@ -16,9 +16,8 @@ return new class extends Migration
             $table->renameColumn('before_thearapy_sitution', 'previous_therapy_experience');
             $table->string('problems')->nullable();
             $table->string('therapist_features')->nullable();
-            $table->renameColumn('birthdate','age');
-//            $table->integer('age')->nullable();
-
+            //$table->renameColumn('birthdate','age');
+            $table->integer('age')->nullable();
         });
     }
 
