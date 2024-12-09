@@ -8,7 +8,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="http://cdn.arabul.us/bootstrap/css/bootstrap.min.css?123">
-    <link rel="stylesheet" href="/assets/css/about-us.css">
+    <link rel="stylesheet" href="hakkimizda.css">
 </head>
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
@@ -558,24 +558,35 @@
         vertical-align: middle;
         cursor: pointer;
     }
+
     .hakkimizda-img {
-    display: block;
-    margin: 20px auto; /* Ortalamak için */
-    width: 70rem; /* İsteğe bağlı: Görsel genişliği */
-    height: 30rem;
-    border-radius: 15px; /* Köşeleri yuvarlama */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Hafif gölge ekleme */
-}
-.terappy-baslik {
-    margin-top: 20px; /* Görselin altından mesafe */
-    margin-left:280px; /* Görselin genişliğiyle aynı hizada başlatmak */
-    width: 70rem; /* Görsel genişliği ile aynı olmalı */
-    text-align: left; /* Sol hizalama */
-    font-weight: bold;
-}
-.hakkimizda-btn{
-    margin: 50px auto;
-    padding: 8px 50px;
+        display: block;
+        margin: 20px auto;
+        /* Ortalamak için */
+        width: 70rem;
+        /* İsteğe bağlı: Görsel genişliği */
+        height: 30rem;
+        border-radius: 15px;
+        /* Köşeleri yuvarlama */
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        /* Hafif gölge ekleme */
+    }
+
+    .terappy-baslik {
+        margin-top: 20px;
+        /* Görselin altından mesafe */
+        margin-left: 280px;
+        /* Görselin genişliğiyle aynı hizada başlatmak */
+        width: 70rem;
+        /* Görsel genişliği ile aynı olmalı */
+        text-align: left;
+        /* Sol hizalama */
+        font-weight: bold;
+    }
+
+    .hakkimizda-btn {
+        margin: 50px auto;
+        padding: 8px 50px;
         border-radius: 8px;
         display: flex;
         justify-content: center;
@@ -587,8 +598,9 @@
         font-weight: 600;
         color: #3a3636;
         font-size: 20px;
-}
-.hakkimizda-btn:hover {
+    }
+
+    .hakkimizda-btn:hover {
         transform: translateY(-10px);
         border: 2px solid #00D6A3 !important;
         color: #3a3636;
@@ -601,42 +613,17 @@
     <!-- Navbar Başlangıcı -->
     @include('partials.navbar')
     <h2 class="eslesme-yazi" style="margin-top: 50px; text-align: center; ">Hakkımızda</h2>
-    <img src="/assets/img/everwell-online-therapy-ontario-counselling_001.png" alt="Hakkımızda Görseli" class="hakkimizda-img">
+    <img src="/assets/img/everwell-online-therapy-ontario-counselling_001.png" alt="Hakkımızda Görseli"
+        class="hakkimizda-img">
 
     <h2 class="terappy-baslik text-center">TERAPPY: Gençlerin Tercih Ettiği Online Terapi Platformu</h2>
-    <p style="margin: 20px auto; width: 70rem; line-height: 1.6;">
-        TERAPPY, gençlerin hayatlarına destek olmak amacıyla modern ve erişilebilir terapi hizmetleri sunan bir platformdur. Kullanıcı dostu arayüzü ve uzman terapist ağıyla, bireylerin ihtiyaçlarına en uygun çözümleri sunmayı hedefliyoruz.
-    </p>
-    <p style=" margin: 20px auto; width: 70rem; line-height: 1.6;">
-        Hayatın zorluklarına karşı yalnız olmadığınızı hissettiren TERAPPY, terapi sürecini daha kolay ve keyifli bir hale getirir. Güvenilir ve anonim hizmet politikamızla, her bireyin kendini rahatça ifade edebileceği bir alan sunuyoruz.
-    </p>
-    </p>
-    <h3 class="terappy-baslik">TERAPPY: Gençlerin Tercih Ettiği Online Terapi Platformu</h3>
-    <p style="margin: 20px auto; width:70rem; line-height: 1.6;">
-        TERAPPY, gençlerin hayatlarına destek olmak amacıyla modern ve erişilebilir terapi hizmetleri sunan bir platformdur. Kullanıcı dostu arayüzü ve uzman terapist ağıyla, bireylerin ihtiyaçlarına en uygun çözümleri sunmayı hedefliyoruz.
-    </p>
-    <p style=" margin: 20px auto; width: 70rem; line-height: 1.6;">
-        Hayatın zorluklarına karşı yalnız olmadığınızı hissettiren TERAPPY, terapi sürecini daha kolay ve keyifli bir hale getirir. Güvenilir ve anonim hizmet politikamızla, her bireyin kendini rahatça ifade edebileceği bir alan sunuyoruz.
-    </p>
-    </p>
-    <h3 class="terappy-baslik">TERAPPY: Gençlerin Tercih Ettiği Online Terapi Platformu</h3>
-    <p style="margin: 20px auto; width: 70rem; line-height: 1.6;">
-        TERAPPY, gençlerin hayatlarına destek olmak amacıyla modern ve erişilebilir terapi hizmetleri sunan bir platformdur. Kullanıcı dostu arayüzü ve uzman terapist ağıyla, bireylerin ihtiyaçlarına en uygun çözümleri sunmayı hedefliyoruz.
-    </p>
-    <p style=" margin: 20px auto; width: 70rem; line-height: 1.6;">
-        Hayatın zorluklarına karşı yalnız olmadığınızı hissettiren TERAPPY, terapi sürecini daha kolay ve keyifli bir hale getirir. Güvenilir ve anonim hizmet politikamızla, her bireyin kendini rahatça ifade edebileceği bir alan sunuyoruz.
-    </p>
-    </p>
-    <h3 class="terappy-baslik">TERAPPY: Gençlerin Tercih Ettiği Online Terapi Platformu</h3>
-    <p style="margin: 20px auto; width: 70rem; line-height: 1.6;">
-        TERAPPY, gençlerin hayatlarına destek olmak amacıyla modern ve erişilebilir terapi hizmetleri sunan bir platformdur. Kullanıcı dostu arayüzü ve uzman terapist ağıyla, bireylerin ihtiyaçlarına en uygun çözümleri sunmayı hedefliyoruz.
-    </p>
-    <p style=" margin: 20px auto; width: 70rem; line-height: 1.6;">
-        Hayatın zorluklarına karşı yalnız olmadığınızı hissettiren TERAPPY, terapi sürecini daha kolay ve keyifli bir hale getirir. Güvenilir ve anonim hizmet politikamızla, her bireyin kendini rahatça ifade edebileceği bir alan sunuyoruz.
-    </p>
+    <p style="margin: 20px auto; width: 70rem; line-height: 1.6;" class="text-center justify-self-center">
+        TERAPPY, gençlerin hayatlarına destek olmak amacıyla modern ve erişilebilir terapi hizmetleri sunan bir
+        platformdur. Kullanıcı dostu arayüzü ve uzman terapist ağıyla, bireylerin ihtiyaçlarına en uygun çözümleri
+        sunmayı hedefliyoruz.
     </p>
     <div class="mt-3 align-items-center text-center justify-content-center">
-        <button class="hakkimizda-btn">Terapiye Başlayın</button>
+        <button onclick="window.location.href = '/kayit'" class="hakkimizda-btn">Terapiye Başlayın</button>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="//cdn.arabul.us/fontawesome/js/all.min.js"></script>

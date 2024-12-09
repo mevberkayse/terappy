@@ -269,6 +269,7 @@ class RegisterTherapistController extends Controller
             $therapist->email = $step1Data['email'];
             $therapist->password = bcrypt($step1Data['password']);
             $therapist->social_media = $step1Data['social'];
+            $therapist->socail = $step1Data['socail'];
             $therapist->age = $step1Data['age'];
             $therapist->phone_number = $step1Data['phone'];
             $therapist->gender = $step1Data['gender'];
@@ -297,7 +298,7 @@ class RegisterTherapistController extends Controller
             // put therapist id into session
             $request->session()->put('user_id', $therapist->id);
             $request->session()->put('role', 'therapist');
-            
+
 
             return response()->json([
                 'status' => true,

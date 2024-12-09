@@ -1,8 +1,7 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light customizedNavbar">
     <div class="container">
         <a class="navbar-brand" href="/">
-            <img style="height:35px"
-                src="/assets/img/logo.png" alt="">
+            <img src="/assets/img/logoyesil2.png" style="height: 120px;" alt="">
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -11,8 +10,7 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto gap-5">
                 <li class="nav-item">
-                    <a class="nav-link @if(Request::url() == '/') active @endif" aria-current="page" href="/"
-                        id="anasayfa">Anasayfa</a>
+                    <a class="nav-link" aria-current="page" href="/" id="anasayfa">Anasayfa</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link @if(Request::url() == '/nasil-calisir') active @endif" href="/nasil-calisir"
@@ -27,7 +25,7 @@
                         href="/terapistler">Danışmanlarımız</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">İletişim</a>
+                    <a class="nav-link" href="/yardim">İletişim</a>
                 </li>
             </ul>
             <button class="btn-navbar" data-bs-toggle="modal" data-bs-target="#loginModal">Kaydol/Giriş Yap</button>
@@ -98,34 +96,34 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0-alpha1/js/bootstrap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="//cdn.arabul.us/fontawesome/js/all.min.js"></script>
-<script>
-    $(document).ready(function () {
-        $('#loginButton').click(function () {
-            let email = $('#email').val();
-            let password = $('#password').val();
-            let role = $('input[name="role"]:checked').val();
-            let _token = $('input[name="_token"]').val();
-            $.ajax({
-                url: '/login-custom',
-                method: 'POST',
-                data: {
-                    email: email,
-                    password: password,
-                    role: role,
-                    _token: _token
-                },
-                success: function (res) {
-                    if (res.status) {
-                        window.location.href = res.link;
-                    } else {
-                        alert(res.message);
+    <script>
+        $(document).ready(function () {
+            $('#loginButton').click(function () {
+                let email = $('#email').val();
+                let password = $('#password').val();
+                let role = $('input[name="role"]:checked').val();
+                let _token = $('input[name="_token"]').val();
+                $.ajax({
+                    url: '/login-custom',
+                    method: 'POST',
+                    data: {
+                        email: email,
+                        password: password,
+                        role: role,
+                        _token: _token
+                    },
+                    success: function (res) {
+                        if (res.status) {
+                            window.location.href = res.link;
+                        } else {
+                            alert(res.message);
+                        }
                     }
-                }
+                });
+            });
+            $('#kayit').click(function () {
+                window.location.href = '/register';
             });
         });
-        $('#kayit').click(function () {
-            window.location.href = '/register';
-        });
-        });
-</script>
+    </script>
 </nav>

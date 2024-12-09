@@ -398,7 +398,7 @@
 
     <!-- Butonlar -->
     <div class="button-group">
-        <button type="button" class="primary-button">İletin</button>
+        <button type="button" class="primary-button" onclick="alert('Mesajınız alınmıştır, sizinle e-mail adresiniz üzerinden iletişime geçeceğiz.')">İletin</button>
     </div>
 
 </body>

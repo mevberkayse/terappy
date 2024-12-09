@@ -7,6 +7,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
 use App\Models\Therapist;
@@ -81,7 +82,7 @@ class ProfileController extends Controller
         $email = $request->input('email');
         $password = $request->input('password');
         $role = $request->input('role');
-    
+
         if ($role == 'client') {
             if (Auth::attempt(['email' => $email, 'password' => $password])) {
                 return response()->json(['success' => true]);
@@ -100,8 +101,8 @@ class ProfileController extends Controller
             return response()->json(['success' => false, 'message' => 'Geçersiz rol']);
         }
     }
-    
-    
+
+
 
     public function userProfile(Request $request)
     {
@@ -192,5 +193,35 @@ class ProfileController extends Controller
                 'message' => 'Bir hata oluştu: ' . $e->getMessage(),
             ], 500);  // 500 sunucu hatası
         }
+    }
+
+    public function updatePassword(Request $request)
+    {
+        // Geçerli şifre ve yeni şifreyi doğrulama
+        $request->validate([
+            'old_password' => 'required',
+            'new_password' => 'required|confirmed|min:8',
+        ]);
+
+        // Auth::user() ile oturum açmış kullanıcıyı alıyoruz
+        $user = Auth::user();
+
+        // Eğer kullanıcı oturum açmamışsa, hata döndürüyoruz
+        if (!$user) {
+            return response()->json(['message' => 'Kullanıcı oturumu açmamış.'], 401);  // 401 Unauthorized
+        }
+
+        // Mevcut şifreyi kontrol etme
+        if (!Hash::check($request->input('old_password'), $user->password)) {
+            return response()->json(['message' => 'Mevcut şifre yanlış'], 422);  // 422 Unprocessable Entity
+        }
+
+        // Yeni şifreyi veritabanına kaydetmek için DB Query Builder kullanma
+        DB::table('users')
+            ->where('id', $user->id)
+            ->update(['password' => Hash::make($request->input('new_password'))]);
+
+        // Başarı mesajı döndürme
+        return response()->json(['message' => 'Şifre başarıyla güncellendi']);
     }
 }

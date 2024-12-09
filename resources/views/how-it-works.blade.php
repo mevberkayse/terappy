@@ -155,7 +155,7 @@
     }
 
     body {
-        background-image: url('/public/assets/img/vecteezy_green-abstract-background-with-wavy-lines_.jpg');
+        background-image: url('/assets/img/vecteezy_green-abstract-background-with-wavy-lines_.jpg');
         /* JPG dosyasını buraya ekleyin */
         background-size: cover;
         /* Arkaplanın tam olarak kapsamasını sağlar */
@@ -171,7 +171,7 @@
         left: 0;
         width: 100%;
         height: 100%;
-        background-image: url('/public/assets/img/vecteezy_green-abstract-background-with-wavy-lines_.jpg');
+        background-image: url('/assets/img/vecteezy_green-abstract-background-with-wavy-lines_.jpg');
 
         background-size: cover;
         background-position: center;
@@ -223,7 +223,7 @@
         right: 0px;
         z-index: 0;
         background-repeat: no-repeat !important;
-        background-image: url(/public/assets/img/LeftImage.png);
+        background-image: url(/assets/img/LeftImage.png);
     }
 
     .leftSide {
@@ -237,7 +237,7 @@
         z-index: 0;
         height: 100%;
         background-repeat: no-repeat !important;
-        background-image: url(/public/assets/img/LeftImage.png);
+        background-image: url(/assets/img/LeftImage.png);
     }
 
     .customizedBoxes {
@@ -550,12 +550,18 @@
     .container {
         position: relative;
     }
+
     .card {
-    background: rgba(255, 255, 255, 0.7); /* Beyaz arka plan, %10 şeffaf */
-    border-radius: 10px;                  /* Köşe yuvarlama */
-    padding: 20px;                        /* İç boşluk */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Hafif gölge */
-}
+        background: rgba(255, 255, 255, 0.7);
+        /* Beyaz arka plan, %10 şeffaf */
+        border-radius: 10px;
+        /* Köşe yuvarlama */
+        padding: 20px;
+        /* İç boşluk */
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        /* Hafif gölge */
+    }
+
     .eslesme-yazi,
     .alt-yazi {
         position: relative;
@@ -594,7 +600,7 @@
                 <div class="card text-center">
                     <div class="card-body">
                         <div class="img-container">
-                            <img src="/public/assets/img/kindpng_2738804.png" alt="Örnek Resim">
+                            <img src="/assets/img/kindpng_2738804.png" alt="Örnek Resim">
                         </div>
                         <p>1 - Kayıt ol kısmından profilinizi oluşturun.</p>
                     </div>
@@ -605,7 +611,7 @@
                 <div class="card text-center">
                     <div class="card-body">
                         <div class="img-container">
-                            <img src="/public/assets/img/hero-sec-banner.png" alt="Örnek Resim">
+                            <img src="/assets/img/hero-sec-banner.png" alt="Örnek Resim">
                         </div>
                         <p>2 - Psikologlarımızı inceleyin ve size en uygun psikologlar için kaydınızı oluşturun.</p>
                     </div>
@@ -616,7 +622,7 @@
                 <div class="card text-center">
                     <div class="card-body">
                         <div class="img-container">
-                            <img src="/public/assets/img/pngtree-therapist-conduct-psychotherapy-counseling-png-image_11961647.png"
+                            <img src="/assets/img/pngtree-therapist-conduct-psychotherapy-counseling-png-image_11961647.png"
                                 alt="Örnek Resim">
                         </div>
                         <p>3 - Sizin için en uygun 3 psikologumuzu bulalım.</p>

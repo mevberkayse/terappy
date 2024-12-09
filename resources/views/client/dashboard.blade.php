@@ -110,7 +110,7 @@
                             <a href="/terapist/profil/{{$match['therapist']->id}}" target="_blank" class="text-decoration-none btn primary-button">Profili Görüntüle</a>
                             <button class="btn modal-btn" onclick="chooseTherapist({{$match['therapist']->id}})">Hemen Eşleş</button>
                         </div>
-                        <div class="match-percentage">0%</div>
+                        <div class="match-percentage">{{$match['match']}}%</div>
                     </div>
                 </div>
             </div>

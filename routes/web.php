@@ -13,22 +13,13 @@ use App\Models\Therapist;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
+Route::get('/{index?}', function () {
     return view('welcome');
-})->name('index');
+})->name('index')->where('index', 'index');
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::get('/yardim', [IndexController::class, 'help']);
 Route::get('/settings', [ProfileController::class, 'settings']);
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-});
-
 Route::get('/hakkimizda', [IndexController::class, 'about']);
 Route::get('/terapistler', [IndexController::class, 'therapists']);
 
@@ -43,6 +34,7 @@ Route::post('/login-custom', [ProfileController::class, 'loginCustom'])->name('l
 Route::post('/therapist/rate', [ProfileController::class, 'rateTherapist'])->middleware('auth');
 Route::post('/profile/update-name', [ProfileController::class, 'updateName'])->name('profile.update-name');
 Route::post('/profile/update-email', [ProfileController::class, 'updateEmail'])->name('profile.update.email');
+Route::post('/profile/update-password', [ProfileController::class, 'updatePassword'])->name('profile.update.email');
 
 Route::get('/terapist/profil/{id}', [ProfileController::class, 'showTherapist'])->name('therapist.profile.show');
 Route::get('/nasil-calisir', [IndexController::class, 'howItWorks']);
@@ -84,4 +76,3 @@ Route::prefix('api')->group(function () {
 
     Route::post('/match/therapist', [APIRegisterClientController::class, 'matchTherapist']);
 });
-require __DIR__ . '/auth.php';

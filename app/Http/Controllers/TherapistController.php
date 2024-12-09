@@ -44,7 +44,8 @@ class TherapistController extends Controller
                 'rate' => therapist_rating::where('therapist_id', $therapist->id)->where('user_id', $client->id)->first()['rate'] ?? null
             ];
         }
-        return view('therapist.profile', ['therapist' => $therapist, 'matches' => $matches]);
+        $possibleClients = User::where('choosing_therapist', $therapist->id)->get();
+        return view('therapist.profile', ['therapist' => $therapist, 'matches' => $matches, 'possibleClients' => $possibleClients]);
     }
 
     public function match(Request $request)

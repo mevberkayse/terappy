@@ -8,7 +8,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="http://cdn.arabul.us/bootstrap/css/bootstrap.min.css?123">
-    <link rel="stylesheet" href="psikologlar.css">
+    <link rel="stylesheet" href="/assets/css/psikologlar.css">
 </head>
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
@@ -284,12 +284,14 @@
         color: #3a3636;
         background-color: white;
     }
-    .modal-pri-button:hover{
+
+    .modal-pri-button:hover {
         transform: translateY(-10px);
         border: 2px solid #0dc99d !important;
         color: #3a3636;
         background: #00D6A3;
     }
+
     .primaryBoxesContent {
         width: 100%;
         display: flex;
@@ -479,13 +481,60 @@
             margin-left: 0px !important;
         }
     }
+
+    body {
+        background-image: url('/assets/img/images (1).jpg');
+        /* JPG dosyasını buraya ekleyin */
+        background-size: cover;
+        /* Arkaplanın tam olarak kapsamasını sağlar */
+        background-position: center;
+        /* Ortalar */
+        background-repeat: no-repeat;
+
+    }
+
+    .blurred-background {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: url('/assets/img/images (1).jpg');
+
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        filter: blur(10px);
+        /* Blur efekti */
+        z-index: 0;
+        /* Arka planda kalması için */
+    }
+
+    .customizedNavbar {
+        background-color: transparent !important;
+        /* Arka planı şeffaf yapar */
+        box-shadow: none;
+        /* Gölgeyi kaldırır */
+        border-bottom: none;
+        /* Alt çizgiyi kaldırır (varsa) */
+    }
+    .card {
+        background: rgba(255, 255, 255, 0.7);
+        /* Beyaz arka plan, %10 şeffaf */
+        border-radius: 10px;
+        /* Köşe yuvarlama */
+        padding: 20px;
+        /* İç boşluk */
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        /* Hafif gölge */
+    }
 </style>
 
 <body>
-
+    <div class="blurred-background"></div>
     <!-- Navbar Başlangıcı -->
     @include('partials.navbar')
-    <h2 class="eslesme-yazi" style="margin-top: 50px; text-align: center;">Psikologlarımız</h2>
+    <h2 class="eslesme-yazi" style="margin-top: 50px; text-align: center; z-index: 1; position: relative;">Psikologlarımız</h2>
     <div class="container eslesme-container" style="margin-top: 100px;">
 
         <div class="row">
@@ -494,15 +543,15 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="profile">
-                            <img src="{{ $therapist->profile_picture }}"
-                                alt="Psikolog Fotoğrafı" class="profile-img">
+                            <img src="{{ $therapist->profile_picture }}" alt="Psikolog Fotoğrafı" class="profile-img">
                             <div class="profile-info">
                                 <h5 class="name">{{$therapist->name}}</h5>
                                 <p class="title">{{$therapist->title}}</p>
-                                <p class="about">{{$therapist->about}}</p>
+                                <p class="about" style="max-width: 200px;">{{$therapist->about}}</p>
                             </div>
                         </div>
-                            <a href="/terapist/profil/{{$therapist->id}}" class="btn modal-pri-button">Profili Görüntüle</a>
+                        <button onclick="window.location.href = '/terapist/profil/{{$therapist->id}}'"
+                            class="btn modal-pri-button">Profili Görüntüle</button>
                     </div>
                 </div>
             </div>
