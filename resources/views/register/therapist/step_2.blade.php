@@ -94,20 +94,26 @@
                     <input type="text" class="form-control" id="lastName" placeholder="Soy isminizi giriniz" required>
                 </div>
             </div>
+            <div class="row mb-3 mt-3">
+                <div class="col-md-6">
+                    <label for="password" class="form-label">Şifre</label>
+                    <input type="password" class="form-control" id="password" placeholder="******" required minlength="6">
+                </div>
+                <div class="col-md-6">
+                    <label for="password_r" class="form-label">Tekrar Şifre</label>
+                    <input type="password" class="form-control" id="password_r" placeholder="******" required minlength="6">
+                </div>
+                <div class="row mb-3">
+    <div class="col-12">
+        <button type="button" class="btn btn-secondary" id="toggle-password">Görüntüle</button>
+    </div>
+</div>
+
+            </div>
             <!-- Yaş -->
             <div class="mb-3">
                 <label for="age" class="form-label">Yaş</label>
                 <input type="number" class="form-control" id="age" placeholder="Yaşınızı giriniz" required>
-            </div>
-            <div class="row mb-3 mt-3">
-                <div class="col-md-6" >
-                    <label for="password" class="form-label">Şifre</label>
-                    <input type="text" class="form-control" id="password" placeholder="******" required minlength="6">
-                </div>
-                <div class="col-md-6">
-                    <label for="password_r" class="form-label">Tekrar Şifre</label>
-                    <input type="text" class="form-control" id="password_r" placeholder="******" required minlength="6">
-                </div>
             </div>
             <div class="mb-3">
                 <!-- Ülke Form Alanı -->
@@ -283,50 +289,63 @@
     <script src="//cdn.arabul.us/fontawesome/js/all.min.js"></script>
     <script src="//cdn.arabul.us/jquery/jquery-3.7.1.min.js"></script>
     <script>
-    $(document).ready(() => {
-          $('#next_step').click(() => {
-            let firstName = $("#firstName").val();
-            let lastName = $('#lastName').val();
-            let age = $('#age').val();
-            let country = $('#countrySelect').text();
-            let phone = $('#phone').val();
-            let email = $('#email').val();
-            let gender = $('#genderSelect').text();
-            let password = $('#password').val();
-            let password_r = $('#password_r').val();
-            let social= $('#socialSelect').text();
-            let socail = $('#socail').val();
+        $(document).ready(() => {
+            $('#next_step').click(() => {
+                let firstName = $("#firstName").val();
+                let lastName = $('#lastName').val();
+                let age = $('#age').val();
+                let country = $('#countrySelect').text();
+                let phone = $('#phone').val();
+                let email = $('#email').val();
+                let gender = $('#genderSelect').text();
+                let password = $('#password').val();
+                let password_r = $('#password_r').val();
+                let social = $('#socialSelect').text();
+                let socail = $('#socail').val();
 
 
-            $.ajax({
-                url:'/api/kayit/terapist/1',
-                method:'POST',
-                data:{
-                    firstName:firstName,
-                    lastName:lastName,
-                    age:age,
-                    country:country,
-                    phone:phone,
-                    email:email,
-                    gender: gender,
-                    password:password,
-                    password_r:password_r,
-                    social:social,
-                    socail:socail,
-                    _token:'{{csrf_token()}}'
-                },
-                success:(res)=>{
-                    if(res.status) {
-                      window.location.href = res.link;
+                $.ajax({
+                    url: '/api/kayit/terapist/1',
+                    method: 'POST',
+                    data: {
+                        firstName: firstName,
+                        lastName: lastName,
+                        age: age,
+                        country: country,
+                        phone: phone,
+                        email: email,
+                        gender: gender,
+                        password: password,
+                        password_r: password_r,
+                        social: social,
+                        socail: socail,
+                        _token: '{{csrf_token()}}'
+                    },
+                    success: (res) => {
+                        if (res.status) {
+                            window.location.href = res.link;
+                        }                    },
+                    error: (err) => {
+                        alert('Bir hata oluştu');
+                        console.log(err);
                     }
-                },
-                error:(err)=>{
-                    alert('Bir hata oluştu');
-                    console.log(err);
-                }
-            })
-          });
+                })
+            });
         });
     </script>
-    </body>
+<script>
+    $(document).ready(() => {
+        let isPasswordVisible = false; // Başlangıçta şifreler gizli
+
+        // "Görüntüle" butonuna tıklama olayını tanımlıyoruz
+        $('#toggle-password').click(() => {
+            isPasswordVisible = !isPasswordVisible; // Şifre görünürlüğünü değiştir
+            const type = isPasswordVisible ? 'text' : 'password'; // Eğer görünürse 'text', yoksa 'password'
+            $('#password, #password_r').attr('type', type); // Her iki input alanının tipini değiştir
+            $('#toggle-password').text(isPasswordVisible ? 'Gizle' : 'Görüntüle'); // Butonun yazısını değiştir
+        });
+    });
+</script>
+</body>
+
 </html>

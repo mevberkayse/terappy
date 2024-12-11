@@ -29,6 +29,7 @@ class LoginRequest extends FormRequest
         return [
             'email' => ['required', 'string', 'email'],
             'password' => ['required', 'string'],
+            'role' =>  ['required', 'string']
         ];
     }
 
@@ -37,19 +38,20 @@ class LoginRequest extends FormRequest
      *
      * @throws \Illuminate\Validation\ValidationException
      */
-    public function authenticate(): void
+    public function authenticate()
     {
         $this->ensureIsNotRateLimited();
 
-        if (! Auth::attempt($this->only('email', 'password'), $this->boolean('remember'))) {
-            RateLimiter::hit($this->throttleKey());
-
+        session()->put('role', $this->input('role'));
+        if ($this->input('role') == 'client') {
+            Auth::guard('web')->attempt($this->only('email', 'password'), $this->filled('remember'));
+        } elseif ($this->input('role') == 'therapist') {
+            Auth::guard('therapist')->attempt($this->only('email', 'password'), $this->filled('remember'));
+        } else {
             throw ValidationException::withMessages([
-                'email' => trans('auth.failed'),
+                'role' => 'Role is invalid'
             ]);
         }
-
-        RateLimiter::clear($this->throttleKey());
     }
 
     /**
@@ -80,6 +82,6 @@ class LoginRequest extends FormRequest
      */
     public function throttleKey(): string
     {
-        return Str::transliterate(Str::lower($this->string('email')).'|'.$this->ip());
+        return Str::transliterate(Str::lower($this->string('email')) . '|' . $this->ip());
     }
 }
