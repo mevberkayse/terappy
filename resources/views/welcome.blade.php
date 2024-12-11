@@ -199,6 +199,7 @@
             height: 100%;
             background-repeat: no-repeat !important;
             background-image: url(/assets/img/LeftImage.png);
+            margin-top: 1.5rem;
         }
 
         .customizedBoxes {
@@ -659,7 +660,7 @@
     <script src="//cdn.arabul.us/fontawesome/js/all.min.js"></script>
     <script src="//cdn.arabul.us/jquery/jquery-3.7.1.min.js"></script>
     <script>
-       
+
         // Bootstrap için gerekli olan scriptleri dinamik olarak ekleme (eğer eksikse)
         (function() {
             const popperScript = document.createElement('script');

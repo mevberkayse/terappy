@@ -1,7 +1,12 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light customizedNavbar">
     <div class="container">
         <a class="navbar-brand" href="/">
-            
+            @if(Request::segment(1) == null || Request::segment(1) == "hakkimizda" )
+            <img src="/assets/img/logoyesil3.png" alt="" style="height:60px; width:240px;">
+            @else
+            <img src="/assets/img/logobeyaz3.png" alt="" style="height:60px; width:240px;">
+
+            @endif
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
