@@ -298,7 +298,21 @@
         font-weight: 600;
         color: #3a3636;
     }
-
+    .modal-btn {
+        padding: 12px 25px;
+        /* Butonun içindeki metin için boşluk */
+        font-size: 20px;
+        border-radius: 8px;
+        display: block;
+        justify-content: center;
+        align-items: center;
+        background: white;
+        width: max-content;
+        border: 2px solid #00D6A3 !important;
+        transition: 0.3s;
+        font-weight: 600;
+        color: #3a3636;
+    }
     .modal-btn:hover {
         transform: translateY(-10px);
         border: 2px solid #0dc99d !important;
@@ -632,7 +646,7 @@
         </div>
     </div>
     <div class="button-group text-center mt-4">
-        <button type="button" class="modal-btn">Terapiye Başlayın</button>
+        <button type="button" class="basla-btn">Terapiye Başlayın</button>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="//cdn.arabul.us/fontawesome/js/all.min.js"></script>

@@ -122,7 +122,7 @@
     height: 50px; /* Butonun boyu büyütüldü */
     justify-content: center;
     align-items: center;
-    position: absolute; 
+    /*position: absolute; */
     bottom: 40px; 
 }
 

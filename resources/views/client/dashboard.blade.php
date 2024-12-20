@@ -70,6 +70,9 @@
             font-family: Barlow;
             font-weight: 700;
         }
+        .card-size{
+            margin-bottom:20px;
+        }
     </style>
 </head>
 
@@ -91,11 +94,13 @@
     <h2 class="eslesme-yazi">Eşleştiğiniz Psikologlar</h2>
     <div class="container eslesme-container">
 
-        <div class="row">
-            @php $matches = session()->get('matches'); @endphp
+        <div class="row ">
+            @php $matches = session()->get('matches'); 
+            $matches = array_slice($matches,0,3);
+            @endphp
             @foreach($matches as $match)
             <div class="col-md-4">
-                <div class="card">
+                <div class="card card-size">
                     <div class="card-body">
                         <div class="profile">
                             <img src="{{$match['therapist']->profile_picture}}" alt="Psikolog Fotoğrafı"
