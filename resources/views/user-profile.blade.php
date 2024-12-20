@@ -277,6 +277,10 @@
         top: 10px;
         right: 10px;
     }
+    .logo-img{
+        width: 200px;
+        height: 200px;
+    }
 </style>
 
 <body class="bg-success">
@@ -285,7 +289,7 @@
         <div class="row">
             <!-- 3 kolonluk alan -->
             <div class="col-3 p-4 mb-3">
-                <h1 style="font-size:50px;"><img src="/assets/img/logobeyaz.png" alt=""></h1>
+                <h1 style="font-size:50px;"><img class="logo-img"src="/assets/img/logobeyaz.png" alt=""></h1>
                 <h1 class="mt-5 " id="kullanıcı-adi">Hoş Geldin, <span>{{$user->name}}</span></h1>
                 <div class="terapistiniz border rounded border-white p-3">
                     <i class="fa-solid fa-laptop-medical me-3"></i>
@@ -336,7 +340,8 @@
 
                                 </div>
                             </div>
-                            <button class="modal-pri-button"
+                            <div class="d-flex align-items-center ">
+                            <button class="modal-pri-button me-5"
                                 onclick="window.location.href ='/terapist/profil/{{$therapist->id}}'">Profili
                                 Görüntüle</button>
                             @if($isMatched === true)
@@ -346,6 +351,8 @@
                             @else
                             <b>Terapistiniz henüz eşleşmeyi onaylamadı. ⌛</b>
                             @endif
+                            </div>
+                           
                         </div>
                     </div>
 

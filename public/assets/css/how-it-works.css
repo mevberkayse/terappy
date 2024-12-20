@@ -86,13 +86,13 @@
     font-weight: 600;
     color: #3a3636;
     font-size: 18px;
-    width: 200px; /* Butonun eni küçültüldü */
+    /*width: 200px; /* Butonun eni küçültüldü */
     height: 50px; /* Butonun boyu büyütüldü */
     justify-content: center;
     align-items: center;
     position: absolute; 
     bottom: 40px; 
-    
+    margin-bottom:5px;
 }
 .modal-pri-button{
     background: white;
