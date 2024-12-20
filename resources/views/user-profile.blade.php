@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="tr">
 
 <head>
@@ -327,7 +327,7 @@
                     <div class="card mt-3">
                         <div class="card-body">
                             <div class="profile">
-                                <img src="/public/assets/img/Sample_User_Icon.png" alt="Psikolog Fotoğrafı"
+                                <img src="{{$therapist->profile_picture}}" alt="Psikolog Fotoğrafı"
                                     class="profile-img">
                                 <div class="profile-info">
                                     <h5 class="name">{{$therapist->name}}</h5>

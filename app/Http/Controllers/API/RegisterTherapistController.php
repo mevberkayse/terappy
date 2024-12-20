@@ -154,6 +154,7 @@ class RegisterTherapistController extends Controller
             ]);
         }
         $filePath = null;
+        debugbar()->info($fileInput);
         if ($request->hasFile('fileInput')) {
             $name = $request->session()->get('register_therapist_step_1')['firstName'] . '_' . $request->session()->get('register_therapist_step_1')['lastName'];
             $fileInput = $request->file('fileInput');
