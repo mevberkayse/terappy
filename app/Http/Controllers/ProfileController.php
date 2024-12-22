@@ -85,7 +85,7 @@ class ProfileController extends Controller
 
         if ($role == 'client') {
             if (Auth::attempt(['email' => $email, 'password' => $password])) {
-                return redirect()->back()->with(['success' => true]);
+                return redirect('/user-profile');
             } else {
                 return redirect()->back()->with(['success' => false, 'message' => 'Email veya şifre hatalı']);
             }
@@ -93,7 +93,7 @@ class ProfileController extends Controller
             $therapist = Therapist::where('email', $email)->first();
             if ($therapist && password_verify($password, $therapist->password)) {
                 session(['role' => 'therapist', 'user_id' => $therapist->id]);
-                return redirect()->back()->with(['success' => true]);
+                return redirect('/therapist-dashboard');
             } else {
                 return redirect()->back()->with(['success' => false, 'message' => 'Email veya şifre hatalı']);
             }

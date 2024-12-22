@@ -292,7 +292,7 @@
                 <!-- Terapistiniz İçeriği -->
                 <div id="content-1" class="content-section">
                     <h3>Danışanlarınız</h3>
-                    @foreach($matches as $match)
+                    @foreach($possibleClients as $match)
                     <div class="card mt-3">
                         <div class="danisan-bilgisi">
                             <h4>{{$match['client']->name}}</h4>
