@@ -80,6 +80,11 @@
                                     <input type="checkbox" class="form-check-input" id="rememberMe">
                                     <label class="form-check-label" for="rememberMe">Beni Hatırla</label>
                                 </div>
+                                @if($errors->any())
+                                <div class="alert alert-danger">
+                                    {{$errors->first()}}
+                                </div>
+                                @endif
                             </form>
                         </div>
                         <div class="modal-footer">
@@ -103,29 +108,6 @@
     <script src="//cdn.arabul.us/fontawesome/js/all.min.js"></script>
     <script>
         $(document).ready(function () {
-            $('#loginButton').click(function () {
-                let email = $('#email').val();
-                let password = $('#password').val();
-                let role = $('input[name="role"]:checked').val();
-                let _token = $('input[name="_token"]').val();
-                $.ajax({
-                    url: '/login-custom',
-                    method: 'POST',
-                    data: {
-                        email: email,
-                        password: password,
-                        role: role,
-                        _token: _token
-                    },
-                    success: function (res) {
-                        if (res.status) {
-                            window.location.href = res.link;
-                        } else {
-                            alert(res.message);
-                        }
-                    }
-                });
-            });
             $('#kayit').click(function () {
                 window.location.href = '/register';
             });
