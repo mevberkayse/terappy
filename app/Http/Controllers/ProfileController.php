@@ -85,20 +85,20 @@ class ProfileController extends Controller
 
         if ($role == 'client') {
             if (Auth::attempt(['email' => $email, 'password' => $password])) {
-                return response()->json(['success' => true]);
+                return redirect()->back()->with(['success' => true]);
             } else {
-                return response()->json(['success' => false, 'message' => 'Email veya şifre hatalı']);
+                return redirect()->back()->with(['success' => false, 'message' => 'Email veya şifre hatalı']);
             }
         } elseif ($role == 'therapist') {
             $therapist = Therapist::where('email', $email)->first();
             if ($therapist && password_verify($password, $therapist->password)) {
                 session(['role' => 'therapist', 'user_id' => $therapist->id]);
-                return response()->json(['success' => true]);
+                return redirect()->back()->with(['success' => true]);
             } else {
-                return response()->json(['success' => false, 'message' => 'Email veya şifre hatalı']);
+                return redirect()->back()->with(['success' => false, 'message' => 'Email veya şifre hatalı']);
             }
         } else {
-            return response()->json(['success' => false, 'message' => 'Geçersiz rol']);
+            return redirect()->back()->with(['success' => false, 'message' => 'Geçersiz Rol']);
         }
     }
 
