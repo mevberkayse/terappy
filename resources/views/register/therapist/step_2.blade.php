@@ -97,17 +97,19 @@
             <div class="row mb-3 mt-3">
                 <div class="col-md-6">
                     <label for="password" class="form-label">Şifre</label>
-                    <input type="password" class="form-control" id="password" placeholder="******" required minlength="6">
+                    <input type="password" class="form-control" id="password" placeholder="******" required
+                        minlength="6">
                 </div>
                 <div class="col-md-6">
                     <label for="password_r" class="form-label">Tekrar Şifre</label>
-                    <input type="password" class="form-control" id="password_r" placeholder="******" required minlength="6">
+                    <input type="password" class="form-control" id="password_r" placeholder="******" required
+                        minlength="6">
                 </div>
                 <div class="row mb-3">
-    <div class="col-12">
-        <button type="button" class="btn btn-secondary" id="toggle-password">Görüntüle</button>
-    </div>
-</div>
+                    <div class="col-12">
+                        <button type="button" class="btn btn-secondary" id="toggle-password">Görüntüle</button>
+                    </div>
+                </div>
 
             </div>
             <!-- Yaş -->
@@ -324,7 +326,10 @@
                     success: (res) => {
                         if (res.status) {
                             window.location.href = res.link;
-                        }                    },
+                        } else {
+                            alert(res.message);
+                        }
+                    },
                     error: (err) => {
                         alert('Bir hata oluştu');
                         console.log(err);
@@ -333,19 +338,19 @@
             });
         });
     </script>
-<script>
-    $(document).ready(() => {
-        let isPasswordVisible = false; // Başlangıçta şifreler gizli
+    <script>
+        $(document).ready(() => {
+            let isPasswordVisible = false; // Başlangıçta şifreler gizli
 
-        // "Görüntüle" butonuna tıklama olayını tanımlıyoruz
-        $('#toggle-password').click(() => {
-            isPasswordVisible = !isPasswordVisible; // Şifre görünürlüğünü değiştir
-            const type = isPasswordVisible ? 'text' : 'password'; // Eğer görünürse 'text', yoksa 'password'
-            $('#password, #password_r').attr('type', type); // Her iki input alanının tipini değiştir
-            $('#toggle-password').text(isPasswordVisible ? 'Gizle' : 'Görüntüle'); // Butonun yazısını değiştir
+            // "Görüntüle" butonuna tıklama olayını tanımlıyoruz
+            $('#toggle-password').click(() => {
+                isPasswordVisible = !isPasswordVisible; // Şifre görünürlüğünü değiştir
+                const type = isPasswordVisible ? 'text' : 'password'; // Eğer görünürse 'text', yoksa 'password'
+                $('#password, #password_r').attr('type', type); // Her iki input alanının tipini değiştir
+                $('#toggle-password').text(isPasswordVisible ? 'Gizle' : 'Görüntüle'); // Butonun yazısını değiştir
+            });
         });
-    });
-</script>
+    </script>
 </body>
 
 </html>

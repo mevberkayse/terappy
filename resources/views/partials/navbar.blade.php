@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light customizedNavbar">
     <div class="container">
-        <a class="navbar-brand" href="/">
-            @if(Request::segment(1) == null || Request::segment(1) == "hakkimizda" )
+        <a class="navbar-brand" href="/index">
+            @if(Request::segment(1) == null || Request::segment(1) == "hakkimizda" || Request::segment(1) == "index" )
             <img src="/assets/img/logoyesil3.png" alt="" style="height:60px; width:240px;">
             @else
             <img src="/assets/img/logobeyaz3.png" alt="" style="height:60px; width:240px;">
@@ -15,7 +15,7 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto gap-5">
                 <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="/" id="anasayfa">Anasayfa</a>
+                    <a class="nav-link" aria-current="page" href="/index" id="anasayfa">Anasayfa</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link @if(Request::url() == '/nasil-calisir') active @endif" href="/nasil-calisir"
@@ -80,11 +80,7 @@
                                     <input type="checkbox" class="form-check-input" id="rememberMe">
                                     <label class="form-check-label" for="rememberMe">Beni Hatırla</label>
                                 </div>
-                                @if($errors->any())
-                                <div class="alert alert-danger">
-                                    {{$errors->first()}}
-                                </div>
-                                @endif
+
                             </form>
                         </div>
                         <div class="modal-footer">
@@ -106,10 +102,19 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0-alpha1/js/bootstrap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="//cdn.arabul.us/fontawesome/js/all.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    @if(session('error'))
+    <script>
+        $(document).ready(() => {
+            toastr.error("{{session('error')}}", "Hata!");
+        })
+    </script>
+    @endif
     <script>
         $(document).ready(function () {
             $('#kayit').click(function () {
-                window.location.href = '/register';
+                window.location.href = '/kayit';
             });
         });
     </script>

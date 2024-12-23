@@ -165,15 +165,16 @@
     <!-- Ortalanan container -->
     <div class="container centered-container">
         <h2 class="text-center mb-4">Profil Fotoğrafı</h2>
-        <h3 class="mt-2 mb-4" style="font-weight: 500; border-bottom: none;">Son olarak bir profil fotoğrafı seçiniz</h3>
+        <h3 class="mt-2 mb-4" style="font-weight: 500; border-bottom: none;">Son olarak bir profil fotoğrafı seçiniz
+        </h3>
         <div class="row mb-3">
             <div class="col text-center">
 
                 <div id="photoPreview" class="rounded-circle border position-relative"
-                style="width: 150px; height: 150px; background-color: gray; background-size: cover; background-position: center; display: inline-block;">
-               <i class="fa-solid fa-camera position-absolute top-50 start-50 translate-middle"
-                  id="cameraIcon" style="font-size: 32px; color: white;"></i>
-           </div>
+                    style="width: 150px; height: 150px; background-color: gray; background-size: cover; background-position: center; display: inline-block;">
+                    <i class="fa-solid fa-camera position-absolute top-50 start-50 translate-middle" id="cameraIcon"
+                        style="font-size: 32px; color: white;"></i>
+                </div>
 
                 <div class="mt-3">
                     <label for="fileInput" class="primary-button">Dosya Seç</label>
@@ -190,23 +191,23 @@
         <button type="button" class="primary-button" id="submitButton">Kaydımı Tamamla </button>
     </div>
     <!-- Success Modal -->
-<div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header bg-success text-white">
-                <h5 class="modal-title" id="successModalLabel">Başarılı!</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body text-center">
-                <i class="bi bi-check-circle-fill text-success" style="font-size: 50px;"></i>
-                <p class="mt-3" style="font-size: 18px; font-weight: 500;">Başvurunuz başarıyla alınmıştır!</p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Tamam</button>
+    <div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header bg-success text-white">
+                    <h5 class="modal-title" id="successModalLabel">Başarılı!</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-center">
+                    <i class="bi bi-check-circle-fill text-success" style="font-size: 50px;"></i>
+                    <p class="mt-3" style="font-size: 18px; font-weight: 500;">Başvurunuz başarıyla alınmıştır!</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Tamam</button>
+                </div>
             </div>
         </div>
     </div>
-</div>
     <script>
         // JavaScript ile dosya yükleme ve önizleme
         document.getElementById('fileInput').addEventListener('change', function (event) {
@@ -238,63 +239,60 @@
     <script src="//cdn.arabul.us/jquery/jquery-3.7.1.min.js"></script>
 
 
-<script>
-   $(document).ready(() => {
-    $('#submitButton').on('click', function () {
-        const selectedFile = document.getElementById('fileInput').files[0];
-        if (!selectedFile) {
-            alert('Lütfen bir dosya seçin.');
-            return;
-        }
-
-        const formData = new FormData();
-        formData.append('profile_photo', selectedFile);
-        formData.append('_token', '{{ csrf_token() }}');
-
-        $.ajax({
-            url: '/api/kayit/terapist/6',
-            method: 'POST',
-            data: formData,
-            processData: false,
-            contentType: false,
-            success: (response) => {
-                if (response.status) {
-                    $('#successModal').modal('show');
-                    setTimeout(() => {
-                        window.location.href = "/";
-                    }, 3000);
-                } else {
-                    $('#errorMessage').text(response.message || 'Bir hata oluştu.').show();
+    <script>
+        $(document).ready(() => {
+            $('#submitButton').on('click', function () {
+                const selectedFile = document.getElementById('fileInput').files[0];
+                if (!selectedFile) {
+                    alert('Lütfen bir dosya seçin.');
+                    return;
                 }
-            },
-            error: (err) => {
-                $('#errorMessage').text('Bir hata oluştu. Lütfen tekrar deneyin.').show();
-                console.error(err);
-            }
-        });
-    });
-});
 
-</script>
-<script>
-document.getElementById('backButton').addEventListener('click', function () {
-    $.ajax({
-        url: '/api/kayit/terapist/6', // Sunucudan bir sonraki step'i belirleyecek bir API endpoint
-        method: 'GET',
-        success: function (response) {
-            if (response.nextStep) {
-                window.location.href = `/api/kayit/terapist/5${response.nextStep}`;
-            } else {
-                alert('Bir sonraki step bulunamadı.');
-            }
-        },
-        error: function (err) {
-            console.error(err);
-            alert('Bir hata oluştu.');
-        }
-    });
-});
-</script>
+                const formData = new FormData();
+                formData.append('profile_photo', selectedFile);
+                formData.append('_token', '{{ csrf_token() }}');
+
+                $.ajax({
+                    url: '/api/kayit/terapist/6',
+                    method: 'POST',
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    success: (response) => {
+                        if (response.status) {
+                            $('#successModal').modal('show');
+                        } else {
+                            alert(response.message);
+                        }
+                    },
+                    error: (err) => {
+                        $('#errorMessage').text('Bir hata oluştu. Lütfen tekrar deneyin.').show();
+                        console.error(err);
+                    }
+                });
+            });
+        });
+
+    </script>
+    <script>
+        document.getElementById('backButton').addEventListener('click', function () {
+            $.ajax({
+                url: '/api/kayit/terapist/6', // Sunucudan bir sonraki step'i belirleyecek bir API endpoint
+                method: 'GET',
+                success: function (response) {
+                    if (response.nextStep) {
+                        window.location.href = `/api/kayit/terapist/5${response.nextStep}`;
+                    } else {
+                        alert('Bir sonraki step bulunamadı.');
+                    }
+                },
+                error: function (err) {
+                    console.error(err);
+                    alert('Bir hata oluştu.');
+                }
+            });
+        });
+    </script>
 </body>
 
 </html>

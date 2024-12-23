@@ -254,6 +254,9 @@
                         if (res.status) {
                             window.location.href = res.link;
                         }
+                        else {
+                            alert(res.message);
+                        }
                     },
                     error: (err) => {
                         alert('Bir hata oluştu');

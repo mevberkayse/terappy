@@ -39,9 +39,12 @@
         }
 
         .customizedNavbar {
-            background-color: transparent !important; /* Arka planı şeffaf yapar */
-    box-shadow: none; /* Gölgeyi kaldırır */
-    border-bottom: none; /* Alt çizgiyi kaldırır (varsa) */
+            background-color: transparent !important;
+            /* Arka planı şeffaf yapar */
+            box-shadow: none;
+            /* Gölgeyi kaldırır */
+            border-bottom: none;
+            /* Alt çizgiyi kaldırır (varsa) */
         }
 
         .centered-container {
@@ -128,9 +131,11 @@
     </nav>
     <div class="container centered-container">
         <h2 class="text-center mb-4">Hakkımda</h2>
-        <h3 class="mt-2 mb-4" style="font-weight: 500; border-bottom: none;">Kullanıcılarımız için kendinizden kısaca bahseder misiniz?</h3>
+        <h3 class="mt-2 mb-4" style="font-weight: 500; border-bottom: none;">Kullanıcılarımız için kendinizden kısaca
+            bahseder misiniz?</h3>
         <div class="mb-4">
-            <textarea id="about" name="about" class="form-control" rows="15" placeholder="Buraya kendinizi tanıtan bir metin yazabilirsiniz." style="width: 400px;"></textarea>
+            <textarea id="about" name="about" class="form-control" rows="15"
+                placeholder="Buraya kendinizi tanıtan bir metin yazabilirsiniz." style="width: 400px;"></textarea>
         </div>
     </div>
 
@@ -147,29 +152,31 @@
 
     <script>
         $(document).ready(() => {
-             $('.primary-button').click(() => {
-                 let about = $('#about').val();
+            $('.primary-button').click(() => {
+                let about = $('#about').val();
 
-                 $.ajax({
-                     url: '/api/kayit/terapist/4',
-                     method: 'POST',
-                     data: {
-                       about:about,
-                         _token: '{{ csrf_token() }}'
-                     },
-                     success:(res)=>{
-                     if(res.status) {
-                       window.location.href = res.link;
-                     }
-                 },
-                 error:(err)=>{
-                     alert('Bir hata oluştu');
-                     console.log(err);
-                 }
-                 });
-             });
-         });
-     </script>
+                $.ajax({
+                    url: '/api/kayit/terapist/4',
+                    method: 'POST',
+                    data: {
+                        about: about,
+                        _token: '{{ csrf_token() }}'
+                    },
+                    success: (res) => {
+                        if (res.status) {
+                            window.location.href = res.link;
+                        } else {
+                            alert(res.message);
+                        }
+                    },
+                    error: (err) => {
+                        alert('Bir hata oluştu');
+                        console.log(err);
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 
 </html>

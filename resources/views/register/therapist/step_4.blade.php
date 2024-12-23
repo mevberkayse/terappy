@@ -219,12 +219,12 @@
                 <div class="modal-body">
                     <ul class="list-group">
                         @foreach($diseases as $disease)
-                            <li class="list-group-item" id="disease_{{$disease->id}}" data-name="{{$disease->name_disease}}"
-                                onclick="chooseOption('{{$disease->name_disease}}')">{{$disease->name_disease}}</li>
+                        <li class="list-group-item" id="disease_{{$disease->id}}" data-name="{{$disease->name_disease}}"
+                            onclick="chooseOption('{{$disease->name_disease}}')">{{$disease->name_disease}}</li>
                         @endforeach
                     </ul>
                     <!-- save button  to right-->
-                     <button type="button" class="primary-button float-right" data-bs-dismiss="modal">Kaydet</button>
+                    <button type="button" class="primary-button float-right" data-bs-dismiss="modal">Kaydet</button>
                 </div>
             </div>
         </div>
@@ -293,7 +293,7 @@
             document.getElementById("dilSelect").innerText = "İngilizce";
         });
     </script>
-     <script>
+    <script>
         document.getElementById("bireysel").addEventListener("click", function () {
             document.getElementById("cesitSelect").innerText = "Bireysel Terapi";
         });
@@ -334,40 +334,42 @@
     <script>
 
         $('#next_step').click(() => {
-    let ozelSelect = $('#ozelSelect').text();
-    let dilSelect = $('#dilSelect').text();
-    let fileInput = document.getElementById('fileInput').files[0];
-    let cesitSelect = $('#cesitSelect').text();
-    let deneyim = $('#deneyim').val();
+            let ozelSelect = $('#ozelSelect').text();
+            let dilSelect = $('#dilSelect').text();
+            let fileInput = document.getElementById('fileInput').files[0];
+            let cesitSelect = $('#cesitSelect').text();
+            let deneyim = $('#deneyim').val();
 
-    let formData = new FormData();
-    formData.append('ozelSelect', ozelSelect);
-    formData.append('dilSelect', dilSelect);
-    formData.append('fileInput', fileInput);
-    formData.append('cesitSelect', cesitSelect);
-    formData.append('deneyim', deneyim);
-    formData.append('_token', '{{ csrf_token() }}');
+            let formData = new FormData();
+            formData.append('ozelSelect', ozelSelect);
+            formData.append('dilSelect', dilSelect);
+            formData.append('fileInput', fileInput);
+            formData.append('cesitSelect', cesitSelect);
+            formData.append('deneyim', deneyim);
+            formData.append('_token', '{{ csrf_token() }}');
 
-    $.ajax({
-        url: '/api/kayit/terapist/3',
-        method: 'POST',
-        data: formData,
-        contentType: false,
-        processData: false,
-        success: (res) => {
-            if (res.status) {
-                window.location.href = res.link;
-            }
-        },
-        error: (err) => {
-            alert('Bir hata oluştu');
-            console.log(err);
-        }
-    });
-});
+            $.ajax({
+                url: '/api/kayit/terapist/3',
+                method: 'POST',
+                data: formData,
+                contentType: false,
+                processData: false,
+                success: (res) => {
+                    if (res.status) {
+                        window.location.href = res.link;
+                    } else {
+                        alert(res.message);
+                    }
+                },
+                error: (err) => {
+                    alert('Bir hata oluştu');
+                    console.log(err);
+                }
+            });
+        });
 
 
-     </script>
+    </script>
 </body>
 
 </html>

@@ -646,7 +646,7 @@
         </div>
     </div>
     <div class="button-group text-center mt-4">
-        <button type="button" class="basla-btn">Terapiye Başlayın</button>
+        <a href="/kayit"  style="text-decoration: none;" type="button" class="modal-btn">Terapiye Başlayın</a>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="//cdn.arabul.us/fontawesome/js/all.min.js"></script>
