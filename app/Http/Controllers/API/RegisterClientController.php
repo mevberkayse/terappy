@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Models\Disease;
 use App\Models\Therapist;
 use App\Models\User;
 use App\Models\User_to_therapist_matching;
@@ -188,12 +189,13 @@ class RegisterClientController extends Controller
         $client->save();
 
         // clear session
+        /*
         $request->session()->forget('register_client_step_1');
         $request->session()->forget('register_client_step_2');
         $request->session()->forget('register_client_step_3');
         $request->session()->forget('register_client_step_4');
         $request->session()->forget('register_client_step_5');
-
+*/
         //TODO: match the client with the therapist
 
         // get all therapists
@@ -201,12 +203,17 @@ class RegisterClientController extends Controller
         $matches = [];
         foreach ($therapists as $therapist) {
             $match = $this->calculateMatch($client, $therapist);
-                $matches[] = [
-                    'therapist' => $therapist,
-                    'match' => $match
-                ];
+            $matches[] = [
+                'therapist' => $therapist,
+                'match' => $match
+            ];
+        }
 
-            }
+        // sort matches by match
+        usort($matches, function ($a, $b) {
+            return $b['match'] - $a['match'];
+        });
+
         session()->put('matches', $matches);
 
         Auth::login($client);
@@ -237,26 +244,35 @@ class RegisterClientController extends Controller
         if ($client->previous_therapy_experience == 'yes') {
             $match += 1;
         }
+        // $therapistBranch is strings of diseases and $clientProblems is id's fo diseases
+        foreach ($therapistBranch as $branch) {
+            // remove whitespaces from $branch
+            $branch = trim($branch);
+            $b = Disease::where('name_disease', $branch)->first();
+            if ($b == null) {
+                continue;
+            }
 
-        foreach ($clientProblems as $problem) {
-            if (in_array($problem, $therapistBranch)) {
+            if (in_array($b->id, $clientProblems)) {
                 $match += 1;
             }
         }
 
-        foreach ($clientFeatures as $feature) {
-            if (in_array($feature, $therapistFeatures)) {
-                $match += 1;
-            }
+
+
+        $match = ceil(($match / (count($clientProblems))) * 100);
+
+        // limit the match to 100
+        if ($match > 100) {
+            $match = 100;
         }
 
-
-        $match = ceil(($match / (count($clientProblems) + count($clientFeatures) + 2)) * 100);
 
         return $match;
     }
 
-    public function matchTherapist(Request $request) {
+    public function matchTherapist(Request $request)
+    {
         $therapist_id  = $request->input('therapist_id');
         $client = User::find(Auth::id());
 

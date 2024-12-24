@@ -93,7 +93,7 @@ class ProfileController extends Controller
             $therapist = Therapist::where('email', $email)->first();
             if ($therapist && password_verify($password, $therapist->password)) {
                 session(['role' => 'therapist', 'user_id' => $therapist->id]);
-                return redirect('/therapist-dashboard');
+                return redirect('/therapist-profile');
             } else {
                 return redirect()->back()->with('error', 'Email veya şifre hatalı');
             }
