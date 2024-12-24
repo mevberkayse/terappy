@@ -22,13 +22,30 @@ class AuthenticatedSessionController extends Controller
     /**
      * Handle an incoming authentication request.
      */
-    public function store(LoginRequest $request): RedirectResponse
+    public function store(LoginRequest $request)
     {
+        // if $request->input('role') == 'client' then
+        // return redirect()->route('client.dashboard');
+        // else if $request->input('role') == 'therapist' then
+        // return redirect()->route('therapist.dashboard');
+        // will $request->authenticate() work?
         $request->authenticate();
 
         $request->session()->regenerate();
 
-        return redirect()->intended(route('dashboard', absolute: false));
+        // if $request->input('role') == 'client' then
+        // return redirect()->route('client.dashboard');
+        // else if $request->input('role') == 'therapist' then
+        // return redirect()->route('therapist.dashboard');
+
+        if($request->input('role') == 'client') {
+            return redirect()->route('client.dashboard');
+        } else if($request->input('role') == 'therapist') {
+            return redirect()->route('therapist.dashboard');
+        } else {
+            return null;
+        }
+
     }
 
     /**
